@@ -1,15 +1,101 @@
+# ======================================================================
+# Android Studio / IntelliJ IDE Dosyaları
+# BU BÖLÜM TÜM .idea KLASÖRÜNÜ VE DİĞER PROJE AYAR DOSYALARINI GÖRMEZDEN GELİR
+# ======================================================================
+.idea/
 *.iml
-.gradle
-/local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
-.DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
+*.ipr
+*.iws
+
+# Android Studio 4.0 ve sonrası için modül bazlı .iml dosyaları
+# (Bunlar .idea/modules altında da olabilir ama garantiye alalım)
+*.iml
+modules.xml
+
+# ======================================================================
+# Lokal Geliştirici Ayarları
+# (Bu dosya SDK yolunuz gibi kişisel ayarları içerir. ASLA commit etmeyin.)
+# ======================================================================
 local.properties
+
+# ======================================================================
+# Gradle Dosyaları
+# (Gradle sarmalayıcı (wrapper) logları, önbellek ve build çıktıları)
+# ======================================================================
+.gradle/
+build/
+
+# Gradle tarafından oluşturulan diğer dosyalar
+gradle-user-home/
+gradle.properties.lock
+gradle-daemon.out
+gradle-daemon-*.log
+
+# Tüm modüllerdeki build klasörlerini de yok say
+*/build/
+
+# ======================================================================
+# Build Çıktıları ve Artifact'ler
+# (APK, AAB, JAR, AAR dosyaları)
+# ======================================================================
+*.apk
+*.aab
+*.jar
+*.aar
+*.ap_
+
+# ======================================================================
+# GÜVENLİK - Hassas Dosyalar
+# (Uygulama imza anahtarları, API anahtarları vb.)
+# ======================================================================
+*.jks
+*.keystore
+*.pem
+signing.properties
+fabric.properties
+
+# Firebase yapılandırma dosyası.
+# Genelde reponun bir parçasıdır ancak dev/prod ortamlarınız ayrıysa
+# ve bunu CI/CD ile enjekte ediyorsanız ignore edebilirsiniz.
+# google-services.json
+# */google-services.json
+
+# ======================================================================
+# İşletim Sistemi Özel Dosyaları (Mac, Windows, Linux)
+# ======================================================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# ======================================================================
+# Loglar ve Geçici Dosyalar
+# ======================================================================
+*.log
+*.tmp
+*.temp
+
+# ======================================================================
+# Android Araçları ve Diğer Üretilen Dosyalar
+# ======================================================================
+# C++ (NDK) build dosyaları
+.cxx/
+*/.cxx/
+
+# Oluşturulan (Generated) dosyalar
+generated/
+*/generated/
+
+# Android Studio profil oluşturma (profiling) ve analiz dosyaları
+captures/
+*.hprof
+*.trace
+
+# Android Navigasyon Editörü yedekleri
+*.nav_editor_backups
+
+# Firebase emülatör verileri
+.firebase/

@@ -6,7 +6,6 @@ from pydantic import BaseModel, EmailStr, Field
 from typing import Optional, Dict, Any
 from supabase import Client
 from .supa import get_supabase
-from typing import Optional
 from .deps import auth_required
 
 

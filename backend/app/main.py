@@ -7,6 +7,8 @@ from typing import Optional, Dict, Any
 from supabase import Client
 from .supa import get_supabase
 from typing import Optional
+from .deps import auth_required
+
 
 app = FastAPI(title="Hackathon Backend", version="0.1.0")
 
@@ -109,3 +111,27 @@ def login(payload: LoginIn, sb: Client = Depends(get_supabase)):
     except Exception as e:
         # Örn: AuthApiError('Invalid login credentials')
         raise HTTPException(status_code=401, detail=f"Login error: {e}")
+
+@app.get("/me", tags=["auth"])
+def me(auth=Depends(auth_required)):
+    """
+    Korumalı endpoint. Authorization: Bearer <access_token> ile erişilir.
+    JWT claims'ten user bilgisini döner.
+    """
+    claims = auth["claims"]
+    
+    # JWT claims'te genellikle şu bilgiler bulunur:
+    # - sub: user_id
+    # - email: kullanıcı emaili
+    # - user_metadata: kayıt sırasında eklenen metadata
+    
+    return {
+        "user_id": claims.get("sub"),
+        "email": claims.get("email"),
+        "role": claims.get("role"),
+        "aud": claims.get("aud"),
+        "exp": claims.get("exp"),
+        "iat": claims.get("iat"),
+        "user_metadata": claims.get("user_metadata", {}),
+        "app_metadata": claims.get("app_metadata", {}),
+    }

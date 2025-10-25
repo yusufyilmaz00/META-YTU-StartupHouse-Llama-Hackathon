@@ -8,7 +8,6 @@ from supabase import Client
 from .supa import get_supabase
 from .deps import auth_required
 from groq import Groq
-from llamagroq import SYSTEM_PROMPT, ask_groq
 import os
 
 GROQ_API_KEY = os.getenv("GROQ_API_KEY", "")
@@ -17,7 +16,6 @@ GROQ_API_KEY = os.getenv("GROQ_API_KEY", "")
 app = FastAPI(title="Hackathon Backend", version="0.1.0")
 client = Groq(api_key=GROQ_API_KEY)
 
-history = [{"role": "system", "content": SYSTEM_PROMPT}]
 
 
 # CORS (mobil geliştirme için şimdilik açık; ileride kısıtlarız)
@@ -143,6 +141,56 @@ def me(auth=Depends(auth_required)):
         "user_metadata": claims.get("user_metadata", {}),
         "app_metadata": claims.get("app_metadata", {}),
     }
+
+
+
+
+def system_prompt():
+    return (
+        "You are a professional career counselor and cognitive analyst. "
+        "Your role is to help users explore career paths, understand their job-related skills, and plan long-term professional growth. "
+        "If a user asks about topics unrelated to careers, politely respond with: "
+        "'I wasn't given any information on this topic. I can only answer career counseling questions.' "
+        "When the user provides intelligence percentages, analyze them carefully and ask clarifying questions "
+        "to test the accuracy and consistency of those values. You may adjust the percentages up or down "
+        "based on the user's answers, but always explain your reasoning clearly and logically. "
+        "Limit yourself to asking a maximum of five questions during this analysis process. "
+        "After evaluating the intelligence profile, summarize your findings by identifying the user's cognitive strengths and weaknesses, "
+        "and suggest the most suitable career paths and job roles that align with their intelligence profile. "
+        "Finally, provide clear, actionable recommendations for professional growth tailored to their unique combination of intelligences. "
+        "At the end of your analysis, list the **top five most suitable professions** for the user, "
+        "based on their final intelligence profile and overall potential."
+    )
+
+
+
+# --- Global history ---
+
+history = [{"role": "system", "content": system_prompt()}]
+def ask_groq(prompt: str, max_tokens: int = 1000, temperature: float = 0.7):
+    """
+    Groq modeline sistem prompt + geçmişle birlikte istek atar.
+    """
+    # Geçmiş + yeni mesaj
+    messages = history + [{"role": "user", "content": prompt}]
+    
+    try:
+        completion = client.chat.completions.create(
+            model="llama-3.1-8b-instant",
+            messages=messages,
+            temperature=temperature,
+            max_completion_tokens=max_tokens,
+            top_p=1,
+            stream=False  # Tek seferde JSON cevabı
+        )
+        answer = completion.choices[0].message.content.strip()
+        # History'e ekle
+        history.append({"role": "user", "content": prompt})
+        history.append({"role": "assistant", "content": answer})
+        return answer
+    except Exception as e:
+        return f"Model hatası: {e}"
+
 
 
 @app.post("/chat")

@@ -18,5 +18,6 @@ object Routes {
 
     //test
     const val DATABASE_TEST = "DATABASE TEST"          // Test ekranı
+    const val CALCULATION_TEST = "Calculation_test"
 
 }

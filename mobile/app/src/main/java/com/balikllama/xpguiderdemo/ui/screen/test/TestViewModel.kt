@@ -147,4 +147,16 @@ class TestViewModel @Inject constructor(
             _uiState.update { it.copy(currentAnswer = existingAnswer?.answer) }
         }
     }
+
+    /**
+     * Test sonuçlarını dışarıdan (örneğin bir test senaryosundan) ayarlamak için kullanılır.
+     */
+    fun setTestResults(results: List<ScoreResult>) {
+        _uiState.update {
+            it.copy(
+                results = results,
+                isTestCompleted = true
+            )
+        }
+    }
 }

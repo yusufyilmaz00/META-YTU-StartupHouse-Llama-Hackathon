@@ -29,6 +29,7 @@ fun HomeScreen(
         onDecreaseCredit = { viewModel.decreaseCredit(10)},
         onNavigateToDbTest = { navController.navigate( Routes.DATABASE_TEST) },
         onResetDatabase = { dbTestViewModel.resetDatabase()},
-        onNavigateToTest = { navController.navigate(Routes.TEST_GRAPH) }
+        onNavigateToTest = { navController.navigate(Routes.TEST_GRAPH) },
+        onNavigateToCalculationTest = {navController.navigate(Routes.CALCULATION_TEST)}
     )
 }

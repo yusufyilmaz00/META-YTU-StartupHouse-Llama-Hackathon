@@ -7,7 +7,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
@@ -20,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import com.balikllama.xpguiderdemo.Greeting
 import com.balikllama.xpguiderdemo.ui.components.AppTopBar
 import com.balikllama.xpguiderdemo.ui.designsystem.AppTheme
+import com.balikllama.xpguiderdemo.ui.navigation.Routes
 import com.balikllama.xpguiderdemo.ui.theme.B1demoTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -32,10 +35,12 @@ fun HomeView(
     onDecreaseCredit: () -> Unit, // Kredi azaltma eylemi
     onNavigateToDbTest: () -> Unit,
     onResetDatabase: () -> Unit,
-    onNavigateToTest: () -> Unit
+    onNavigateToTest: () -> Unit,
+    onNavigateToCalculationTest: () -> Unit
 ) {
     AppTheme {
-        Scaffold(modifier = Modifier.fillMaxSize(),
+        Scaffold(
+            modifier = Modifier.fillMaxSize(),
             topBar = {
                 AppTopBar(
                     title = "Home",
@@ -83,12 +88,23 @@ fun HomeView(
                 Button(onClick = onNavigateToTest) {
                     Text("Teste Başla")
                 }
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                Button(
+                    onClick = { onNavigateToCalculationTest() },
+                    colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondary) // Farklı renk
+                ) {
+                    Text("Hesaplama Testini Çalıştır")
+
+                }
             }
         }
     }
 }
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3WindowSizeClassApi::class)
+
 @Preview(showBackground = true)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3WindowSizeClassApi::class)
 @Composable
 fun HomeViewPreview() {
     HomeView(
@@ -103,6 +119,7 @@ fun HomeViewPreview() {
         ),
         onNavigateToDbTest = {},
         onResetDatabase = {},
-        onNavigateToTest = {}
+        onNavigateToTest = {},
+        onNavigateToCalculationTest = {}
     )
 }

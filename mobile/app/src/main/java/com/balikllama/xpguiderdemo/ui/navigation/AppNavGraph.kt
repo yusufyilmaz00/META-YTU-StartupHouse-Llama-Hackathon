@@ -12,6 +12,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
+import com.balikllama.xpguiderdemo.ui.screen.calculationtest.CalculationTestScreen
 import com.balikllama.xpguiderdemo.ui.screen.dbtest.DBTestScreen
 import com.balikllama.xpguiderdemo.ui.screen.chatbot.ChatbotScreen
 import com.balikllama.xpguiderdemo.ui.screen.home.HomeScreen
@@ -136,6 +137,17 @@ private fun NavGraphBuilder.testGraph(navController: NavController, modifier: Mo
                 modifier = modifier.fillMaxSize(),
                 navController = navController,
                 viewModel = testViewModel
+            )
+        }
+
+        composable(route = Routes.CALCULATION_TEST) { backStackEntry ->
+            val parentEntry = remember(backStackEntry) { navController.getBackStackEntry(Routes.TEST_GRAPH) }
+            val testViewModel: TestViewModel = hiltViewModel(parentEntry)
+
+            CalculationTestScreen(
+                modifier = modifier,
+                navController = navController,
+                sharedTestViewModel = testViewModel // Paylaşılan ViewModel'i veriyoruz
             )
         }
     }

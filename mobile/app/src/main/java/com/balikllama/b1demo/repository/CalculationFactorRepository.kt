@@ -15,14 +15,19 @@ class CalculationFactorRepository @Inject constructor(
         return factorDao.getAllFactors()
     }
 
+
+    suspend fun clearAllFactors() {
+        factorDao.clearAll()
+    }
     suspend fun insertInitialFactors() {
         if (factorDao.getAllFactors().first().isEmpty()) {
             val initialList = listOf(
                 CalculationFactorEntity(key = "answer_yes", value = 1.0f),
-                CalculationFactorEntity(key = "answer_no", value = -1.0f),
-                CalculationFactorEntity(key = "answer_neutral", value = 0.0f),
-                CalculationFactorEntity(key = "base_multiplier", value = 1.2f)
-            )
+                CalculationFactorEntity(key = "answer_maybe", value = 0.2f),
+                CalculationFactorEntity(key = "answer_no", value = -0.4f),
+                CalculationFactorEntity(key = "weight_primary", value = 2.0f),
+                CalculationFactorEntity(key = "weight_secondary", value = 0.1f),
+                )
             factorDao.insertAll(initialList)
         }
     }

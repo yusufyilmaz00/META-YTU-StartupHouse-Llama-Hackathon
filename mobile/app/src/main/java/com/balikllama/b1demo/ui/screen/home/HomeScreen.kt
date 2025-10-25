@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.balikllama.b1demo.ui.navigation.Routes
+import com.balikllama.b1demo.ui.screen.dbtest.DBTestViewModel
 import com.balikllama.b1demo.viewmodel.CreditViewModel
 
 @Composable
@@ -17,7 +18,8 @@ fun HomeScreen(
     modifier: Modifier = Modifier,
     navController: NavController,
     windowSizeClass: WindowSizeClass,
-    viewModel: HomeViewModel = hiltViewModel()
+    viewModel: HomeViewModel = hiltViewModel(),
+    dbTestViewModel : DBTestViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
 
@@ -28,26 +30,7 @@ fun HomeScreen(
         uiState = uiState,
         onAddCredit = { viewModel.addCredit(5) },
         onDecreaseCredit = { viewModel.decreaseCredit(10)},
-        onNavigateToDbTest = { navController.navigate( Routes.DATABASE_TEST) }
-    )
-}
-
-@Composable
-fun HomeScreen(
-    modifier: Modifier = Modifier,
-    windowSizeClass: WindowSizeClass,
-    viewModel: HomeViewModel = hiltViewModel() // Hilt ile ViewModel'i alıyoruz
-) {
-    // ViewModel'den UI state'ini alıyoruz
-    val uiState by viewModel.uiState.collectAsState()
-
-    // HomeView'a state'i ve event lambda'larını iletiyoruz
-    HomeView(
-        modifier = modifier,
-        windowSizeClass = windowSizeClass,
-        uiState = uiState,
-        onAddCredit = { viewModel.addCredit(5) },
-        onDecreaseCredit = { viewModel.decreaseCredit(10)},
-        onNavigateToDbTest = {}
+        onNavigateToDbTest = { navController.navigate( Routes.DATABASE_TEST) },
+        onResetDatabase = { dbTestViewModel.resetDatabase() }
     )
 }

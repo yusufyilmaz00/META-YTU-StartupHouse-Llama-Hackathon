@@ -63,7 +63,20 @@ class DBTestViewModel @Inject constructor(
             interestRepository.insertInitialInterests()
             traitRepository.insertInitialTraits()
             questionRepository.insertInitialQuestions()
-            calculationFactorRepository.insertInitialFactors() // YENİ
+            calculationFactorRepository.insertInitialFactors()
+        }
+    }
+
+    /**
+     * Tüm tabloları temizler.
+     */
+    fun resetDatabase() {
+        viewModelScope.launch {
+            // 1. Önce tüm tabloları temizle
+            interestRepository.clearAllInterests()
+            traitRepository.clearAllTraits()
+            questionRepository.clearAllQuestions()
+            calculationFactorRepository.clearAllFactors()
         }
     }
 }

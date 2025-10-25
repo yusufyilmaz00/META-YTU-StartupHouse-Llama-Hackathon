@@ -13,9 +13,11 @@ SYSTEM_PROMPT = (
     "You help users explore career paths, understand job skills, and plan professional growth. "
     "If someone asks about topics unrelated to careers, answer: "
     "'I wasn't given any information on this topic. I can only answer career counseling questions.' "
-    "Additionally, when intelligence percentages are provided, "
-    "analyze them and ask questions to test their accuracy. "
-    "You may adjust the percentages up or down based on the user's answers, explaining your reasoning clearly."
+    "When intelligence percentages are provided, analyze them and ask questions to test their accuracy. "
+    "You may adjust the percentages up or down based on the user's answers, explaining your reasoning clearly. "
+    "After evaluating the intelligence profile, identify the user's strengths and weaknesses, "
+    "and suggest suitable career paths and job roles that align with their intelligence profile. "
+    "Provide clear, actionable guidance for professional growth based on their unique combination of intelligences."
 )
 
 # --- Modelin geçmişi global olarak saklanıyor ---
@@ -73,11 +75,16 @@ def intelligence_endpoint(ratios: dict = Body(...)):
     }
     """
     ratios_str = ", ".join([f"{k}: {v}%" for k, v in ratios.items()])
+
     prompt = (
-        f"Here are the intelligence ratios for a person: {ratios_str}. "
-        "Evaluate if these percentages seem accurate by asking diagnostic questions. "
-        "You can increase or decrease them based on the answers."
-    )
+    f"Here are the intelligence ratios for a person: {ratios_str}. "
+    "Evaluate if these percentages seem accurate by asking diagnostic questions. "
+    "You can increase or decrease them based on the answers. "
+    "After analyzing the responses and adjusting the ratios, "
+    "identify the person's strengths and weaknesses, "
+    "and suggest suitable career paths and specific job roles that align with their intelligence profile. "
+    "Provide clear, actionable guidance for professional growth based on their unique combination of intelligences."
+)
     answer = ask_llama(prompt)
     history.append({"user": prompt, "assistant": answer})
     return {"response": answer}

@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.balikllama.b1demo.data.local.entity.InterestEntity
+import com.balikllama.b1demo.data.local.entity.QuestionEntity
 import com.balikllama.b1demo.data.local.entity.TraitEntity
 import com.balikllama.b1demo.ui.components.AppTopBar
 
@@ -25,7 +26,8 @@ import com.balikllama.b1demo.ui.components.AppTopBar
 fun DBTestView(
     modifier: Modifier = Modifier,
     interests: List<InterestEntity>,
-    traits: List<TraitEntity>
+    traits: List<TraitEntity>,
+    questions: List<QuestionEntity>
 ) {
     Scaffold(
         modifier = modifier.fillMaxSize(),
@@ -62,6 +64,18 @@ fun DBTestView(
                     TraitItem(trait = trait) // Yeni composable
                 }
             }
+
+            // Sorular Listesi
+            item {
+                Text("Sorular (question_list)", style = MaterialTheme.typography.titleLarge)
+            }
+            if (questions.isEmpty()) {
+                item { Text("`question_list` tablosunda veri bulunamadı.") }
+            } else {
+                items(questions, key = { it.qId }) { question ->
+                    QuestionItem(question = question) // Yeni composable
+                }
+            }
         }
     }
 }
@@ -82,6 +96,18 @@ fun TraitItem(trait: TraitEntity) {
         Column(modifier = Modifier.padding(16.dp)) {
             Text(text = trait.traitName, fontWeight = FontWeight.Bold)
             Text(text = "ID: ${trait.traitId}", fontWeight = FontWeight.Light)
+        }
+    }
+}
+
+@Composable
+fun QuestionItem(question: QuestionEntity) {
+    Card(modifier = Modifier.fillMaxWidth()) {
+        Column(modifier = Modifier.padding(16.dp)) {
+            Text(text = "Soru: ${question.qText}", fontWeight = FontWeight.Bold)
+            Text(text = "ID: ${question.qId} | Aktif: ${question.active}")
+            Text(text = "Primary: ${question.primaryId}")
+            Text(text = "Ağırlıklar: S1(${question.s1Id} - ${question.s1w}), S2(${question.s2Id} - ${question.s2w}), S3(${question.s3Id} - ${question.s3w})")
         }
     }
 }

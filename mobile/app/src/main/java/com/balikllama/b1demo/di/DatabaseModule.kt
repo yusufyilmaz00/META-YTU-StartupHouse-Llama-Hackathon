@@ -5,7 +5,7 @@ import androidx.room.Room
 import com.balikllama.b1demo.data.local.AppDatabase
 import com.balikllama.b1demo.data.local.dao.InterestDao
 import com.balikllama.b1demo.data.local.dao.TraitDao
-import com.balikllama.b1demo.repository.TraitRepository
+import com.balikllama.b1demo.data.local.dao.QuestionDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -43,4 +43,11 @@ object DatabaseModule {
     fun provideTraitDao(appDatabase: AppDatabase): TraitDao { // YENİ
         return appDatabase.traitDao()
     }
+
+    @Provides
+    @Singleton
+    fun provideQuestionDao(appDatabase: AppDatabase): QuestionDao { // YENİ FONKSİYON
+        return appDatabase.questionDao()
+    }
+
 }

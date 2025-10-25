@@ -3,6 +3,7 @@ package com.balikllama.b1demo.di
 import android.content.Context
 import androidx.room.Room
 import com.balikllama.b1demo.data.local.AppDatabase
+import com.balikllama.b1demo.data.local.dao.CalculationFactorDao
 import com.balikllama.b1demo.data.local.dao.InterestDao
 import com.balikllama.b1demo.data.local.dao.TraitDao
 import com.balikllama.b1demo.data.local.dao.QuestionDao
@@ -48,6 +49,12 @@ object DatabaseModule {
     @Singleton
     fun provideQuestionDao(appDatabase: AppDatabase): QuestionDao { // YENİ FONKSİYON
         return appDatabase.questionDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideCalculationFactorDao(appDatabase: AppDatabase): CalculationFactorDao { // YENİ FONKSİYON
+        return appDatabase.calculationFactorDao()
     }
 
 }

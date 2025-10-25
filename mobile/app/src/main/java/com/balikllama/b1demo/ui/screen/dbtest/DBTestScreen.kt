@@ -16,13 +16,15 @@ fun DBTestScreen(
 ) {
     val interests by viewModel.interests.collectAsState()
     val traits by viewModel.traits.collectAsState()
-    val questions by viewModel.questions.collectAsState() // YENİ
+    val questions by viewModel.questions.collectAsState()
+    val factors by viewModel.factors.collectAsState()
 
     DBTestView(
         modifier = modifier,
         interests = interests,
         traits = traits,
-        questions = questions
+        questions = questions,
+        factors = factors
     )
 }
 

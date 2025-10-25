@@ -16,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.balikllama.b1demo.data.local.entity.CalculationFactorEntity
 import com.balikllama.b1demo.data.local.entity.InterestEntity
 import com.balikllama.b1demo.data.local.entity.QuestionEntity
 import com.balikllama.b1demo.data.local.entity.TraitEntity
@@ -27,7 +28,8 @@ fun DBTestView(
     modifier: Modifier = Modifier,
     interests: List<InterestEntity>,
     traits: List<TraitEntity>,
-    questions: List<QuestionEntity>
+    questions: List<QuestionEntity>,
+    factors: List<CalculationFactorEntity>
 ) {
     Scaffold(
         modifier = modifier.fillMaxSize(),
@@ -76,6 +78,18 @@ fun DBTestView(
                     QuestionItem(question = question) // Yeni composable
                 }
             }
+
+            // Hesaplama Faktörleri Listesi
+            item {
+                Text("Hesaplama Faktörleri (calculation_factors)", style = MaterialTheme.typography.titleLarge)
+            }
+            if (factors.isEmpty()) {
+                item { Text("`calculation_factors` tablosunda veri bulunamadı.") }
+            } else {
+                items(factors, key = { it.key }) { factor ->
+                    CalculationFactorItem(factor = factor) // Yeni composable
+                }
+            }
         }
     }
 }
@@ -108,6 +122,16 @@ fun QuestionItem(question: QuestionEntity) {
             Text(text = "ID: ${question.qId} | Aktif: ${question.active}")
             Text(text = "Primary: ${question.primaryId}")
             Text(text = "Ağırlıklar: S1(${question.s1Id} - ${question.s1w}), S2(${question.s2Id} - ${question.s2w}), S3(${question.s3Id} - ${question.s3w})")
+        }
+    }
+}
+
+@Composable
+fun CalculationFactorItem(factor: CalculationFactorEntity) {
+    Card(modifier = Modifier.fillMaxWidth()) {
+        Column(modifier = Modifier.padding(16.dp)) {
+            Text(text = "Key: ${factor.key}", fontWeight = FontWeight.Bold)
+            Text(text = "Value: ${factor.value}", fontWeight = FontWeight.Light)
         }
     }
 }

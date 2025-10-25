@@ -16,7 +16,7 @@ fun DBTestScreen(
 ) {
     val interests by viewModel.interests.collectAsState()
 
-    DBTestListView(
+    DBTestView(
         modifier = modifier,
         interests = interests
     )

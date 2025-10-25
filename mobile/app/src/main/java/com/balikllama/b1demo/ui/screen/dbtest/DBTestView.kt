@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -21,7 +22,7 @@ import com.balikllama.b1demo.ui.components.AppTopBar
 
 // Sadece UI'ı gösteren, önizlenebilir Composable
 @Composable
-fun DBTestListView(
+fun DBTestView(
     modifier: Modifier = Modifier,
     interests: List<InterestEntity>
 ) {
@@ -29,30 +30,26 @@ fun DBTestListView(
         modifier = modifier.fillMaxSize(),
         topBar = { AppTopBar( title = "DB Test: İlgi Alanları",creditInfo = "51") }
     ) { innerPadding ->
-        if (interests.isEmpty()) {
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(innerPadding),
-                verticalArrangement = Arrangement.Center
-            ) {
-                Text(
-                    text = "Veritabanında hiç ilgi alanı bulunamadı.",
-                    modifier = Modifier.align(Alignment.CenterHorizontally)
-                )
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(innerPadding),
+            contentPadding = PaddingValues(16.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            item {
+                Text("İlgi Alanları (interest_list)", style = MaterialTheme.typography.titleLarge, modifier = Modifier.padding(bottom = 8.dp))
             }
-        } else {
-            LazyColumn(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(innerPadding),
-                contentPadding = PaddingValues(16.dp),
-                verticalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
+            if (interests.isEmpty()) {
+                item {
+                    Text("`interest_list` tablosunda veri bulunamadı.")
+                }
+            } else {
                 items(interests) { interest ->
                     InterestItem(interest = interest)
                 }
             }
+            // Gelecekte diğer tabloların listesi buraya eklenebilir
         }
     }
 }

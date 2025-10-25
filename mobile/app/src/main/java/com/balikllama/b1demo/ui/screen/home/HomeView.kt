@@ -28,7 +28,8 @@ fun HomeView(
     windowSizeClass: WindowSizeClass,
     uiState: HomeUIState, // ViewModel yerine UIState alıyor
     onAddCredit: () -> Unit, // Kredi ekleme eylemi
-    onDecreaseCredit: () -> Unit // Kredi azaltma eylemi
+    onDecreaseCredit: () -> Unit, // Kredi azaltma eylemi
+    onNavigateToDbTest: () -> Unit // YENİ PARAMETRE
 ) {
     B1demoTheme {
         Scaffold(modifier = Modifier.fillMaxSize(),
@@ -63,6 +64,12 @@ fun HomeView(
                 Button(onClick = onDecreaseCredit) {
                     Text("10 Kredi Azalt")
                 }
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                Button(onClick = onNavigateToDbTest) { // YENİ BUTON
+                    Text("DB İçeriğini Göster")
+                }
             }
         }
     }
@@ -80,6 +87,7 @@ fun HomeViewPreview() {
                 412.dp,
                 891.dp
             )
-        )
+        ),
+        onNavigateToDbTest = {}
     )
 }

@@ -7,6 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.balikllama.b1demo.ui.screen.dbtest.DBTestScreen
 import com.balikllama.b1demo.ui.screen.chatbot.ChatbotScreen
 import com.balikllama.b1demo.ui.screen.home.HomeScreen
 import com.balikllama.b1demo.ui.screen.login.LoginScreen
@@ -91,8 +92,10 @@ fun AppNavGraph(navController: NavHostController,
         }
 
         // Test ekranı (kredi harcayacak)
-        composable(route = Routes.TEST) {
-            // TODO: TestScreen eklenecek
+        composable(route = Routes.DATABASE_TEST) { //
+            DBTestScreen(
+                modifier = modifier.fillMaxSize()
+            )
         }
     }
 }

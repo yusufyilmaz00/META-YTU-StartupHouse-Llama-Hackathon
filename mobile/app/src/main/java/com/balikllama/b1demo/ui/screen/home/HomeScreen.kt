@@ -9,6 +9,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.balikllama.b1demo.ui.navigation.Routes
 import com.balikllama.b1demo.viewmodel.CreditViewModel
 
 @Composable
@@ -26,7 +27,8 @@ fun HomeScreen(
         windowSizeClass = windowSizeClass,
         uiState = uiState,
         onAddCredit = { viewModel.addCredit(5) },
-        onDecreaseCredit = { viewModel.decreaseCredit(10) }
+        onDecreaseCredit = { viewModel.decreaseCredit(10)},
+        onNavigateToDbTest = { navController.navigate( Routes.DATABASE_TEST) }
     )
 }
 
@@ -45,6 +47,7 @@ fun HomeScreen(
         windowSizeClass = windowSizeClass,
         uiState = uiState,
         onAddCredit = { viewModel.addCredit(5) },
-        onDecreaseCredit = { viewModel.decreaseCredit(10) }
+        onDecreaseCredit = { viewModel.decreaseCredit(10)},
+        onNavigateToDbTest = {}
     )
 }

@@ -13,7 +13,9 @@ object Routes {
 
     // Additional
     const val PURCHASE = "purchase"  // Kredi satın alma
-    const val TEST = "test"          // Test ekranı
     const val SETTINGS = "settings"  // Ayarlar
+
+    //test
+    const val DATABASE_TEST = "DATABASE TEST"          // Test ekranı
 
 }

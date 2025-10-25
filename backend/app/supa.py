@@ -19,8 +19,8 @@ def get_supabase() -> Client:
     Backend tarafında SERVICE_ROLE_KEY varsa onu kullanır, yoksa ANON_KEY ile çalışır.
     (Register akışı için ANON_KEY genelde yeterlidir.)
     """
-    key = SERVICE_ROLE_KEY or ANON_KEY
-    if not key:
-        raise RuntimeError("SUPABASE_ANON_KEY veya SERVICE_ROLE_KEY .env içinde eksik")
+    
+    if not SERVICE_ROLE_KEY :
+        raise RuntimeError("SERVICE_ROLE_KEY .env içinde eksik")
     return create_client(SUPABASE_URL, key)
 

@@ -24,9 +24,10 @@ SYSTEM_PROMPT = (
 history = [{"user": "SYSTEM", "assistant": SYSTEM_PROMPT}]
 
 
-def ask_llama(prompt: str):
+def ask_llama(prompt: str, max_tokens: int = 300, temperature: float = 0.7):
     """
     Ollama modeline sistem prompt + geçmişle birlikte istek atar.
+    max_tokens ve temperature parametreleri ile cevabın uzunluğunu ve yaratıcılığını ayarlayabilirsin.
     """
     conversation = ""
     for turn in history:
@@ -35,19 +36,15 @@ def ask_llama(prompt: str):
     data = {
         "model": MODEL_NAME,
         "prompt": f"{conversation}\nUser: {prompt}\nAssistant:",
+        "max_tokens": max_tokens,
+        "temperature": temperature,
     }
 
     try:
-        response = requests.post(OLLAMA_URL, json=data, stream=True, timeout=60,)
+        response = requests.post(OLLAMA_URL, json=data, timeout=60)
         response.raise_for_status()
-
-        full_answer = ""
-        for line in response.iter_lines():
-            if line:
-                msg = json.loads(line.decode("utf-8"))
-                if "response" in msg:
-                    full_answer += msg["response"]
-        return full_answer.strip()
+        result = response.json()
+        return result.get("text", "").strip()
 
     except requests.exceptions.RequestException as e:
         return f"Bağlantı hatası: {e}"
@@ -77,14 +74,14 @@ def intelligence_endpoint(ratios: dict = Body(...)):
     ratios_str = ", ".join([f"{k}: {v}%" for k, v in ratios.items()])
 
     prompt = (
-    f"Here are the intelligence ratios for a person: {ratios_str}. "
-    "Evaluate if these percentages seem accurate by asking diagnostic questions. "
-    "You can increase or decrease them based on the answers. "
-    "After analyzing the responses and adjusting the ratios, "
-    "identify the person's strengths and weaknesses, "
-    "and suggest suitable career paths and specific job roles that align with their intelligence profile. "
-    "Provide clear, actionable guidance for professional growth based on their unique combination of intelligences."
-)
+        f"Here are the intelligence ratios for a person: {ratios_str}. "
+        "Evaluate if these percentages seem accurate by asking diagnostic questions. "
+        "You can increase or decrease them based on the answers. "
+        "After analyzing the responses and adjusting the ratios, "
+        "identify the person's strengths and weaknesses, "
+        "and suggest suitable career paths and specific job roles that align with their intelligence profile. "
+        "Provide clear, actionable guidance for professional growth based on their unique combination of intelligences."
+    )
     answer = ask_llama(prompt)
     history.append({"user": prompt, "assistant": answer})
     return {"response": answer}

@@ -13,6 +13,7 @@ import com.balikllama.xpguiderdemo.ui.screen.home.HomeScreen
 import com.balikllama.xpguiderdemo.ui.screen.login.LoginScreen
 import com.balikllama.xpguiderdemo.ui.screen.profile.ProfileScreen
 import com.balikllama.xpguiderdemo.ui.screen.register.RegisterScreen
+import com.balikllama.xpguiderdemo.ui.screen.test.TestScreen
 import com.balikllama.xpguiderdemo.viewmodel.CreditViewModel
 
 @Composable
@@ -81,6 +82,10 @@ fun AppNavGraph(navController: NavHostController,
                 windowSizeClass = windowSizeClass,
                 creditViewModel = creditViewModel
             )
+        }
+
+        composable(Routes.TEST) {
+            TestScreen(navController = navController)
         }
 
         // ============================================

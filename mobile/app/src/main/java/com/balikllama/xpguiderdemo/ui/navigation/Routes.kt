@@ -5,9 +5,10 @@ object Routes {
     const val LOGIN = "Login"
     const val REGISTER = "Register"
     // main pages
-    const val HOME = "home"
+    const val HOME = "Home"
     const val CHATBOT = "Chatbot"
     const val PROFILE = "profile"
+    const val TEST = "TRAIT TEST"
 
     // Additional
     const val PURCHASE = "purchase"  // Kredi satın alma

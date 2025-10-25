@@ -7,6 +7,7 @@ import com.balikllama.xpguiderdemo.data.local.dao.CalculationFactorDao
 import com.balikllama.xpguiderdemo.data.local.dao.InterestDao
 import com.balikllama.xpguiderdemo.data.local.dao.TraitDao
 import com.balikllama.xpguiderdemo.data.local.dao.QuestionDao
+import com.balikllama.xpguiderdemo.data.local.dao.SolvedQuestionDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -41,20 +42,26 @@ object DatabaseModule {
 
     @Provides
     @Singleton
-    fun provideTraitDao(appDatabase: AppDatabase): TraitDao { // YENİ
+    fun provideTraitDao(appDatabase: AppDatabase): TraitDao {
         return appDatabase.traitDao()
     }
 
     @Provides
     @Singleton
-    fun provideQuestionDao(appDatabase: AppDatabase): QuestionDao { // YENİ FONKSİYON
+    fun provideQuestionDao(appDatabase: AppDatabase): QuestionDao {
         return appDatabase.questionDao()
     }
 
     @Provides
     @Singleton
-    fun provideCalculationFactorDao(appDatabase: AppDatabase): CalculationFactorDao { // YENİ FONKSİYON
+    fun provideCalculationFactorDao(appDatabase: AppDatabase): CalculationFactorDao {
         return appDatabase.calculationFactorDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideSolvedQuestionDao(appDatabase: AppDatabase): SolvedQuestionDao {
+        return appDatabase.solvedQuestionDao()
     }
 
 }

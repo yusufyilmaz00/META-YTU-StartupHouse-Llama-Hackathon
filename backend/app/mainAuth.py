@@ -1,5 +1,5 @@
 # app/main.py
-from fastapi import FastAPI
+from fastapi import FastAPI, Body
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import Depends, HTTPException
 from pydantic import BaseModel, EmailStr, Field
@@ -7,9 +7,18 @@ from typing import Optional, Dict, Any
 from supabase import Client
 from .supa import get_supabase
 from .deps import auth_required
+from groq import Groq
+from llamagroq import SYSTEM_PROMPT, ask_groq
+import os
+
+GROQ_API_KEY = os.getenv("GROQ_API_KEY", "")
 
 
 app = FastAPI(title="Hackathon Backend", version="0.1.0")
+client = Groq(api_key=GROQ_API_KEY)
+
+history = [{"role": "system", "content": SYSTEM_PROMPT}]
+
 
 # CORS (mobil geliştirme için şimdilik açık; ileride kısıtlarız)
 app.add_middleware(
@@ -134,3 +143,39 @@ def me(auth=Depends(auth_required)):
         "user_metadata": claims.get("user_metadata", {}),
         "app_metadata": claims.get("app_metadata", {}),
     }
+
+
+@app.post("/chat")
+def chat_endpoint(user_input: str = Body(..., embed=True)):
+    """
+    Kullanıcıdan gelen normal sohbet mesajlarını işler.
+    """
+    answer = ask_groq(user_input)
+    return {"response": answer}
+
+@app.post("/intelligence")
+def intelligence_endpoint(ratios: dict = Body(...)):
+    """
+    Zeka oranlarını modele gönderir.
+    Örnek istek:
+    {
+      "analytical": 40,
+      "emotional": 35,
+      "creative": 25
+    }
+    """
+    ratios_str = ", ".join([f"{k}: {v}%" for k, v in ratios.items()])
+    prompt = (
+        f"Here are the intelligence ratios for an individual: {ratios_str}. "
+        "Carefully analyze whether these percentages appear realistic and balanced. "
+        "Ask insightful diagnostic questions (no more than five) to verify their accuracy. "
+        "Based on the user's responses, you may adjust the ratios upward or downward, "
+        "explaining your reasoning clearly at each step. "
+        "Once the analysis is complete, summarize the final intelligence profile, "
+        "highlighting the individual’s cognitive strengths and areas for improvement. "
+        "Finally, suggest the most suitable career paths and specific job roles that align with their intelligence profile, "
+        "and provide clear, practical recommendations for their professional growth and development."
+    )
+
+    answer = ask_groq(prompt)
+    return {"response": answer}

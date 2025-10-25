@@ -1,0 +1,7 @@
+[
+
+    {"id": "job_01", "name": "Data Scientist", "details": "Developing statistical analysis and machine learning models. Requires strong analytical and technical skills. High scientific acumen is required."},
+    {"id": "job_02", "name": "Marketing Manager", "details": "Analyzing market trends, creating creative campaign strategies, and managing teams. Strategic, social, and communication acumen are at the forefront."},
+    {"id": "job_03", "name": "Software Architect", "details": "Ensuring the design and structural integrity of large systems. Analytical, technical, and practical acumen are crucial. High abstract thinking skills are expected."}
+
+]

@@ -3,6 +3,7 @@ package com.balikllama.xpguiderdemo.ui.screen.chatbot
 import com.balikllama.xpguiderdemo.model.chat.Message
 
 data class ChatUIState(
+    val credit: Int = 0,
     // Ekranda gösterilecek tüm mesajların listesi
     val messages: List<Message> = emptyList(),
 

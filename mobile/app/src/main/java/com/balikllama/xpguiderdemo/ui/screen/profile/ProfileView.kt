@@ -37,7 +37,7 @@ fun ProfileView (
                 contentAlignment = Alignment.Center
             ) {
                 Text(
-                    text = " Welcome to ChatBot Page",
+                    text = " Welcome to Profile Page",
                     style = MaterialTheme.typography.headlineSmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )

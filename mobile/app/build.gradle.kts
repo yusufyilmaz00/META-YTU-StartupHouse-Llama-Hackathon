@@ -79,4 +79,13 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
     // kotlix coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0")
+    // local db - room
+    // Room Kütüphanesi
+    val roomVersion = "2.6.1"
+    implementation("androidx.room:room-runtime:$roomVersion")
+    ksp("androidx.room:room-compiler:$roomVersion")
+
+    // Kotlin Coroutines ile Room desteği için
+    implementation("androidx.room:room-ktx:$roomVersion")
+
 }

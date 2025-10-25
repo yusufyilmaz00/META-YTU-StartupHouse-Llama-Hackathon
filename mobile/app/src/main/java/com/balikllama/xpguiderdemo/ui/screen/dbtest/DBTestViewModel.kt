@@ -6,11 +6,13 @@ import androidx.lifecycle.viewModelScope
 import com.balikllama.xpguiderdemo.data.local.entity.CalculationFactorEntity
 import com.balikllama.xpguiderdemo.data.local.entity.InterestEntity
 import com.balikllama.xpguiderdemo.data.local.entity.QuestionEntity
+import com.balikllama.xpguiderdemo.data.local.entity.SolvedQuestion
 import com.balikllama.xpguiderdemo.data.local.entity.TraitEntity
 import com.balikllama.xpguiderdemo.repository.CalculationFactorRepository
 import com.balikllama.xpguiderdemo.repository.InterestRepository
 import com.balikllama.xpguiderdemo.repository.TraitRepository
 import com.balikllama.xpguiderdemo.repository.QuestionRepository
+import com.balikllama.xpguiderdemo.repository.SolvedQuestionRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -23,7 +25,8 @@ class DBTestViewModel @Inject constructor(
     private val interestRepository: InterestRepository,
     private val traitRepository: TraitRepository,
     private val questionRepository: QuestionRepository,
-    private val calculationFactorRepository: CalculationFactorRepository
+    private val calculationFactorRepository: CalculationFactorRepository,
+    private val solvedQuestionRepository: SolvedQuestionRepository
 ) : ViewModel() {
 
     // Veritabanından gelen ilgi alanlarını bir StateFlow olarak tut
@@ -51,6 +54,13 @@ class DBTestViewModel @Inject constructor(
 
     // Hesaplama faktörleri için YENİ StateFlow
     val factors: StateFlow<List<CalculationFactorEntity>> = calculationFactorRepository.getAllFactors()
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5000),
+            initialValue = emptyList()
+        )
+
+    val solvedQuestions: StateFlow<List<SolvedQuestion>> = solvedQuestionRepository.getAllSolvedQuestions()
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5000),

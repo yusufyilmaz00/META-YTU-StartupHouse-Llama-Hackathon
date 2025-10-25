@@ -18,13 +18,15 @@ fun DBTestScreen(
     val traits by viewModel.traits.collectAsState()
     val questions by viewModel.questions.collectAsState()
     val factors by viewModel.factors.collectAsState()
+    val solvedQuestions by viewModel.solvedQuestions.collectAsState()
 
     DBTestView(
         modifier = modifier,
         interests = interests,
         traits = traits,
         questions = questions,
-        factors = factors
+        factors = factors,
+        solvedQuestions = solvedQuestions
     )
 }
 

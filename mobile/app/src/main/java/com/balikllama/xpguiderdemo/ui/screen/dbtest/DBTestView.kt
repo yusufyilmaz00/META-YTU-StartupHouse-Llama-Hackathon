@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.dp
 import com.balikllama.xpguiderdemo.data.local.entity.CalculationFactorEntity
 import com.balikllama.xpguiderdemo.data.local.entity.InterestEntity
 import com.balikllama.xpguiderdemo.data.local.entity.QuestionEntity
+import com.balikllama.xpguiderdemo.data.local.entity.SolvedQuestion
 import com.balikllama.xpguiderdemo.data.local.entity.TraitEntity
 import com.balikllama.xpguiderdemo.ui.components.AppTopBar
 
@@ -29,7 +30,8 @@ fun DBTestView(
     interests: List<InterestEntity>,
     traits: List<TraitEntity>,
     questions: List<QuestionEntity>,
-    factors: List<CalculationFactorEntity>
+    factors: List<CalculationFactorEntity>,
+    solvedQuestions: List<SolvedQuestion>
 ) {
     Scaffold(
         modifier = modifier.fillMaxSize(),
@@ -90,6 +92,22 @@ fun DBTestView(
                     CalculationFactorItem(factor = factor) // Yeni composable
                 }
             }
+
+            // Çözülmüş Sorular Listesi
+            item {
+                Text(
+                    "Çözülmüş Sorular (solved_questions)",
+                    style = MaterialTheme.typography.titleLarge,
+                    modifier = Modifier.padding(top = 16.dp) // Önceki bölümle araya boşluk koy
+                )
+            }
+            if (solvedQuestions.isEmpty()) {
+                item { Text("`solved_questions` tablosunda veri bulunamadı. (Bir testi tamamlamayı deneyin)") }
+            } else {
+                items(solvedQuestions, key = { it.id }) { solvedQuestion ->
+                    SolvedQuestionItem(solvedQuestion = solvedQuestion) // Yeni Composable
+                }
+            }
         }
     }
 }
@@ -132,6 +150,28 @@ fun CalculationFactorItem(factor: CalculationFactorEntity) {
         Column(modifier = Modifier.padding(16.dp)) {
             Text(text = "Key: ${factor.key}", fontWeight = FontWeight.Bold)
             Text(text = "Value: ${factor.value}", fontWeight = FontWeight.Light)
+        }
+    }
+}
+
+@Composable
+fun SolvedQuestionItem(solvedQuestion: SolvedQuestion) {
+    Card(modifier = Modifier.fillMaxWidth()) {
+        Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+            Text(
+                text = "Seans ID: ${solvedQuestion.testSessionId}",
+                style = MaterialTheme.typography.bodySmall,
+                fontWeight = FontWeight.Light
+            )
+            Text(
+                text = "Soru ID: ${solvedQuestion.questionId}",
+                style = MaterialTheme.typography.bodyMedium,
+                fontWeight = FontWeight.Bold
+            )
+            Text(
+                text = "Cevap: ${solvedQuestion.answer}",
+                style = MaterialTheme.typography.bodyMedium
+            )
         }
     }
 }

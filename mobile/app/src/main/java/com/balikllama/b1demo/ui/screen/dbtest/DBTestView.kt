@@ -13,18 +13,19 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.balikllama.b1demo.data.local.entity.InterestEntity
+import com.balikllama.b1demo.data.local.entity.TraitEntity
 import com.balikllama.b1demo.ui.components.AppTopBar
 
 // Sadece UI'ı gösteren, önizlenebilir Composable
 @Composable
 fun DBTestView(
     modifier: Modifier = Modifier,
-    interests: List<InterestEntity>
+    interests: List<InterestEntity>,
+    traits: List<TraitEntity>
 ) {
     Scaffold(
         modifier = modifier.fillMaxSize(),
@@ -37,6 +38,7 @@ fun DBTestView(
             contentPadding = PaddingValues(16.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
+            // ilgi alanları listesi
             item {
                 Text("İlgi Alanları (interest_list)", style = MaterialTheme.typography.titleLarge, modifier = Modifier.padding(bottom = 8.dp))
             }
@@ -49,7 +51,17 @@ fun DBTestView(
                     InterestItem(interest = interest)
                 }
             }
-            // Gelecekte diğer tabloların listesi buraya eklenebilir
+            // Karakter Özellikleri Listesi
+            item {
+                Text("Karakter Özellikleri (trait_list)", style = MaterialTheme.typography.titleLarge)
+            }
+            if (traits.isEmpty()) {
+                item { Text("`trait_list` tablosunda veri bulunamadı.") }
+            } else {
+                items(traits, key = { it.traitId }) { trait ->
+                    TraitItem(trait = trait) // Yeni composable
+                }
+            }
         }
     }
 }
@@ -60,6 +72,16 @@ fun InterestItem(interest: InterestEntity) {
         Column(modifier = Modifier.padding(16.dp)) {
             Text(text = interest.areaOfInterest, fontWeight = FontWeight.Bold)
             Text(text = "ID: ${interest.id}", fontWeight = FontWeight.Light)
+        }
+    }
+}
+
+@Composable
+fun TraitItem(trait: TraitEntity) {
+    Card(modifier = Modifier.fillMaxWidth()) {
+        Column(modifier = Modifier.padding(16.dp)) {
+            Text(text = trait.traitName, fontWeight = FontWeight.Bold)
+            Text(text = "ID: ${trait.traitId}", fontWeight = FontWeight.Light)
         }
     }
 }

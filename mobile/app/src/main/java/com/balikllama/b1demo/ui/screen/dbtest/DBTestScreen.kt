@@ -15,10 +15,12 @@ fun DBTestScreen(
     viewModel: DBTestViewModel = hiltViewModel()
 ) {
     val interests by viewModel.interests.collectAsState()
+    val traits by viewModel.traits.collectAsState()
 
     DBTestView(
         modifier = modifier,
-        interests = interests
+        interests = interests,
+        traits = traits
     )
 }
 

@@ -2,16 +2,22 @@ package com.balikllama.b1demo.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.balikllama.b1demo.repository.CreditRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 /**
  * Global Credit ViewModel - Tüm ekranlarda kullanılacak
  * Singleton pattern ile tek instance'ı kullanacağız
  */
-class CreditViewModel : ViewModel() {
+@HiltViewModel
+class CreditViewModel @Inject constructor(
+    private val creditRepository: CreditRepository // Inject the repository
+) : ViewModel() {
 
     private val _userCredits = MutableStateFlow(0)
     val userCredits: StateFlow<Int> = _userCredits.asStateFlow()

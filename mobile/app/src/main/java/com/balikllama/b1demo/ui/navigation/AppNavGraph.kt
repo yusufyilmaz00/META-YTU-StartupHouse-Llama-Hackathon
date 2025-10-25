@@ -59,9 +59,8 @@ fun AppNavGraph(navController: NavHostController,
         composable(route = Routes.HOME) {
             HomeScreen(
                 modifier = modifier.fillMaxSize(),
-                navController= navController,
-                windowSizeClass = windowSizeClass,
-                creditViewModel = creditViewModel
+                navController = navController,
+                windowSizeClass = windowSizeClass
             )
         }
 

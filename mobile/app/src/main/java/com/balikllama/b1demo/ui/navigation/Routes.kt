@@ -6,4 +6,8 @@ object Routes {
     const val HOME = "home"
     const val CHATBOT = "Chatbot"
     const val PROFILE = "profile"
+
+    const val LOGIN = "Login"
+    const val REGISTER = "Register"
+
 }

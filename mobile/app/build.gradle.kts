@@ -8,17 +8,20 @@ plugins {
 }
 
 android {
-    namespace = "com.balikllama.b1demo"
+    namespace = "com.balikllama.xpguiderdemo"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.balikllama.b1demo"
+        applicationId = "com.balikllama.xpguiderdemo"
         minSdk = 24
         targetSdk = 36
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 2
+        versionName = "1.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary = true
+        }
     }
 
     buildTypes {

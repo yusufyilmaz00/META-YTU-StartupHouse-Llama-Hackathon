@@ -12,6 +12,35 @@
 *.iml
 modules.xml
 
+
+# Build klasörleri (Tüm derlenmiş dosyalar, APK, AAB vb. burada bulunur)
+/build
+/app/build
+
+# Yerel ayarlar ve konfigürasyon dosyaları
+.idea/
+.gradle/
+local.properties
+
+# ===============================================
+# Yayın ve İmza Dosyaları (ÇOK ÖNEMLİ)
+# ===============================================
+
+# Tüm APK dosyaları
+*.apk
+
+# Tüm App Bundle dosyaları
+*.aab
+
+# İmza anahtarı dosyaları
+*.jks
+*.keystore
+
+# Çıktı log dosyaları
+release/
+app/release/
+
+
 # ======================================================================
 # Lokal Geliştirici Ayarları
 # (Bu dosya SDK yolunuz gibi kişisel ayarları içerir. ASLA commit etmeyin.)

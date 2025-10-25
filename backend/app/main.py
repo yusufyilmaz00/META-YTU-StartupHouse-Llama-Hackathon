@@ -158,8 +158,6 @@ def system_prompt():
         "After evaluating the intelligence profile, summarize your findings by identifying the user's cognitive strengths and weaknesses, "
         "and suggest the most suitable career paths and job roles that align with their intelligence profile. "
         "Finally, provide clear, actionable recommendations for professional growth tailored to their unique combination of intelligences. "
-        "At the end of your analysis, list the **top five most suitable professions** for the user, "
-        "based on their final intelligence profile and overall potential."
     )
 
 

@@ -66,7 +66,7 @@ val MaterialTheme.customColors: CustomColors
 
 @Composable
 fun AppTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
+    darkTheme: Boolean = true,
     content: @Composable () -> Unit
 ) {
     // Renk seçimi (otomatik dark mode desteği)

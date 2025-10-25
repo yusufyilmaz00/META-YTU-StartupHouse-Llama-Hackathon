@@ -12,9 +12,14 @@ import com.balikllama.b1demo.ui.screen.home.HomeScreen
 import com.balikllama.b1demo.ui.screen.login.LoginScreen
 import com.balikllama.b1demo.ui.screen.profile.ProfileScreen
 import com.balikllama.b1demo.ui.screen.register.RegisterScreen
+import com.balikllama.b1demo.viewmodel.CreditViewModel
 
 @Composable
-fun AppNavGraph(navController: NavHostController, modifier: Modifier, windowSizeClass: WindowSizeClass) {
+fun AppNavGraph(navController: NavHostController,
+                modifier: Modifier,
+                windowSizeClass: WindowSizeClass,
+                creditViewModel: CreditViewModel) {
+
     NavHost(
         navController = navController as NavHostController,
         startDestination = Routes.LOGIN
@@ -48,12 +53,15 @@ fun AppNavGraph(navController: NavHostController, modifier: Modifier, windowSize
                 }
             )
         }
-
+        // ============================================
+        // MAIN SCREENS
+        // ============================================
         composable(route = Routes.HOME) {
             HomeScreen(
                 modifier = modifier.fillMaxSize(),
                 navController= navController,
-                windowSizeClass = windowSizeClass
+                windowSizeClass = windowSizeClass,
+                creditViewModel = creditViewModel
             )
         }
 
@@ -61,7 +69,8 @@ fun AppNavGraph(navController: NavHostController, modifier: Modifier, windowSize
             ChatbotScreen(
                 modifier = modifier.fillMaxSize(),
                 navController= navController,
-                windowSizeClass = windowSizeClass
+                windowSizeClass = windowSizeClass,
+                creditViewModel = creditViewModel
             )
         }
 
@@ -69,9 +78,22 @@ fun AppNavGraph(navController: NavHostController, modifier: Modifier, windowSize
             ProfileScreen(
                 modifier = modifier.fillMaxSize(),
                 navController= navController,
-                windowSizeClass = windowSizeClass
+                windowSizeClass = windowSizeClass,
+                creditViewModel = creditViewModel
             )
         }
-        // new screens
+
+        // ============================================
+        // FUTURE SCREENS
+        // ============================================
+        // Kredi satın alma ekranı
+        composable(route = Routes.PURCHASE) {
+            // TODO: PurchaseScreen eklenecek
+        }
+
+        // Test ekranı (kredi harcayacak)
+        composable(route = Routes.TEST) {
+            // TODO: TestScreen eklenecek
+        }
     }
 }

@@ -8,60 +8,39 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 class HomeViewModel : ViewModel() {
+    private val _welcomeMessage = MutableStateFlow("Hoş geldiniz!")
+    val welcomeMessage: StateFlow<String> = _welcomeMessage.asStateFlow()
 
-    private val _userCredits = MutableStateFlow(0)
-    val userCredits: StateFlow<Int> = _userCredits.asStateFlow()
-
-    private val _isLoading = MutableStateFlow(false)
-    val isLoading: StateFlow<Boolean> = _isLoading.asStateFlow()
+    private val _isRefreshing = MutableStateFlow(false)
+    val isRefreshing: StateFlow<Boolean> = _isRefreshing.asStateFlow()
 
     init {
-        loadUserCredits()
+        loadHomeData()
     }
 
-    /**
-     * Kullanıcının kredi bilgisini yükler
-     */
-    fun loadUserCredits() {
+    private fun loadHomeData() {
         viewModelScope.launch {
-            _isLoading.value = true
+            _isRefreshing.value = true
             try {
-                // TODO: API'den kredi bilgisini çek
-                // val credits = repository.getUserCredits()
+                // TODO: Home sayfası için gerekli verileri yükle
+                // - Son aktiviteler
+                // - Önerilen testler
+                // - İstatistikler vb.
 
-                // Şimdilik mock data
-                _userCredits.value = 150
+                _welcomeMessage.value = "Hoş geldiniz!"
 
             } catch (e: Exception) {
-                // Hata durumunda 0 göster veya error state yönet
-                _userCredits.value = 0
+                _welcomeMessage.value = "Bir hata oluştu"
             } finally {
-                _isLoading.value = false
+                _isRefreshing.value = false
             }
         }
     }
 
     /**
-     * Kredi güncelleme (test tamamlandığında veya satın alma sonrası çağrılabilir)
+     * Home verilerini yenile
      */
-    fun updateCredits(newCredits: Int) {
-        _userCredits.value = newCredits
-    }
-
-    /**
-     * Kredi harcama (test başlatıldığında)
-     */
-    fun spendCredits(amount: Int) {
-        val current = _userCredits.value
-        if (current >= amount) {
-            _userCredits.value = current - amount
-        }
-    }
-
-    /**
-     * Kredi ekleme (satın alma sonrası)
-     */
-    fun addCredits(amount: Int) {
-        _userCredits.value = _userCredits.value + amount
+    fun refreshHomeData() {
+        loadHomeData()
     }
 }

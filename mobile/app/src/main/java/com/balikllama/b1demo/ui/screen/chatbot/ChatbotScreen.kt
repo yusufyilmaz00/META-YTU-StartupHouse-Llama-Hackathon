@@ -5,12 +5,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import com.balikllama.b1demo.ui.screen.home.HomeView
+import com.balikllama.b1demo.viewmodel.CreditViewModel
 
 @Composable
 fun ChatbotScreen(
     modifier: Modifier = Modifier,
     navController: NavController,
-    windowSizeClass: WindowSizeClass
+    windowSizeClass: WindowSizeClass,
+    creditViewModel: CreditViewModel
 ) {
 
     ChatbotView(

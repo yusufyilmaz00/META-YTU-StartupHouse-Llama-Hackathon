@@ -8,20 +8,24 @@ import androidx.compose.ui.Modifier
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.balikllama.b1demo.viewmodel.CreditViewModel
 
 @Composable
 fun HomeScreen(
     modifier: Modifier = Modifier,
     navController: NavController,
     viewModel: HomeViewModel= viewModel(),
-    windowSizeClass: WindowSizeClass
+    windowSizeClass: WindowSizeClass,
+    creditViewModel: CreditViewModel,
+    homeViewModel: HomeViewModel = viewModel()
 ) {
-    val credits by viewModel.userCredits.collectAsState()
+    val credits by creditViewModel.userCredits.collectAsState()
+    val isLoading by creditViewModel.isLoading.collectAsState()
 
     HomeView(
         modifier = modifier,
         windowSizeClass = windowSizeClass,
-        creditInfo = credits.toString(),
-        onRefreshCredits = { viewModel.loadUserCredits() }
+        creditInfo = if (isLoading) "..." else credits.toString(),
+        onRefreshCredits = { creditViewModel.loadUserCredits() }
     )
 }

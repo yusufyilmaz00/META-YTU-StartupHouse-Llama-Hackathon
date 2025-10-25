@@ -14,11 +14,15 @@ import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.balikllama.b1demo.ui.components.BottomNavigationBar
 import com.balikllama.b1demo.ui.designsystem.AppTheme
 import com.balikllama.b1demo.ui.navigation.AppNavGraph
 import com.balikllama.b1demo.ui.theme.B1demoTheme
+import com.balikllama.b1demo.viewmodel.CreditViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -28,17 +32,19 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             val windowSizeClass = calculateWindowSizeClass(this)
+            val creditViewModel: CreditViewModel = viewModel()
 
             AppTheme {
-                MainScreen(windowSizeClass = windowSizeClass)
+                val navController = rememberNavController()
+
+                MainScreen(windowSizeClass = windowSizeClass,navController=navController,creditViewModel=creditViewModel)
             }
         }
     }
 }
 
 @Composable
-fun MainScreen(windowSizeClass: WindowSizeClass) {
-    val navController = rememberNavController()
+fun MainScreen(windowSizeClass: WindowSizeClass, navController: NavController,creditViewModel: CreditViewModel) {
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
@@ -48,9 +54,10 @@ fun MainScreen(windowSizeClass: WindowSizeClass) {
         }
     ) { innerPadding ->
         AppNavGraph(
-            navController = navController,
+            navController = navController as NavHostController,
             modifier = Modifier.padding(innerPadding),
-            windowSizeClass = windowSizeClass
+            windowSizeClass = windowSizeClass,
+            creditViewModel = creditViewModel
         )
     }
 }

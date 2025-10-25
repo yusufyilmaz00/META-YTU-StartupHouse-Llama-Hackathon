@@ -1,53 +1,148 @@
+# app/main.py
 from fastapi import FastAPI, Body
-import requests, json
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi import Depends, HTTPException
+from pydantic import BaseModel, EmailStr, Field
+from typing import Optional, Dict, Any
+from supabase import Client
+from .supa import get_supabase
+from .deps import auth_required
+from groq import Groq
+from llamagroq import SYSTEM_PROMPT, ask_groq
+import os
 
-# --- Ollama ayarları ---
-OLLAMA_URL = "http://34.140.58.17:11434/api/generate"
-MODEL_NAME = "llama3"
+GROQ_API_KEY = os.getenv("GROQ_API_KEY", "")
 
-app = FastAPI(title="Career Counselor MCP")
 
-# --- Model bağlamı (tek sistem prompt) ---
-SYSTEM_PROMPT = (
-    "You are a career counselor. "
-    "You help users explore career paths, understand job skills, and plan professional growth. "
-    "If someone asks about topics unrelated to careers, answer: "
-    "'I wasn't given any information on this topic. I can only answer career counseling questions.' "
-    "When intelligence percentages are provided, analyze them and ask questions to test their accuracy. "
-    "You may adjust the percentages up or down based on the user's answers, explaining your reasoning clearly. "
-    "After evaluating the intelligence profile, identify the user's strengths and weaknesses, "
-    "and suggest suitable career paths and job roles that align with their intelligence profile. "
-    "Provide clear, actionable guidance for professional growth based on their unique combination of intelligences."
+app = FastAPI(title="Hackathon Backend", version="0.1.0")
+client = Groq(api_key=GROQ_API_KEY)
+
+history = [{"role": "system", "content": SYSTEM_PROMPT}]
+
+
+# CORS (mobil geliştirme için şimdilik açık; ileride kısıtlarız)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],      # PROD'da domain bazlı kısıtlayacağız
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
-# --- Modelin geçmişi global olarak saklanıyor ---
-history = [{"user": "SYSTEM", "assistant": SYSTEM_PROMPT}]
+@app.get("/")
+def health():
+    return {"ok": True, "service": "hackathon-backend", "version": "0.1.0"}
 
 
-def ask_llama(prompt: str, max_tokens: int = 300, temperature: float = 0.7):
+
+class RegisterIn(BaseModel):
+    email: EmailStr
+    password: str = Field(min_length=6)
+    metadata: Optional[Dict[str, Any]] = None  # (opsiyonel) Supabase user metadata
+
+class RegisterOut(BaseModel):
+    user_id: str
+    email: EmailStr
+    requires_email_verification: bool
+
+@app.post("/auth/register", response_model=RegisterOut, tags=["auth"])
+def register(payload: RegisterIn, sb: Client = Depends(get_supabase)):
     """
-    Ollama modeline sistem prompt + geçmişle birlikte istek atar.
-    max_tokens ve temperature parametreleri ile cevabın uzunluğunu ve yaratıcılığını ayarlayabilirsin.
+    Supabase Auth ile email/password kayıt.
+    Eğer Supabase'de 'Confirm email' açıksa, kullanıcı mail onayı yapana kadar session oluşmayabilir.
     """
-    conversation = ""
-    for turn in history:
-        conversation += f"User: {turn['user']}\nAssistant: {turn['assistant']}\n"
-
-    data = {
-        "model": MODEL_NAME,
-        "prompt": f"{conversation}\nUser: {prompt}\nAssistant:",
-        "max_tokens": max_tokens,
-        "temperature": temperature,
-    }
-
     try:
-        response = requests.post(OLLAMA_URL, json=data, timeout=60)
-        response.raise_for_status()
-        result = response.json()
-        return result.get("text", "").strip()
+        options = {}
+        if payload.metadata:
+            options["data"] = payload.metadata
 
-    except requests.exceptions.RequestException as e:
-        return f"Bağlantı hatası: {e}"
+        result = sb.auth.sign_up({
+            "email": str(payload.email),
+            "password": payload.password,
+            "options": options or None
+        })
+
+        user = result.user
+        session = result.session  # confirm email açıksa çoğu zaman None
+
+        if not user:
+            raise HTTPException(status_code=400, detail="Kayıt başarısız")
+
+        return RegisterOut(
+            user_id=user.id,
+            email=user.email,
+            requires_email_verification=(session is None),
+        )
+    except Exception as e:
+        # Supabase kütüphanesi hata mesajını taşıyalım (ör: 'User already registered')
+        raise HTTPException(status_code=400, detail=f"Register error: {e}")
+
+# app/main.py (devamına ekle)
+
+
+class LoginIn(BaseModel):
+    email: EmailStr
+    password: str
+
+class LoginOut(BaseModel):
+    user_id: str
+    email: EmailStr
+    access_token: str
+    refresh_token: str
+    provider_token: Optional[str] = None  # (Google vs. kullanırsan gelir)
+
+@app.post("/auth/login", response_model=LoginOut, tags=["auth"])
+def login(payload: LoginIn, sb: Client = Depends(get_supabase)):
+    """
+    Supabase Auth ile email/password login.
+    Dönüş: access_token (JWT), refresh_token
+    """
+    try:
+        result = sb.auth.sign_in_with_password({
+            "email": str(payload.email),
+            "password": payload.password
+        })
+
+        session = result.session
+        user = result.user
+
+        if not session or not user:
+            raise HTTPException(status_code=401, detail="Geçersiz kimlik bilgileri")
+
+        return LoginOut(
+            user_id=user.id,
+            email=user.email,
+            access_token=session.access_token,
+            refresh_token=session.refresh_token,
+            provider_token=getattr(session, "provider_token", None)
+        )
+    except Exception as e:
+        # Örn: AuthApiError('Invalid login credentials')
+        raise HTTPException(status_code=401, detail=f"Login error: {e}")
+
+@app.get("/me", tags=["auth"])
+def me(auth=Depends(auth_required)):
+    """
+    Korumalı endpoint. Authorization: Bearer <access_token> ile erişilir.
+    JWT claims'ten user bilgisini döner.
+    """
+    claims = auth["claims"]
+    
+    # JWT claims'te genellikle şu bilgiler bulunur:
+    # - sub: user_id
+    # - email: kullanıcı emaili
+    # - user_metadata: kayıt sırasında eklenen metadata
+    
+    return {
+        "user_id": claims.get("sub"),
+        "email": claims.get("email"),
+        "role": claims.get("role"),
+        "aud": claims.get("aud"),
+        "exp": claims.get("exp"),
+        "iat": claims.get("iat"),
+        "user_metadata": claims.get("user_metadata", {}),
+        "app_metadata": claims.get("app_metadata", {}),
+    }
 
 
 @app.post("/chat")
@@ -55,10 +150,8 @@ def chat_endpoint(user_input: str = Body(..., embed=True)):
     """
     Kullanıcıdan gelen normal sohbet mesajlarını işler.
     """
-    answer = ask_llama(user_input)
-    history.append({"user": user_input, "assistant": answer})
+    answer = ask_groq(user_input)
     return {"response": answer}
-
 
 @app.post("/intelligence")
 def intelligence_endpoint(ratios: dict = Body(...)):
@@ -72,16 +165,17 @@ def intelligence_endpoint(ratios: dict = Body(...)):
     }
     """
     ratios_str = ", ".join([f"{k}: {v}%" for k, v in ratios.items()])
-
     prompt = (
-        f"Here are the intelligence ratios for a person: {ratios_str}. "
-        "Evaluate if these percentages seem accurate by asking diagnostic questions. "
-        "You can increase or decrease them based on the answers. "
-        "After analyzing the responses and adjusting the ratios, "
-        "identify the person's strengths and weaknesses, "
-        "and suggest suitable career paths and specific job roles that align with their intelligence profile. "
-        "Provide clear, actionable guidance for professional growth based on their unique combination of intelligences."
+        f"Here are the intelligence ratios for an individual: {ratios_str}. "
+        "Carefully analyze whether these percentages appear realistic and balanced. "
+        "Ask insightful diagnostic questions (no more than five) to verify their accuracy. "
+        "Based on the user's responses, you may adjust the ratios upward or downward, "
+        "explaining your reasoning clearly at each step. "
+        "Once the analysis is complete, summarize the final intelligence profile, "
+        "highlighting the individual’s cognitive strengths and areas for improvement. "
+        "Finally, suggest the most suitable career paths and specific job roles that align with their intelligence profile, "
+        "and provide clear, practical recommendations for their professional growth and development."
     )
-    answer = ask_llama(prompt)
-    history.append({"user": prompt, "assistant": answer})
+
+    answer = ask_groq(prompt)
     return {"response": answer}

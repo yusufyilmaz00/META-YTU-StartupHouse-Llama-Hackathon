@@ -72,4 +72,9 @@ dependencies {
     implementation(libs.androidx.material.icons.extended)
     // material3 window size
     implementation("androidx.compose.material3:material3-window-size-class")
+    // api-json
+    implementation("com.squareup.retrofit2:retrofit:2.11.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.11.0")
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
 }

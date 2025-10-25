@@ -22,5 +22,5 @@ def get_supabase() -> Client:
     
     if not SERVICE_ROLE_KEY :
         raise RuntimeError("SERVICE_ROLE_KEY .env içinde eksik")
-    return create_client(SUPABASE_URL, key)
+    return create_client(SUPABASE_URL, SERVICE_ROLE_KEY)
 

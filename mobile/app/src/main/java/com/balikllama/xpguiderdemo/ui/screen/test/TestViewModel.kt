@@ -3,6 +3,8 @@ package com.balikllama.xpguiderdemo.ui.screen.test
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.balikllama.xpguiderdemo.data.local.entity.AnswerType
+import com.balikllama.xpguiderdemo.domain.ScoreCalculator
+import com.balikllama.xpguiderdemo.domain.ScoreResult
 import com.balikllama.xpguiderdemo.repository.CreditRepository
 import com.balikllama.xpguiderdemo.repository.TestRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,11 +17,12 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import java.util.UUID
 import javax.inject.Inject
-
+import android.util.Log
 @HiltViewModel
 class TestViewModel @Inject constructor(
     private val testRepository: TestRepository,
-    private val creditRepository: CreditRepository
+    private val creditRepository: CreditRepository,
+    private val scoreCalculator: ScoreCalculator
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(TestUIState())
@@ -39,9 +42,39 @@ class TestViewModel @Inject constructor(
     // Test boyunca aynı kalacak olan benzersiz seans kimliği.
     // Bu sayede farklı zamanlarda yapılan testlerin cevapları birbirine karışmaz.
     private var testSessionId: String = ""
+    // Test tamamlandığında hesaplanan skorları tutacak yeni bir state ekleyelim.
+    private val _testResults = MutableStateFlow<List<ScoreResult>>(emptyList())
 
     init {
         startNewTest()
+    }
+    /**
+     * Bir sonraki soruya ilerler veya test bittiyse 'isTestCompleted' durumunu true yapar.
+     */
+    private fun goToNextQuestion() {
+        viewModelScope.launch { // Launch coroutine for potential score calculation
+            val nextIndex = _uiState.value.currentQuestionIndex + 1
+            if (nextIndex < _uiState.value.questions.size) {
+                _uiState.update { it.copy(currentQuestionIndex = nextIndex) }
+                loadAnswerForCurrentQuestion()
+            } else {
+                // --- LOGLAMA NOKTASI 1: Testin bittiğini ve hesaplamanın başladığını doğrula ---
+                Log.d("TestViewModel", "Test bitti. Skor hesaplama başlıyor. Session ID: $testSessionId")
+
+                // Test bitti! Skorları hesapla.
+                val results = scoreCalculator.calculateScores(testSessionId)
+
+                // --- LOGLAMA NOKTASI 2: Hesaplanan sonuçları kontrol et ---
+                Log.d("TestViewModel", "Skorlar hesaplandı. Sonuç sayısı: ${results.size}. Sonuçlar: $results")
+
+                // Testin bittiğini ve sonuçların hazır olduğunu UI'a bildir.
+                _uiState.update {
+                    // --- LOGLAMA NOKTASI 3: UIState'in güncellendiğini doğrula ---
+                    Log.d("TestViewModel", "UIState güncelleniyor. isTestCompleted=true, results.size=${results.size}")
+                    it.copy(isTestCompleted = true, results = results)
+                }
+            }
+        }
     }
 
     /**
@@ -82,21 +115,6 @@ class TestViewModel @Inject constructor(
             )
             _uiState.update { it.copy(currentAnswer = answer) }
             goToNextQuestion()
-        }
-    }
-
-    /**
-     * Bir sonraki soruya ilerler veya test bittiyse 'isTestCompleted' durumunu true yapar.
-     */
-    private fun goToNextQuestion() { //
-        val nextIndex = _uiState.value.currentQuestionIndex + 1
-        if (nextIndex < _uiState.value.questions.size) {
-            _uiState.update { it.copy(currentQuestionIndex = nextIndex) }
-            // Yeni sorunun (daha önceden cevaplanmış) cevabını yükle.
-            loadAnswerForCurrentQuestion()
-        } else {
-            // Test bitti!
-            _uiState.update { it.copy(isTestCompleted = true) }
         }
     }
 

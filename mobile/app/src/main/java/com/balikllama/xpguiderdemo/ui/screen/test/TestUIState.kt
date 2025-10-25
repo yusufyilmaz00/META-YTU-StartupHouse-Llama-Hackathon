@@ -2,6 +2,7 @@ package com.balikllama.xpguiderdemo.ui.screen.test
 
 import com.balikllama.xpguiderdemo.data.local.entity.AnswerType
 import com.balikllama.xpguiderdemo.data.local.entity.QuestionEntity
+import com.balikllama.xpguiderdemo.domain.ScoreResult
 
 /**
  * Test ekranının anlık durumunu temsil eden veri sınıfı.
@@ -22,7 +23,8 @@ data class TestUIState(
     val currentAnswer: AnswerType? = null,
 
     // Test tamamlandığında true olur, sonuç ekranına yönlendirme için kullanılabilir.
-    val isTestCompleted: Boolean = false
+    val isTestCompleted: Boolean = false,
+    val results: List<ScoreResult> = emptyList()
 ) {
     /**
      * O an görüntülenen soruyu kolayca almak için bir yardımcı özellik.

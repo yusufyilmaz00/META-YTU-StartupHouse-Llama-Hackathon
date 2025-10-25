@@ -9,6 +9,8 @@ object Routes {
     const val CHATBOT = "Chatbot"
     const val PROFILE = "profile"
     const val TEST = "TRAIT TEST"
+    const val TEST_RESULTS = "TRAIT TEST RESULTS"
+    const val TEST_GRAPH = "Test_graph"
 
     // Additional
     const val PURCHASE = "purchase"  // Kredi satın alma

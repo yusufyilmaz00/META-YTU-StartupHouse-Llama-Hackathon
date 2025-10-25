@@ -5,7 +5,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.balikllama.xpguiderdemo.ui.navigation.Routes
 
@@ -13,7 +12,7 @@ import com.balikllama.xpguiderdemo.ui.navigation.Routes
 fun TestScreen(
     modifier: Modifier = Modifier,
     navController: NavController,
-    viewModel: TestViewModel = hiltViewModel()
+    viewModel: TestViewModel
 ) {
     // ViewModel'den gelen UI durumunu dinle
     val uiState by viewModel.uiState.collectAsState()
@@ -24,8 +23,7 @@ fun TestScreen(
             // Test bittiğinde, sonuç ekranına yönlendir.
             // Şimdilik Home ekranına geri dönüyoruz.
             // İleride burayı "navController.navigate(Routes.RESULTS)" gibi bir hedefe değiştirebiliriz.
-            navController.popBackStack(Routes.HOME, false)
-        }
+            navController.navigate(Routes.TEST_RESULTS)       }
     }
 
     // UI katmanına (View) state'i ve event lambda'larını (fonksiyonları) iletiyoruz.

@@ -9,6 +9,7 @@ from .supa import get_supabase
 from .deps import auth_required
 from groq import Groq
 import os
+from decision_agent import find_best_job, generate_mentor_suggestion
 
 GROQ_API_KEY = os.getenv("GROQ_API_KEY", "")
 
@@ -246,10 +247,16 @@ def job_recommendation_endpoint(user_input: str = Body(..., embed=True)):
     Önceki sohbeti prompta ekleyerek daha bağlamsal öneri üretir.
     """
     # Son assistant cevabını al
-    last_chat = history[-1]["content"] if history else ""
-    
-    prompt = job_recommendation_prompt(user_input, last_chat)
-    answer = ask_groq(prompt)
+    answer = find_best_job(ratios={})
     return {"response": answer}
 
+
+@app.post("/findmentor")
+def find_mentor_endpoint(user_input: str = Body(..., embed=True)):
+    """
+    Kullanıcıdan gelen mentor önerisi isteklerini işler.
+    """
+    # Son assistant cevabını al
+    answer = generate_mentor_suggestion(suggested_job="", metrics={})
+    return {"response": answer}
 

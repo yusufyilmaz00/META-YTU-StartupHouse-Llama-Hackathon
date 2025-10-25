@@ -227,3 +227,31 @@ def intelligence_endpoint(ratios: dict = Body(...)):
 
     answer = ask_groq(prompt)
     return {"response": answer}
+
+
+def job_recommendation_prompt(user_input: str, last_chat: str = "") -> str:
+    return (
+        "You are a professional career counselor. "
+        "Based on the user's input and the previous conversation, suggest the most suitable job roles or career paths. "
+        "Consider their skills, preferences, and potential. "
+        "Limit your recommendations to the **top five most relevant professions**, "
+        "and give a short explanation for each suggestion. "
+        f"Previous conversation: {last_chat}\n"
+        f"User input for job recommendation: {user_input}"
+    )
+
+
+@app.post("/jobrecommendation")
+def job_recommendation_endpoint(user_input: str = Body(..., embed=True)):
+    """
+    Kullanıcıdan gelen iş önerisi isteklerini işler.
+    Önceki sohbeti prompta ekleyerek daha bağlamsal öneri üretir.
+    """
+    # Son assistant cevabını al
+    last_chat = history[-1]["content"] if history else ""
+    
+    prompt = job_recommendation_prompt(user_input, last_chat)
+    answer = ask_groq(prompt)
+    return {"response": answer}
+
+

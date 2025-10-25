@@ -2,45 +2,39 @@ package com.balikllama.b1demo.ui.screen.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.map
+import com.balikllama.b1demo.viewmodel.CreditViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class HomeViewModel : ViewModel() {
-    private val _welcomeMessage = MutableStateFlow("Hoş geldiniz!")
-    val welcomeMessage: StateFlow<String> = _welcomeMessage.asStateFlow()
 
-    private val _isRefreshing = MutableStateFlow(false)
-    val isRefreshing: StateFlow<Boolean> = _isRefreshing.asStateFlow()
-
-    init {
-        loadHomeData()
-    }
-
-    private fun loadHomeData() {
-        viewModelScope.launch {
-            _isRefreshing.value = true
-            try {
-                // TODO: Home sayfası için gerekli verileri yükle
-                // - Son aktiviteler
-                // - Önerilen testler
-                // - İstatistikler vb.
-
-                _welcomeMessage.value = "Hoş geldiniz!"
-
-            } catch (e: Exception) {
-                _welcomeMessage.value = "Bir hata oluştu"
-            } finally {
-                _isRefreshing.value = false
-            }
+@HiltViewModel
+class HomeViewModel @Inject constructor(
+    private val creditViewModel: CreditViewModel
+) : ViewModel() {
+    // CreditViewModel'den gelen Int akışını HomeUIState akışına dönüştürüyoruz.
+    val uiState: StateFlow<HomeUIState> = creditViewModel.credit
+        .map { currentCredit ->
+            HomeUIState(credit = currentCredit)
         }
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5_000),
+            initialValue = HomeUIState() // Başlangıç state'i
+        )
+
+    // UI event'lerini yönetmek için fonksiyonlar
+    fun addCredit(amount: Int) {
+        creditViewModel.addCredit(amount)
     }
 
-    /**
-     * Home verilerini yenile
-     */
-    fun refreshHomeData() {
-        loadHomeData()
+    fun decreaseCredit(amount: Int) {
+        creditViewModel.decreaseCredit(amount)
     }
+
 }

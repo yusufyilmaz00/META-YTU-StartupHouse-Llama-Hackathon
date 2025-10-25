@@ -5,6 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
@@ -14,18 +15,36 @@ import com.balikllama.b1demo.viewmodel.CreditViewModel
 fun HomeScreen(
     modifier: Modifier = Modifier,
     navController: NavController,
-    viewModel: HomeViewModel= viewModel(),
     windowSizeClass: WindowSizeClass,
-    creditViewModel: CreditViewModel,
-    homeViewModel: HomeViewModel = viewModel()
+    viewModel: HomeViewModel = hiltViewModel()
 ) {
-    val credits by creditViewModel.userCredits.collectAsState()
-    val isLoading by creditViewModel.isLoading.collectAsState()
+    val uiState by viewModel.uiState.collectAsState()
 
+    // HomeView'a state'i ve event lambda'larını iletiyoruz
     HomeView(
         modifier = modifier,
         windowSizeClass = windowSizeClass,
-        creditInfo = if (isLoading) "..." else credits.toString(),
-        onRefreshCredits = { creditViewModel.loadUserCredits() }
+        uiState = uiState,
+        onAddCredit = { viewModel.addCredit(5) },
+        onDecreaseCredit = { viewModel.decreaseCredit(10) }
+    )
+}
+
+@Composable
+fun HomeScreen(
+    modifier: Modifier = Modifier,
+    windowSizeClass: WindowSizeClass,
+    viewModel: HomeViewModel = hiltViewModel() // Hilt ile ViewModel'i alıyoruz
+) {
+    // ViewModel'den UI state'ini alıyoruz
+    val uiState by viewModel.uiState.collectAsState()
+
+    // HomeView'a state'i ve event lambda'larını iletiyoruz
+    HomeView(
+        modifier = modifier,
+        windowSizeClass = windowSizeClass,
+        uiState = uiState,
+        onAddCredit = { viewModel.addCredit(5) },
+        onDecreaseCredit = { viewModel.decreaseCredit(10) }
     )
 }

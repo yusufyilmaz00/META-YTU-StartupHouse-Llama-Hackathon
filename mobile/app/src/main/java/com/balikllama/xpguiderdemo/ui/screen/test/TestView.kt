@@ -56,7 +56,8 @@ fun TestView(
             TestTopBar(
                 progressText = uiState.progressText,
                 onBackPressed = onBackPressed,
-                isBackButtonEnabled = uiState.currentQuestionIndex > 0
+                isBackButtonEnabled = uiState.currentQuestionIndex > 0,
+                creditInfo = uiState.credit.toString()
             )
         },
     ) { innerPadding ->
@@ -120,21 +121,19 @@ fun TestView(
 private fun TestTopBar(
     progressText: String,
     onBackPressed: () -> Unit,
-    isBackButtonEnabled: Boolean
+    isBackButtonEnabled: Boolean,
+    creditInfo: String // Parametreyi ekle
 ) {
     TopAppBar(
         title = { Text(text = "Test", style = MaterialTheme.typography.titleLarge) },
-        navigationIcon = {
-            if (isBackButtonEnabled) {
-                IconButton(onClick = onBackPressed) {
-                    Icon(
-                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                        contentDescription = "Önceki soruya dön"
-                    )
-                }
-            }
-        },
+        // ... navigationIcon ...
         actions = {
+            // Kredi bilgisini gösteren bir Text ekleyebiliriz (Home ekranındaki gibi)
+            Text(
+                text = "Kredi: $creditInfo",
+                modifier = Modifier.padding(end = Spacing.M),
+                style = MaterialTheme.typography.bodyLarge
+            )
             Text(
                 text = progressText,
                 modifier = Modifier.padding(end = Spacing.M),

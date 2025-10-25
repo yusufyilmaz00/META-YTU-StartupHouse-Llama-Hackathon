@@ -70,8 +70,7 @@ fun AppNavGraph(navController: NavHostController,
             ChatbotScreen(
                 modifier = modifier.fillMaxSize(),
                 navController= navController,
-                windowSizeClass = windowSizeClass,
-                creditViewModel = creditViewModel
+                windowSizeClass = windowSizeClass
             )
         }
 
@@ -79,8 +78,7 @@ fun AppNavGraph(navController: NavHostController,
             ProfileScreen(
                 modifier = modifier.fillMaxSize(),
                 navController= navController,
-                windowSizeClass = windowSizeClass,
-                creditViewModel = creditViewModel
+                windowSizeClass = windowSizeClass
             )
         }
 

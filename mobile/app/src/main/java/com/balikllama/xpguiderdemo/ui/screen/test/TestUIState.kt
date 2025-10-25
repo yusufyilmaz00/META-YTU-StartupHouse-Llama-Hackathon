@@ -8,6 +8,7 @@ import com.balikllama.xpguiderdemo.data.local.entity.QuestionEntity
  * ViewModel bu sınıfı güncelleyerek UI'a ne göstereceğini söyler.
  */
 data class TestUIState(
+    val credit: Int = 0,
     // Ekran yüklenirken veya bir işlem yapılırken true olur. (Örn: Sorular çekilirken)
     val isLoading: Boolean = true,
 

@@ -1,5 +1,6 @@
 package com.balikllama.xpguiderdemo.ui.screen.chatbot
 
+import androidx.compose.animation.core.copy
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.balikllama.xpguiderdemo.model.chat.Message
@@ -8,23 +9,35 @@ import com.balikllama.xpguiderdemo.repository.CreditRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import java.util.UUID
 import javax.inject.Inject
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.stateIn
 
 @HiltViewModel
 class ChatbotViewModel @Inject constructor(
-    private val creditRepository: CreditRepository
+    private val creditRepository: CreditRepository,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(ChatUIState())
-    val uiState: StateFlow<ChatUIState> = _uiState.asStateFlow()
+
+    // Kredi ve chat durumunu birleştirerek tek bir UIState oluştur
+    val uiState: StateFlow<ChatUIState> = combine(
+        _uiState,
+        creditRepository.userCredits
+    ) { chatState, credit ->
+        chatState.copy(credit = credit)
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5_000),
+        initialValue = ChatUIState()
+    )
 
     init {
-        // Ekran açıldığında AI'dan bir karşılama mesajı ekleyelim
         addMessage("Merhaba! Ben senin kariyer asistanınım. Sana nasıl yardımcı olabilirim?", MessageAuthor.AI)
     }
 

@@ -19,6 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.balikllama.xpguiderdemo.Greeting
 import com.balikllama.xpguiderdemo.ui.components.AppTopBar
+import com.balikllama.xpguiderdemo.ui.designsystem.AppTheme
 import com.balikllama.xpguiderdemo.ui.theme.B1demoTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -33,7 +34,7 @@ fun HomeView(
     onResetDatabase: () -> Unit,
     onNavigateToTest: () -> Unit
 ) {
-    B1demoTheme {
+    AppTheme {
         Scaffold(modifier = Modifier.fillMaxSize(),
             topBar = {
                 AppTopBar(

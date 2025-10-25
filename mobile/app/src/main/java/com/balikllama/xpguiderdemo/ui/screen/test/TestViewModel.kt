@@ -3,11 +3,14 @@ package com.balikllama.xpguiderdemo.ui.screen.test
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.balikllama.xpguiderdemo.data.local.entity.AnswerType
+import com.balikllama.xpguiderdemo.repository.CreditRepository
 import com.balikllama.xpguiderdemo.repository.TestRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import java.util.UUID
@@ -15,11 +18,23 @@ import javax.inject.Inject
 
 @HiltViewModel
 class TestViewModel @Inject constructor(
-    private val testRepository: TestRepository
+    private val testRepository: TestRepository,
+    private val creditRepository: CreditRepository
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(TestUIState())
-    val uiState: StateFlow<TestUIState> = _uiState.asStateFlow()
+
+    // Kredi ve test durumunu birleştirerek tek bir UIState oluştur
+    val uiState: StateFlow<TestUIState> = combine(
+        _uiState,
+        creditRepository.userCredits
+    ) { testState, credit ->
+        testState.copy(credit = credit)
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5_000),
+        initialValue = TestUIState()
+    )
 
     // Test boyunca aynı kalacak olan benzersiz seans kimliği.
     // Bu sayede farklı zamanlarda yapılan testlerin cevapları birbirine karışmaz.

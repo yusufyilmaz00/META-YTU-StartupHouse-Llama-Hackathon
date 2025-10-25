@@ -14,7 +14,6 @@ fun ChatbotScreen(
     modifier: Modifier = Modifier,
     navController: NavController,
     windowSizeClass: WindowSizeClass,
-    creditViewModel: CreditViewModel,
     viewModel: ChatbotViewModel = hiltViewModel()
 ) {
 

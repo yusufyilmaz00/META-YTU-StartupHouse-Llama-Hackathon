@@ -65,8 +65,7 @@ fun ChatbotView(
     AppTheme {
         Scaffold(
             modifier = modifier.fillMaxSize(),
-            topBar = { AppTopBar(title = "Carier Assistant", creditInfo = "51") },
-            // Sistem çubuklarının (örn: klavye) içeriği sıkıştırmasını yönet
+            topBar = { AppTopBar(title = "Carrier Assistan AI", creditInfo = uiState.credit.toString()) },            // Sistem çubuklarının (örn: klavye) içeriği sıkıştırmasını yönet
             contentWindowInsets = WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal)
         ) { innerPadding ->
             Column(

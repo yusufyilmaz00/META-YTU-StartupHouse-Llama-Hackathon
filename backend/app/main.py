@@ -172,7 +172,7 @@ def system_prompt():
     "When the user provides intelligence percentages, analyze them carefully and ask clarifying questions "
     "to test the accuracy and consistency of those values. You may adjust the percentages up or down "
     "based on the user's answers, but always explain your reasoning clearly and logically. "
-    "Limit yourself to asking a maximum of five questions during this analysis process. "
+    "Limit yourself to asking a maximum of three questions during this analysis process. "
     "After evaluating the intelligence profile, summarize your findings by identifying the user's cognitive strengths and weaknesses, "
     "and suggest the most suitable career paths and job roles that align with their intelligence profile. "
     "Finally, provide clear, actionable recommendations for professional growth tailored to their unique combination of intelligences. "
@@ -190,6 +190,7 @@ history = [{"role": "system", "content": system_prompt()}]
 def ask_groq(prompt: str, max_tokens: int = 1000, temperature: float = 0.7):
     """
     Groq modeline sistem prompt + geçmişle birlikte istek atar.
+    Assistant cevabındaki JSON kısmı "data/current_metrics.json" olarak kaydeder.
     """
     # Geçmiş + yeni mesaj
     messages = history + [{"role": "user", "content": prompt}]
@@ -204,13 +205,15 @@ def ask_groq(prompt: str, max_tokens: int = 1000, temperature: float = 0.7):
             stream=False  # Tek seferde JSON cevabı
         )
         answer = completion.choices[0].message.content.strip()
+        
         # History'e ekle
         history.append({"role": "user", "content": prompt})
         history.append({"role": "assistant", "content": answer})
 
-        json_pattern = re.search(r'\{[\s\S]*\}', answer)
-        if json_pattern:
-            json_str = json_pattern.group(0)
+        # ```json ... ``` kod bloklarını yakala
+        json_block_pattern = re.search(r'```json\s*([\s\S]*?)```', answer)
+        if json_block_pattern:
+            json_str = json_block_pattern.group(1)
             try:
                 data = json.loads(json_str)
 
@@ -226,7 +229,11 @@ def ask_groq(prompt: str, max_tokens: int = 1000, temperature: float = 0.7):
 
             except json.JSONDecodeError:
                 print("⚠️ Yanıtta geçersiz JSON bulundu, kaydedilmedi.")
+        else:
+            print("⚠️ Yanıt içinde JSON kod bloğu bulunamadı.")
+        
         return answer
+
     except Exception as e:
         return f"Model hatası: {e}"
 

@@ -1,9 +1,7 @@
 package com.balikllama.xpguiderdemo.di
 
 import android.content.Context
-import androidx.room.Room
-import com.balikllama.xpguiderdemo.data.local.AppDatabase
-import com.balikllama.xpguiderdemo.data.local.dao.TestResultDao
+import android.content.SharedPreferences
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,5 +12,10 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
-
+    @Provides
+    @Singleton
+    fun provideSharedPreferences(@ApplicationContext context: Context): SharedPreferences {
+        // "user_prefs" is the name of your preferences file.
+        return context.getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
+    }
 }

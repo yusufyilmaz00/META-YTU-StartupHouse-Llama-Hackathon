@@ -10,38 +10,37 @@ import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.balikllama.xpguiderdemo.ui.navigation.Routes
+import kotlinx.coroutines.delay
 
 @Composable
 fun SplashScreen(
     navController: NavController,
     viewModel: SplashViewModel = hiltViewModel()
 ) {
-    LaunchedEffect(Unit) {
-        // Yönlendirme mantığını burada yap
-        val destination = when {
-            // 1. Önce oturum açık mı diye bak
-            viewModel.isLoggedIn() -> {
-                // 2. Oturum açıksa, ilgi alanı seçmiş mi diye bak
-                if (viewModel.isSetupComplete()) {
-                    Routes.HOME
-                } else {
-                    Routes.INTEREST_SELECTION
-                }
+    LaunchedEffect(key1 = Unit) {
+        // Küçük bir gecikme ekleyerek splash'in görünmesini sağlayalım
+        delay(1000)
+
+        val destination = if (viewModel.isAuthenticated) {
+            // Eğer kullanıcı giriş yapmışsa, kurulumu tamamlayıp tamamlamadığını DB'den kontrol et
+            if (viewModel.isSetupCompleted()) {
+                Routes.HOME
+            } else {
+                Routes.INTEREST_SELECTION
             }
-            // 3. Oturum açık değilse, direkt login/register akışına yönlendir
-            else -> Routes.LOGIN // Veya bir "Welcome" ekranı varsa oraya
+        } else {
+            // Kullanıcı giriş yapmamışsa, ana başlangıç rotasına git
+            Routes.REGISTER // Veya AppNavGraph'ın başlangıcı ne ise...
         }
 
+        // Yönlendirmeyi yap ve Splash'i geri yığından kaldır
         navController.navigate(destination) {
-            popUpTo(navController.graph.startDestinationId) { inclusive = true }
+            popUpTo(Routes.SPLASH) { inclusive = true }
         }
     }
 
-    // Yönlendirme yapılırken ekranda bir yükleme göstergesi göster
-    Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
-    ) {
+    // Splash ekranının UI'ı...
+    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
         CircularProgressIndicator()
     }
 }

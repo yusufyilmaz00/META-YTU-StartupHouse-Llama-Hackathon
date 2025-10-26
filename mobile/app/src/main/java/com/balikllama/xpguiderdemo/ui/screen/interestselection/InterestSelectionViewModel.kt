@@ -2,14 +2,12 @@ package com.balikllama.xpguiderdemo.ui.screen.interestselection
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.balikllama.xpguiderdemo.data.local.entity.InterestEntity
 import com.balikllama.xpguiderdemo.repository.InterestRepository
-import com.balikllama.xpguiderdemo.repository.UserPreferencesRepository
+import com.balikllama.xpguiderdemo.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -18,7 +16,7 @@ import kotlin.collections.toMutableSet
 @HiltViewModel
 class InterestSelectionViewModel @Inject constructor(
     private val interestRepository: InterestRepository,
-    private val userPreferencesRepository: UserPreferencesRepository
+    private val userRepository: UserRepository
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(InterestSelectionUIState())
@@ -67,14 +65,14 @@ class InterestSelectionViewModel @Inject constructor(
      * "ilgi alanı seçme tamamlandı" flag'ini true yapacak.
      */
     fun onContinueClicked() {
-        // Buton aktif değilse bir şey yapma
         if (!_uiState.value.isContinueButtonEnabled) return
 
         viewModelScope.launch {
-            // Seçilen ID'leri SharedPreferences'e kaydet
-            userPreferencesRepository.saveInterestSelection(_uiState.value.selectedInterestIds)
+            // Seçilen ID'leri şimdilik bir yere kaydetmiyoruz (sunucuya gidecekti)
+            // Sadece kurulumun tamamlandığı bilgisini DB'ye kaydediyoruz.
+            userRepository.saveSetupCompleted(true)
 
-            // Kaydetme işlemi bittiğinde UI'a haber ver ki yönlendirme yapsın.
+            // UI'ı yönlendirme için bilgilendir
             _uiState.update { it.copy(isSelectionSaved = true) }
         }
     }

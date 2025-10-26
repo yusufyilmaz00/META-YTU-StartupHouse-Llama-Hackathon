@@ -13,8 +13,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
-import androidx.navigation.compose.rememberNavController
-import com.balikllama.xpguiderdemo.repository.UserPreferencesRepository
+import com.balikllama.xpguiderdemo.repository.UserRepository
 import com.balikllama.xpguiderdemo.ui.screen.calculationtest.CalculationTestScreen
 import com.balikllama.xpguiderdemo.ui.screen.dbtest.DBTestScreen
 import com.balikllama.xpguiderdemo.ui.screen.chatbot.ChatbotScreen
@@ -30,16 +29,6 @@ import com.balikllama.xpguiderdemo.ui.screen.testresults.TestResultScreen
 import com.balikllama.xpguiderdemo.viewmodel.CreditViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
-
-
-@HiltViewModel
-class OnboardingViewModel @Inject constructor(
-    private val userPreferencesRepository: UserPreferencesRepository
-) : ViewModel() {
-    fun isInterestSelectionCompleted(): Boolean {
-        return userPreferencesRepository.isInterestSelectionCompleted()
-    }
-}
 
 @Composable
 fun AppNavGraph(

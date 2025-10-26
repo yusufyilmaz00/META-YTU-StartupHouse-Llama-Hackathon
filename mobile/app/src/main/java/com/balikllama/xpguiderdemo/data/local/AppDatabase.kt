@@ -10,12 +10,14 @@ import com.balikllama.xpguiderdemo.data.local.dao.SolvedQuestionDao
 import com.balikllama.xpguiderdemo.data.local.dao.TestResultDao
 import com.balikllama.xpguiderdemo.data.local.entity.InterestEntity
 import com.balikllama.xpguiderdemo.data.local.dao.TraitDao
+import com.balikllama.xpguiderdemo.data.local.dao.UserStatusDao
 import com.balikllama.xpguiderdemo.data.local.entity.CalculationFactorEntity
 import com.balikllama.xpguiderdemo.data.local.entity.Converters
 import com.balikllama.xpguiderdemo.data.local.entity.QuestionEntity
 import com.balikllama.xpguiderdemo.data.local.entity.SolvedQuestion
 import com.balikllama.xpguiderdemo.data.local.entity.TestResult
 import com.balikllama.xpguiderdemo.data.local.entity.TraitEntity
+import com.balikllama.xpguiderdemo.data.local.entity.UserStatusEntity
 
 @Database(
     entities = [
@@ -24,9 +26,10 @@ import com.balikllama.xpguiderdemo.data.local.entity.TraitEntity
         QuestionEntity::class,
         CalculationFactorEntity::class,
         SolvedQuestion::class,
-        TestResult::class
+        TestResult::class,
+        UserStatusEntity::class
     ],
-    version = 6,
+    version = 7,
     exportSchema = false
 )
 @TypeConverters(Converters::class)
@@ -37,4 +40,5 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun calculationFactorDao(): CalculationFactorDao
     abstract fun solvedQuestionDao(): SolvedQuestionDao
     abstract fun testResultDao(): TestResultDao
+    abstract fun userStatusDao(): UserStatusDao
 }

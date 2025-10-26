@@ -1,5 +1,7 @@
 package com.balikllama.xpguiderdemo.model.auth
 
+import com.google.gson.annotations.SerializedName
+
 // main.py'deki 'RegisterIn' modeline karşılık gelir
 data class RegisterRequest (
     val email: String,
@@ -8,5 +10,9 @@ data class RegisterRequest (
 )
 
 data class Metadata(
-    val name: String
+    @SerializedName("name")
+    val name: String,
+
+    @SerializedName("setupCompleted")
+    val setupCompleted: Boolean? = false
 )

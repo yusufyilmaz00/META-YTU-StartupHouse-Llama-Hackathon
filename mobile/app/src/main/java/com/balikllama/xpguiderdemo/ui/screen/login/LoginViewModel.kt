@@ -3,49 +3,47 @@ package com.balikllama.xpguiderdemo.ui.screen.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.balikllama.xpguiderdemo.model.auth.AuthTokens
 import com.balikllama.xpguiderdemo.model.auth.LoginRequest
 import com.balikllama.xpguiderdemo.repository.ApiResult
 import com.balikllama.xpguiderdemo.repository.AuthRepository
-import com.balikllama.xpguiderdemo.repository.UserPreferencesRepository
+import com.balikllama.xpguiderdemo.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import retrofit2.HttpException
 import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     private val authRepository: AuthRepository,
-    private val userPreferencesRepository: UserPreferencesRepository
+    private val userRepository: UserRepository
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(LoginUiState())
     val uiState = _uiState.asStateFlow()
 
-    fun login() { // Parametreler artık state'ten alınacak
+    fun login() {
         viewModelScope.launch {
             _uiState.update { it.copy(isLoading = true, errorMessage = null) }
+            val currentState = _uiState.value
+            val loginRequest = LoginRequest(currentState.email, currentState.password)
 
-            // State'ten email ve password'u al
-            val loginRequest = LoginRequest(_uiState.value.email, _uiState.value.password)
-            val result = authRepository.login(loginRequest)
-
-            when (result) {
+            when (val result = authRepository.login(loginRequest)) {
                 is ApiResult.Success -> {
-                    // 1. Token'ları SharedPreferences'e kaydet
-                    userPreferencesRepository.saveAuthTokens(result.data)
-                    // 2. UI'a başarılı olduğunu bildir
-                    _uiState.update {
-                        it.copy(isLoading = false, loginSuccess = true)
-                    }
+                    // 1. Token'ları kaydet
+                    val authResult = AuthTokens(accessToken = result.data.accessToken, refreshToken = result.data.refreshToken)
+                    userRepository.saveAuthTokens(authResult)
+
+                    // 2. Aktif kullanıcının email'ini kaydet
+                    userRepository.saveCurrentUserEmail(currentState.email)
+
+                    // 3. UI'ı güncelle
+                    _uiState.update { it.copy(isLoading = false, loginSuccess = true) }
                 }
                 is ApiResult.Error -> {
-                    // UI'a hata mesajını bildir
-                    _uiState.update {
-                        it.copy(isLoading = false, errorMessage = result.message)
-                    }
+                    _uiState.update { it.copy(isLoading = false, errorMessage = result.message) }
                 }
             }
         }

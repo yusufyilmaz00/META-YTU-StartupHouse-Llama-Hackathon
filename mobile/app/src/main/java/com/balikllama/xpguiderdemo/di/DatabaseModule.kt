@@ -9,6 +9,7 @@ import com.balikllama.xpguiderdemo.data.local.dao.TraitDao
 import com.balikllama.xpguiderdemo.data.local.dao.QuestionDao
 import com.balikllama.xpguiderdemo.data.local.dao.SolvedQuestionDao
 import com.balikllama.xpguiderdemo.data.local.dao.TestResultDao
+import com.balikllama.xpguiderdemo.data.local.dao.UserStatusDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -71,4 +72,9 @@ object DatabaseModule {
         return appDatabase.testResultDao()
     }
 
+    @Provides
+    @Singleton
+    fun provideUserStatusDao(appDatabase: AppDatabase): UserStatusDao {
+        return appDatabase.userStatusDao() // Assuming your AppDatabase class has a function userStatusDao()
+    }
 }

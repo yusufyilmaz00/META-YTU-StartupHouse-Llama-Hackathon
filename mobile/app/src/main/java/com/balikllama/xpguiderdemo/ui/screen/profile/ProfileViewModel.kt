@@ -3,7 +3,7 @@ package com.balikllama.xpguiderdemo.ui.screen.profile
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.balikllama.xpguiderdemo.repository.CreditRepository
-import com.balikllama.xpguiderdemo.repository.UserPreferencesRepository
+import com.balikllama.xpguiderdemo.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -19,7 +19,7 @@ import javax.inject.Inject
 class ProfileViewModel @Inject constructor(
     private val creditRepository: CreditRepository,
     // --- 2. YENİ REPOSITORY'Yİ ENJEKTE ET ---
-    private val userPreferencesRepository: UserPreferencesRepository
+    private val userRepository: UserRepository
 ) : ViewModel() {
     private val _uiState = MutableStateFlow(ProfileUIState())
 
@@ -45,7 +45,7 @@ class ProfileViewModel @Inject constructor(
             delay(1000) // Sahte gecikme kalabilir.
 
             // --- 3. GERÇEK KULLANICI E-POSTASINI AL ---
-            val userEmail = userPreferencesRepository.getUserEmail() ?: "Bulunamadı"
+            val userEmail = userRepository.getUserEmail() ?: "Bulunamadı"
 
             // Sahte verileri oluştururken gerçek e-postayı kullan
             val userDetails = listOf(

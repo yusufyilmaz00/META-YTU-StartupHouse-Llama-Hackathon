@@ -1,0 +1,1341 @@
+[
+  {
+    "id": "job_01",
+    "name": "Computer Engineer",
+    "details": "Designing and developing computer systems, hardware-software integration, and solving complex computing problems.",
+    "intelligences": [
+      "Analytical Intelligence",
+      "Digital Intelligence",
+      "Scientific Intelligence",
+      "Technical Intelligence",
+      "Strategic Intelligence",
+      "Creative Intelligence"
+    ]
+  },
+  {
+    "id": "job_02",
+    "name": "Software Engineer",
+    "details": "Developing and maintaining software applications and systems, writing code, and solving complex programming problems.",
+    "intelligences": [
+      "Analytical Intelligence",
+      "Technical Intelligence",
+      "Digital Intelligence",
+      "Creative Intelligence",
+      "Strategic Intelligence"
+    ]
+  },
+  {
+    "id": "job_03",
+    "name": "Artificial Intelligence Engineer",
+    "details": "Designing AI models and algorithms, developing intelligent systems, and integrating machine learning into applications.",
+    "intelligences": [
+      "Analytical Intelligence",
+      "Scientific Intelligence",
+      "Technical Intelligence",
+      "Digital Intelligence",
+      "Creative Intelligence"
+    ]
+  },
+  {
+    "id": "job_04",
+    "name": "Data Scientist",
+    "details": "Analyzing large datasets to extract insights, building statistical models, and helping drive data-driven decisions.",
+    "intelligences": [
+      "Analytical Intelligence",
+      "Scientific Intelligence",
+      "Digital Intelligence",
+      "Technical Intelligence",
+      "Strategic Intelligence"
+    ]
+  },
+  {
+    "id": "job_05",
+    "name": "Electrical and Electronics Engineer",
+    "details": "Designing and developing electrical circuits and electronic devices, working on power systems, and solving electrical engineering challenges.",
+    "intelligences": [
+      "Technical Intelligence",
+      "Analytical Intelligence",
+      "Scientific Intelligence",
+      "Practical Intelligence",
+      "Creative Intelligence"
+    ]
+  },
+  {
+    "id": "job_06",
+    "name": "Electronics and Communications Engineer",
+    "details": "Developing and improving communication systems and electronic devices, working with signals, and ensuring effective telecommunication networks.",
+    "intelligences": [
+      "Technical Intelligence",
+      "Analytical Intelligence",
+      "Scientific Intelligence",
+      "Digital Intelligence",
+      "Creative Intelligence"
+    ]
+  },
+  {
+    "id": "job_07",
+    "name": "Industrial Engineer",
+    "details": "Optimizing complex processes and systems, improving efficiency and productivity in manufacturing or services, and integrating people, technology, and resources.",
+    "intelligences": [
+      "Analytical Intelligence",
+      "Strategic Intelligence",
+      "Practical Intelligence",
+      "Technical Intelligence",
+      "Social Intelligence"
+    ]
+  },
+  {
+    "id": "job_08",
+    "name": "Mechanical Engineer",
+    "details": "Designing machines and mechanical systems, analyzing thermal and mechanical processes, and solving engineering problems related to tools and engines.",
+    "intelligences": [
+      "Technical Intelligence",
+      "Analytical Intelligence",
+      "Scientific Intelligence",
+      "Practical Intelligence",
+      "Creative Intelligence"
+    ]
+  },
+  {
+    "id": "job_09",
+    "name": "Civil Engineer",
+    "details": "Planning and constructing infrastructure projects like buildings, roads, and bridges, ensuring structural integrity and safety in built environments.",
+    "intelligences": [
+      "Technical Intelligence",
+      "Analytical Intelligence",
+      "Practical Intelligence",
+      "Scientific Intelligence",
+      "Strategic Intelligence"
+    ]
+  },
+  {
+    "id": "job_10",
+    "name": "Geomatics Engineer",
+    "details": "Collecting and analyzing geographical data, creating maps and spatial information systems, and using surveying technology for land measurements.",
+    "intelligences": [
+      "Analytical Intelligence",
+      "Technical Intelligence",
+      "Naturalistic Intelligence",
+      "Scientific Intelligence",
+      "Practical Intelligence"
+    ]
+  },
+  {
+    "id": "job_11",
+    "name": "Mechatronics Engineer",
+    "details": "Designing smart machines and robotics by combining mechanics, electronics, and computer control systems, and solving interdisciplinary engineering problems.",
+    "intelligences": [
+      "Technical Intelligence",
+      "Analytical Intelligence",
+      "Scientific Intelligence",
+      "Creative Intelligence",
+      "Digital Intelligence"
+    ]
+  },
+  {
+    "id": "job_12",
+    "name": "Environmental Engineer",
+    "details": "Developing solutions to environmental problems, managing pollution control and waste treatment, and designing projects to protect air, water, and soil quality.",
+    "intelligences": [
+      "Scientific Intelligence",
+      "Naturalistic Intelligence",
+      "Analytical Intelligence",
+      "Technical Intelligence",
+      "Creative Intelligence"
+    ]
+  },
+  {
+    "id": "job_13",
+    "name": "Food Engineer",
+    "details": "Applying science and engineering to food production, developing new food products and preservation methods, and ensuring quality and safety in food processing.",
+    "intelligences": [
+      "Scientific Intelligence",
+      "Analytical Intelligence",
+      "Technical Intelligence",
+      "Creative Intelligence",
+      "Practical Intelligence"
+    ]
+  },
+  {
+    "id": "job_14",
+    "name": "Bioengineer",
+    "details": "Combining biology and engineering principles to develop medical devices, biotechnologies, or pharmaceuticals, and solving biological and health-related problems.",
+    "intelligences": [
+      "Scientific Intelligence",
+      "Analytical Intelligence",
+      "Technical Intelligence",
+      "Creative Intelligence",
+      "Naturalistic Intelligence"
+    ]
+  },
+  {
+    "id": "job_15",
+    "name": "Medical Doctor",
+    "details": "Diagnosing and treating illnesses, caring for patients’ health, and applying medical knowledge to improve patient outcomes.",
+    "intelligences": [
+      "Scientific Intelligence",
+      "Analytical Intelligence",
+      "Emotional Intelligence",
+      "Communicative Intelligence",
+      "Practical Intelligence"
+    ]
+  },
+  {
+    "id": "job_16",
+    "name": "Dentist",
+    "details": "Diagnosing and treating oral health issues, performing dental procedures, and helping patients maintain healthy teeth and gums.",
+    "intelligences": [
+      "Technical Intelligence",
+      "Scientific Intelligence",
+      "Practical Intelligence",
+      "Aesthetic Intelligence",
+      "Emotional Intelligence"
+    ]
+  },
+  {
+    "id": "job_17",
+    "name": "Pharmacist",
+    "details": "Preparing and dispensing medications, advising patients on proper drug use, and ensuring safe and effective pharmaceutical care.",
+    "intelligences": [
+      "Scientific Intelligence",
+      "Analytical Intelligence",
+      "Communicative Intelligence",
+      "Technical Intelligence",
+      "Social Intelligence"
+    ]
+  },
+  {
+    "id": "job_18",
+    "name": "Physiotherapist",
+    "details": "Helping patients recover from injuries or illnesses through physical therapy, guiding rehabilitation exercises, and improving mobility and function.",
+    "intelligences": [
+      "Physical Intelligence",
+      "Scientific Intelligence",
+      "Emotional Intelligence",
+      "Practical Intelligence",
+      "Communicative Intelligence"
+    ]
+  },
+  {
+    "id": "job_19",
+    "name": "Nurse",
+    "details": "Providing medical care and support to patients, monitoring health conditions, and coordinating with doctors to assist in treatments and patient education.",
+    "intelligences": [
+      "Emotional Intelligence",
+      "Practical Intelligence",
+      "Communicative Intelligence",
+      "Analytical Intelligence",
+      "Social Intelligence"
+    ]
+  },
+  {
+    "id": "job_20",
+    "name": "Midwife",
+    "details": "Assisting women during pregnancy, childbirth, and postpartum, providing prenatal care and delivering babies while ensuring the health of mother and child.",
+    "intelligences": [
+      "Emotional Intelligence",
+      "Practical Intelligence",
+      "Communicative Intelligence",
+      "Scientific Intelligence",
+      "Social Intelligence"
+    ]
+  },
+  {
+    "id": "job_21",
+    "name": "Audiologist",
+    "details": "Diagnosing and treating hearing and balance disorders, conducting hearing tests, and fitting hearing aids to improve patients’ auditory abilities.",
+    "intelligences": [
+      "Scientific Intelligence",
+      "Technical Intelligence",
+      "Analytical Intelligence",
+      "Communicative Intelligence",
+      "Emotional Intelligence"
+    ]
+  },
+  {
+    "id": "job_22",
+    "name": "Medical Imaging Technician",
+    "details": "Operating X-ray, MRI, or ultrasound equipment to capture images of patients’ bodies, assisting radiologists in diagnosing medical conditions through imaging.",
+    "intelligences": [
+      "Technical Intelligence",
+      "Scientific Intelligence",
+      "Practical Intelligence",
+      "Analytical Intelligence",
+      "Communicative Intelligence"
+    ]
+  },
+  {
+    "id": "job_23",
+    "name": "Dental Prosthetic Technician",
+    "details": "Designing and crafting dental prosthetics such as crowns, bridges, and dentures, using molds and materials to create functional and aesthetic dental appliances.",
+    "intelligences": [
+      "Technical Intelligence",
+      "Aesthetic Intelligence",
+      "Practical Intelligence",
+      "Analytical Intelligence",
+      "Creative Intelligence"
+    ]
+  },
+  {
+    "id": "job_24",
+    "name": "Psychologist",
+    "details": "Studying human behavior and mental processes, assessing and counseling clients, and applying therapeutic techniques to help improve mental well-being.",
+    "intelligences": [
+      "Emotional Intelligence",
+      "Communicative Intelligence",
+      "Analytical Intelligence",
+      "Social Intelligence",
+      "Creative Intelligence"
+    ]
+  },
+  {
+    "id": "job_25",
+    "name": "Psychological Counselor",
+    "details": "Providing guidance and advice to individuals on personal, educational, or career issues, helping them cope with challenges and improve mental health.",
+    "intelligences": [
+      "Emotional Intelligence",
+      "Communicative Intelligence",
+      "Social Intelligence",
+      "Analytical Intelligence"
+    ]
+  },
+  {
+    "id": "job_26",
+    "name": "Sociologist",
+    "details": "Studying society and social behavior by examining groups, cultures, and institutions, and conducting research to understand social patterns and issues.",
+    "intelligences": [
+      "Analytical Intelligence",
+      "Social Intelligence",
+      "Scientific Intelligence",
+      "Communicative Intelligence"
+    ]
+  },
+  {
+    "id": "job_27",
+    "name": "Philosopher",
+    "details": "Exploring fundamental questions about knowledge, reality, and ethics, developing theories of thought, and critically analyzing concepts and arguments.",
+    "intelligences": [
+      "Analytical Intelligence",
+      "Creative Intelligence",
+      "Linguistic Intelligence",
+      "Strategic Intelligence"
+    ]
+  },
+  {
+    "id": "job_28",
+    "name": "Primary School Teacher",
+    "details": "Educating young children in elementary subjects, managing a classroom, and creating engaging learning experiences for early-grade students.",
+    "intelligences": [
+      "Communicative Intelligence",
+      "Social Intelligence",
+      "Emotional Intelligence",
+      "Creative Intelligence",
+      "Practical Intelligence"
+    ]
+  },
+  {
+    "id": "job_29",
+    "name": "Preschool Teacher",
+    "details": "Teaching and caring for preschool-aged children, fostering early development through play and activities, and preparing them for primary school.",
+    "intelligences": [
+      "Emotional Intelligence",
+      "Communicative Intelligence",
+      "Social Intelligence",
+      "Creative Intelligence",
+      "Practical Intelligence"
+    ]
+  },
+  {
+    "id": "job_30",
+    "name": "English Teacher",
+    "details": "Teaching the English language and literature, helping students develop reading, writing, and communication skills, and fostering language proficiency.",
+    "intelligences": [
+      "Linguistic Intelligence",
+      "Communicative Intelligence",
+      "Social Intelligence",
+      "Creative Intelligence"
+    ]
+  },
+  {
+    "id": "job_31",
+    "name": "Turkish Teacher",
+    "details": "Instructing students in the Turkish language and literature, improving their reading, writing, and comprehension skills, and fostering appreciation of language.",
+    "intelligences": [
+      "Linguistic Intelligence",
+      "Communicative Intelligence",
+      "Social Intelligence",
+      "Emotional Intelligence"
+    ]
+  },
+  {
+    "id": "job_32",
+    "name": "Mathematics Teacher",
+    "details": "Teaching mathematical concepts and problem-solving, helping students understand arithmetic, algebra, geometry, and calculus, and encouraging logical thinking.",
+    "intelligences": [
+      "Analytical Intelligence",
+      "Communicative Intelligence",
+      "Linguistic Intelligence",
+      "Strategic Intelligence"
+    ]
+  },
+  {
+    "id": "job_33",
+    "name": "Science Teacher",
+    "details": "Educating students in general science topics, conducting experiments in class, and fostering curiosity and understanding of the natural world.",
+    "intelligences": [
+      "Scientific Intelligence",
+      "Communicative Intelligence",
+      "Analytical Intelligence",
+      "Social Intelligence"
+    ]
+  },
+  {
+    "id": "job_34",
+    "name": "Guidance Counselor",
+    "details": "Advising and supporting students in their academic and personal development, providing career guidance, and helping resolve social or emotional issues in an educational setting.",
+    "intelligences": [
+      "Social Intelligence",
+      "Communicative Intelligence",
+      "Emotional Intelligence",
+      "Analytical Intelligence"
+    ]
+  },
+  {
+    "id": "job_35",
+    "name": "Computer Science Teacher",
+    "details": "Teaching computer literacy, programming, and educational technology, and guiding students in using technology effectively for learning.",
+    "intelligences": [
+      "Digital Intelligence",
+      "Communicative Intelligence",
+      "Technical Intelligence",
+      "Creative Intelligence",
+      "Analytical Intelligence"
+    ]
+  },
+  {
+    "id": "job_36",
+    "name": "Statistician",
+    "details": "Collecting, analyzing, and interpreting numerical data to solve problems, design experiments or surveys, and guide decision-making with statistical insights.",
+    "intelligences": [
+      "Analytical Intelligence",
+      "Scientific Intelligence",
+      "Digital Intelligence",
+      "Strategic Intelligence"
+    ]
+  },
+  {
+    "id": "job_37",
+    "name": "Mathematician",
+    "details": "Researching and solving theoretical or applied mathematical problems, developing new mathematical models, and advancing knowledge in areas such as algebra or geometry.",
+    "intelligences": [
+      "Analytical Intelligence",
+      "Scientific Intelligence",
+      "Creative Intelligence",
+      "Strategic Intelligence"
+    ]
+  },
+  {
+    "id": "job_38",
+    "name": "Physicist",
+    "details": "Studying the laws of nature, conducting experiments or theoretical research on matter and energy, and advancing knowledge in areas like mechanics, optics, or quantum physics.",
+    "intelligences": [
+      "Scientific Intelligence",
+      "Analytical Intelligence",
+      "Technical Intelligence",
+      "Creative Intelligence"
+    ]
+  },
+  {
+    "id": "job_39",
+    "name": "Chemist",
+    "details": "Researching chemical substances and reactions, conducting experiments in labs, and developing new materials or compounds for various applications.",
+    "intelligences": [
+      "Scientific Intelligence",
+      "Analytical Intelligence",
+      "Technical Intelligence",
+      "Practical Intelligence"
+    ]
+  },
+  {
+    "id": "job_40",
+    "name": "Biologist",
+    "details": "Studying living organisms and life processes, conducting research in areas like ecology, genetics, or zoology, and working to understand and protect living systems.",
+    "intelligences": [
+      "Scientific Intelligence",
+      "Naturalistic Intelligence",
+      "Analytical Intelligence",
+      "Technical Intelligence"
+    ]
+  },
+  {
+    "id": "job_41",
+    "name": "Architect",
+    "details": "Designing buildings and structures, creating architectural plans and models, and ensuring functionality, safety, and aesthetic appeal in construction projects.",
+    "intelligences": [
+      "Aesthetic Intelligence",
+      "Creative Intelligence",
+      "Analytical Intelligence",
+      "Technical Intelligence",
+      "Strategic Intelligence"
+    ]
+  },
+  {
+    "id": "job_42",
+    "name": "Interior Designer",
+    "details": "Planning and designing interior spaces to be functional and aesthetically pleasing, selecting furnishings and color schemes, and meeting clients’ needs for indoor environments.",
+    "intelligences": [
+      "Aesthetic Intelligence",
+      "Creative Intelligence",
+      "Communicative Intelligence",
+      "Technical Intelligence",
+      "Analytical Intelligence"
+    ]
+  },
+  {
+    "id": "job_43",
+    "name": "Graphic Designer",
+    "details": "Creating visual concepts and graphics for branding or communication, using typography, imagery, and digital tools to design logos, brochures, or websites.",
+    "intelligences": [
+      "Aesthetic Intelligence",
+      "Creative Intelligence",
+      "Digital Intelligence",
+      "Communicative Intelligence"
+    ]
+  },
+  {
+    "id": "job_44",
+    "name": "Industrial Designer",
+    "details": "Designing products and industrial goods that are functional, ergonomic, and visually appealing, developing prototypes, and considering user experience and manufacturing processes.",
+    "intelligences": [
+      "Aesthetic Intelligence",
+      "Creative Intelligence",
+      "Technical Intelligence",
+      "Analytical Intelligence",
+      "Practical Intelligence"
+    ]
+  },
+  {
+    "id": "job_45",
+    "name": "Visual Communication Designer",
+    "details": "Crafting visual content for media and communication, integrating design elements to convey messages effectively across print and digital platforms.",
+    "intelligences": [
+      "Aesthetic Intelligence",
+      "Creative Intelligence",
+      "Communicative Intelligence",
+      "Digital Intelligence"
+    ]
+  },
+  {
+    "id": "job_46",
+    "name": "Fashion Designer",
+    "details": "Designing clothing and apparel, creating new fashion collections, choosing fabrics and patterns, and combining aesthetics with functionality and market trends.",
+    "intelligences": [
+      "Aesthetic Intelligence",
+      "Creative Intelligence",
+      "Technical Intelligence",
+      "Social Intelligence",
+      "Entrepreneurial Intelligence"
+    ]
+  },
+  {
+    "id": "job_47",
+    "name": "Ceramic and Glass Designer",
+    "details": "Creating designs for ceramic and glass objects, shaping materials into functional or artistic items, and blending craftsmanship with creative aesthetics.",
+    "intelligences": [
+      "Aesthetic Intelligence",
+      "Creative Intelligence",
+      "Practical Intelligence",
+      "Technical Intelligence"
+    ]
+  },
+  {
+    "id": "job_48",
+    "name": "Painter (Artist)",
+    "details": "Creating art using paint and various mediums, expressing ideas or emotions through visual imagery, and developing a personal artistic style.",
+    "intelligences": [
+      "Aesthetic Intelligence",
+      "Creative Intelligence",
+      "Emotional Intelligence",
+      "Spiritual Intelligence"
+    ]
+  },
+  {
+    "id": "job_49",
+    "name": "Sculptor",
+    "details": "Designing and crafting three-dimensional art pieces using materials like clay, stone, or metal, and combining artistic vision with manual techniques.",
+    "intelligences": [
+      "Aesthetic Intelligence",
+      "Creative Intelligence",
+      "Physical Intelligence",
+      "Technical Intelligence"
+    ]
+  },
+  {
+    "id": "job_50",
+    "name": "Musician",
+    "details": "Performing or composing music in various genres, playing instruments or singing, and expressing artistry through musical sounds and rhythms.",
+    "intelligences": [
+      "Aesthetic Intelligence",
+      "Creative Intelligence",
+      "Emotional Intelligence",
+      "Physical Intelligence"
+    ]
+  },
+  {
+    "id": "job_51",
+    "name": "Audio Engineer",
+    "details": "Working with sound and music technology to record, mix, and produce audio content, managing equipment and software to achieve high-quality sound.",
+    "intelligences": [
+      "Technical Intelligence",
+      "Digital Intelligence",
+      "Creative Intelligence",
+      "Analytical Intelligence"
+    ]
+  },
+  {
+    "id": "job_52",
+    "name": "Classical Musician",
+    "details": "Performing music at a professional level, often having studied at a conservatory, mastering an instrument or voice, and interpreting complex musical compositions.",
+    "intelligences": [
+      "Aesthetic Intelligence",
+      "Creative Intelligence",
+      "Emotional Intelligence",
+      "Physical Intelligence",
+      "Social Intelligence"
+    ]
+  },
+  {
+    "id": "job_53",
+    "name": "Actor",
+    "details": "Performing in theater, film, or television, portraying characters by memorizing scripts and expressing emotions, and engaging audiences through dramatic storytelling.",
+    "intelligences": [
+      "Creative Intelligence",
+      "Emotional Intelligence",
+      "Social Intelligence",
+      "Communicative Intelligence",
+      "Physical Intelligence"
+    ]
+  },
+  {
+    "id": "job_54",
+    "name": "Media Producer",
+    "details": "Creating content for radio, television, or film, managing production processes, coordinating creative teams, and ensuring the final output meets artistic and technical standards.",
+    "intelligences": [
+      "Creative Intelligence",
+      "Communicative Intelligence",
+      "Social Intelligence",
+      "Technical Intelligence",
+      "Strategic Intelligence"
+    ]
+  },
+  {
+    "id": "job_55",
+    "name": "Journalist",
+    "details": "Researching and writing news stories or articles, interviewing sources, and delivering information to the public through newspapers, magazines, or online media.",
+    "intelligences": [
+      "Linguistic Intelligence",
+      "Communicative Intelligence",
+      "Analytical Intelligence",
+      "Social Intelligence"
+    ]
+  },
+  {
+    "id": "job_56",
+    "name": "Digital Content Creator",
+    "details": "Developing and producing content for digital platforms and social media, utilizing multimedia tools to engage online audiences, and staying current with new media trends.",
+    "intelligences": [
+      "Digital Intelligence",
+      "Creative Intelligence",
+      "Communicative Intelligence",
+      "Social Intelligence",
+      "Entrepreneurial Intelligence"
+    ]
+  },
+  {
+    "id": "job_57",
+    "name": "Public Relations Specialist",
+    "details": "Managing an organization’s public image, crafting press releases and media campaigns, and building positive relationships with the public and media outlets.",
+    "intelligences": [
+      "Communicative Intelligence",
+      "Social Intelligence",
+      "Strategic Intelligence",
+      "Emotional Intelligence",
+      "Linguistic Intelligence"
+    ]
+  },
+  {
+    "id": "job_58",
+    "name": "Advertising Specialist",
+    "details": "Creating and executing advertising campaigns, developing marketing messages and visuals, and strategizing to effectively promote products or services.",
+    "intelligences": [
+      "Creative Intelligence",
+      "Strategic Intelligence",
+      "Communicative Intelligence",
+      "Analytical Intelligence"
+    ]
+  },
+  {
+    "id": "job_59",
+    "name": "Communication Designer",
+    "details": "Designing effective communication strategies and materials, combining visual design with messaging to convey ideas clearly across various media.",
+    "intelligences": [
+      "Creative Intelligence",
+      "Aesthetic Intelligence",
+      "Communicative Intelligence",
+      "Strategic Intelligence"
+    ]
+  },
+  {
+    "id": "job_60",
+    "name": "Business Manager",
+    "details": "Overseeing business operations and teams, making strategic decisions for growth, and managing resources in areas like finance, marketing, or human resources.",
+    "intelligences": [
+      "Strategic Intelligence",
+      "Analytical Intelligence",
+      "Social Intelligence",
+      "Communicative Intelligence",
+      "Entrepreneurial Intelligence"
+    ]
+  },
+  {
+    "id": "job_61",
+    "name": "Economist",
+    "details": "Studying how resources are produced, distributed, and consumed, analyzing economic data and trends, and advising organizations or governments on economic policy.",
+    "intelligences": [
+      "Analytical Intelligence",
+      "Scientific Intelligence",
+      "Strategic Intelligence",
+      "Linguistic Intelligence"
+    ]
+  },
+  {
+    "id": "job_62",
+    "name": "International Relations Specialist",
+    "details": "Analyzing global political and economic issues, understanding foreign policies and diplomacy, and working on international cooperation or in diplomatic services.",
+    "intelligences": [
+      "Strategic Intelligence",
+      "Social Intelligence",
+      "Communicative Intelligence",
+      "Analytical Intelligence",
+      "Linguistic Intelligence"
+    ]
+  },
+  {
+    "id": "job_63",
+    "name": "Public Administrator",
+    "details": "Managing public sector organizations or government departments, implementing policies, overseeing public programs, and ensuring efficient delivery of services to the community.",
+    "intelligences": [
+      "Strategic Intelligence",
+      "Analytical Intelligence",
+      "Social Intelligence",
+      "Communicative Intelligence",
+      "Practical Intelligence"
+    ]
+  },
+  {
+    "id": "job_64",
+    "name": "Logistics Manager",
+    "details": "Coordinating supply chain operations, managing the transport and storage of goods, and optimizing processes to ensure timely and efficient delivery.",
+    "intelligences": [
+      "Analytical Intelligence",
+      "Practical Intelligence",
+      "Strategic Intelligence",
+      "Communicative Intelligence",
+      "Technical Intelligence"
+    ]
+  },
+  {
+    "id": "job_65",
+    "name": "Marketing Specialist",
+    "details": "Researching consumer needs and market trends, developing marketing strategies and campaigns, and promoting products or services to target audiences.",
+    "intelligences": [
+      "Creative Intelligence",
+      "Social Intelligence",
+      "Analytical Intelligence",
+      "Communicative Intelligence",
+      "Entrepreneurial Intelligence"
+    ]
+  },
+  {
+    "id": "job_66",
+    "name": "International Trade Specialist",
+    "details": "Managing and facilitating trade between countries, understanding international markets and regulations, and negotiating deals or contracts for global business transactions.",
+    "intelligences": [
+      "Entrepreneurial Intelligence",
+      "Strategic Intelligence",
+      "Communicative Intelligence",
+      "Social Intelligence",
+      "Analytical Intelligence"
+    ]
+  },
+  {
+    "id": "job_67",
+    "name": "Financial Officer",
+    "details": "Managing budgets and financial resources, analyzing fiscal data and economic trends, and guiding financial decision-making for organizations or government agencies.",
+    "intelligences": [
+      "Analytical Intelligence",
+      "Strategic Intelligence",
+      "Communicative Intelligence",
+      "Entrepreneurial Intelligence"
+    ]
+  },
+  {
+    "id": "job_68",
+    "name": "Labor Economist",
+    "details": "Studying labor markets and employment trends, analyzing worker-employer dynamics, and advising on policies related to wages, labor relations, and workforce development.",
+    "intelligences": [
+      "Analytical Intelligence",
+      "Social Intelligence",
+      "Communicative Intelligence",
+      "Strategic Intelligence",
+      "Scientific Intelligence"
+    ]
+  },
+  {
+    "id": "job_69",
+    "name": "Political Scientist",
+    "details": "Researching political systems, behavior, and public policies, analyzing government structures, and providing insights into political trends and outcomes.",
+    "intelligences": [
+      "Analytical Intelligence",
+      "Strategic Intelligence",
+      "Social Intelligence",
+      "Communicative Intelligence"
+    ]
+  },
+  {
+    "id": "job_70",
+    "name": "Social Worker",
+    "details": "Helping individuals and communities resolve personal and social problems, connecting people with services, and advocating for the well-being of vulnerable populations.",
+    "intelligences": [
+      "Emotional Intelligence",
+      "Social Intelligence",
+      "Communicative Intelligence",
+      "Practical Intelligence"
+    ]
+  },
+  {
+    "id": "job_71",
+    "name": "Entrepreneur",
+    "details": "Starting and managing new business ventures, innovating products or services, and taking financial risks to bring new ideas to the market.",
+    "intelligences": [
+      "Entrepreneurial Intelligence",
+      "Strategic Intelligence",
+      "Creative Intelligence",
+      "Analytical Intelligence",
+      "Social Intelligence"
+    ]
+  },
+  {
+    "id": "job_72",
+    "name": "Aviation Manager",
+    "details": "Overseeing operations in the aviation industry such as airlines or airports, ensuring safety, managing logistics, and coordinating flights and services.",
+    "intelligences": [
+      "Strategic Intelligence",
+      "Analytical Intelligence",
+      "Communicative Intelligence",
+      "Technical Intelligence",
+      "Social Intelligence"
+    ]
+  },
+  {
+    "id": "job_73",
+    "name": "Pilot",
+    "details": "Flying aircraft to transport passengers or goods, navigating and communicating with air traffic control, and ensuring the safe operation of flights under various conditions.",
+    "intelligences": [
+      "Physical Intelligence",
+      "Technical Intelligence",
+      "Analytical Intelligence",
+      "Strategic Intelligence"
+    ]
+  },
+  {
+    "id": "job_74",
+    "name": "Aeronautical Engineer",
+    "details": "Designing and developing aircraft and aerospace systems, analyzing aerodynamic performance, and solving engineering challenges related to flight technology.",
+    "intelligences": [
+      "Analytical Intelligence",
+      "Technical Intelligence",
+      "Scientific Intelligence",
+      "Creative Intelligence"
+    ]
+  },
+  {
+    "id": "job_75",
+    "name": "Maritime Transportation Engineer",
+    "details": "Managing and operating maritime transport systems, planning shipping routes, and ensuring efficient and safe movement of vessels and cargo across waterways.",
+    "intelligences": [
+      "Technical Intelligence",
+      "Analytical Intelligence",
+      "Strategic Intelligence",
+      "Social Intelligence",
+      "Practical Intelligence"
+    ]
+  },
+  {
+    "id": "job_76",
+    "name": "Marine Engineer",
+    "details": "Designing and maintaining ship engines and mechanical systems, ensuring the operation of marine vessels, and solving engineering problems at sea.",
+    "intelligences": [
+      "Technical Intelligence",
+      "Analytical Intelligence",
+      "Practical Intelligence",
+      "Scientific Intelligence"
+    ]
+  },
+  {
+    "id": "job_77",
+    "name": "Veterinarian",
+    "details": "Diagnosing and treating health issues in animals, performing medical procedures or surgeries on pets and livestock, and advising owners on animal care and nutrition.",
+    "intelligences": [
+      "Scientific Intelligence",
+      "Naturalistic Intelligence",
+      "Analytical Intelligence",
+      "Emotional Intelligence",
+      "Technical Intelligence"
+    ]
+  },
+  {
+    "id": "job_78",
+    "name": "Agricultural Engineer",
+    "details": "Developing technology and machinery to improve farming and food production, designing irrigation systems, and solving problems related to agriculture and sustainability.",
+    "intelligences": [
+      "Scientific Intelligence",
+      "Technical Intelligence",
+      "Naturalistic Intelligence",
+      "Analytical Intelligence",
+      "Practical Intelligence"
+    ]
+  },
+  {
+    "id": "job_79",
+    "name": "Forester",
+    "details": "Managing and conserving forest resources, planning harvesting and replanting, and protecting wildlife habitats and ecosystems in woodland areas.",
+    "intelligences": [
+      "Naturalistic Intelligence",
+      "Scientific Intelligence",
+      "Analytical Intelligence",
+      "Practical Intelligence"
+    ]
+  },
+  {
+    "id": "job_80",
+    "name": "Horticulturist",
+    "details": "Cultivating garden plants, breeding new plant varieties, managing orchards or nurseries, and applying botanical knowledge to improve plant growth and health.",
+    "intelligences": [
+      "Naturalistic Intelligence",
+      "Scientific Intelligence",
+      "Analytical Intelligence",
+      "Practical Intelligence"
+    ]
+  },
+  {
+    "id": "job_81",
+    "name": "Soil Scientist",
+    "details": "Studying soil composition and fertility, advising on soil management and crop nutrition, and researching ways to improve soil health for agriculture.",
+    "intelligences": [
+      "Naturalistic Intelligence",
+      "Scientific Intelligence",
+      "Analytical Intelligence",
+      "Technical Intelligence"
+    ]
+  },
+  {
+    "id": "job_82",
+    "name": "Landscape Architect",
+    "details": "Designing outdoor spaces and gardens, integrating natural elements with built environments, and planning sustainable, functional, and visually pleasing landscapes.",
+    "intelligences": [
+      "Aesthetic Intelligence",
+      "Creative Intelligence",
+      "Naturalistic Intelligence",
+      "Analytical Intelligence",
+      "Technical Intelligence"
+    ]
+  },
+  {
+    "id": "job_83",
+    "name": "Agricultural Economist",
+    "details": "Analyzing economic aspects of agriculture, studying market trends in food and farming, and advising on agricultural policies and agribusiness strategies.",
+    "intelligences": [
+      "Analytical Intelligence",
+      "Naturalistic Intelligence",
+      "Strategic Intelligence",
+      "Entrepreneurial Intelligence"
+    ]
+  },
+  {
+    "id": "job_84",
+    "name": "Archaeologist",
+    "details": "Excavating and studying ancient sites and artifacts, analyzing historical objects and remains, and interpreting past human cultures through material findings.",
+    "intelligences": [
+      "Scientific Intelligence",
+      "Analytical Intelligence",
+      "Naturalistic Intelligence",
+      "Physical Intelligence"
+    ]
+  },
+  {
+    "id": "job_85",
+    "name": "Anthropologist",
+    "details": "Studying human cultures and societies, conducting fieldwork and observations, and researching human behavior, traditions, and evolution across different communities.",
+    "intelligences": [
+      "Social Intelligence",
+      "Analytical Intelligence",
+      "Scientific Intelligence",
+      "Communicative Intelligence"
+    ]
+  },
+  {
+    "id": "job_86",
+    "name": "Art Historian",
+    "details": "Researching the history and development of art, analyzing artworks and their cultural contexts, and preserving or curating art collections for education and exhibition.",
+    "intelligences": [
+      "Aesthetic Intelligence",
+      "Analytical Intelligence",
+      "Linguistic Intelligence",
+      "Social Intelligence"
+    ]
+  },
+  {
+    "id": "job_87",
+    "name": "Historian",
+    "details": "Researching and analyzing past events, studying historical documents and sources, and writing interpretations or narratives about different eras and their significance.",
+    "intelligences": [
+      "Analytical Intelligence",
+      "Linguistic Intelligence",
+      "Communicative Intelligence",
+      "Social Intelligence"
+    ]
+  },
+  {
+    "id": "job_88",
+    "name": "Geographer",
+    "details": "Studying the Earth’s landscapes, environments, and human relationships with space, using tools like GIS to analyze geographic data and spatial patterns.",
+    "intelligences": [
+      "Naturalistic Intelligence",
+      "Analytical Intelligence",
+      "Scientific Intelligence",
+      "Technical Intelligence"
+    ]
+  },
+  {
+    "id": "job_89",
+    "name": "Religious Education Teacher",
+    "details": "Teaching students about religious culture and moral values, explaining ethical principles, and fostering understanding of diverse religious traditions in an educational setting.",
+    "intelligences": [
+      "Spiritual Intelligence",
+      "Communicative Intelligence",
+      "Social Intelligence",
+      "Emotional Intelligence"
+    ]
+  },
+  {
+    "id": "job_90",
+    "name": "Theologian",
+    "details": "Studying religious beliefs, texts, and history, interpreting spiritual teachings, and engaging in scholarly or community work related to faith and ethics.",
+    "intelligences": [
+      "Spiritual Intelligence",
+      "Linguistic Intelligence",
+      "Analytical Intelligence",
+      "Communicative Intelligence"
+    ]
+  },
+  {
+    "id": "job_91",
+    "name": "Paralegal",
+    "details": "Assisting lawyers by preparing legal documents, researching laws and regulations, and helping manage case files within the justice system.",
+    "intelligences": [
+      "Analytical Intelligence",
+      "Communicative Intelligence",
+      "Practical Intelligence",
+      "Social Intelligence"
+    ]
+  },
+  {
+    "id": "job_92",
+    "name": "Lawyer",
+    "details": "Advising and representing clients in legal matters, interpreting laws and regulations, preparing legal documents, and advocating in court or negotiations.",
+    "intelligences": [
+      "Analytical Intelligence",
+      "Linguistic Intelligence",
+      "Communicative Intelligence",
+      "Strategic Intelligence",
+      "Social Intelligence"
+    ]
+  },
+  {
+    "id": "job_93",
+    "name": "Banking and Finance Specialist",
+    "details": "Working in the financial sector, handling banking services or financial products, analyzing market trends, and advising on investments and financial planning.",
+    "intelligences": [
+      "Analytical Intelligence",
+      "Strategic Intelligence",
+      "Communicative Intelligence",
+      "Entrepreneurial Intelligence"
+    ]
+  },
+  {
+    "id": "job_94",
+    "name": "Insurance Specialist",
+    "details": "Assessing risk and designing insurance policies, advising clients on coverage options, and analyzing data to set premiums and handle claims.",
+    "intelligences": [
+      "Analytical Intelligence",
+      "Communicative Intelligence",
+      "Strategic Intelligence",
+      "Practical Intelligence"
+    ]
+  },
+  {
+    "id": "job_95",
+    "name": "Real Estate Manager",
+    "details": "Overseeing property sales or rentals, managing real estate portfolios, dealing with clients and contracts, and ensuring properties are maintained and profitable.",
+    "intelligences": [
+      "Social Intelligence",
+      "Communicative Intelligence",
+      "Entrepreneurial Intelligence",
+      "Analytical Intelligence"
+    ]
+  },
+  {
+    "id": "job_96",
+    "name": "Hospitality Manager",
+    "details": "Managing hotels, resorts, or tourism services, ensuring customer satisfaction, coordinating staff, and overseeing operations in the hospitality industry.",
+    "intelligences": [
+      "Social Intelligence",
+      "Communicative Intelligence",
+      "Emotional Intelligence",
+      "Strategic Intelligence",
+      "Practical Intelligence"
+    ]
+  },
+  {
+    "id": "job_97",
+    "name": "Chef",
+    "details": "Planning menus and cooking meals in restaurants or hotels, experimenting with recipes, managing kitchen staff, and focusing on taste and presentation.",
+    "intelligences": [
+      "Creative Intelligence",
+      "Practical Intelligence",
+      "Aesthetic Intelligence",
+      "Technical Intelligence"
+    ]
+  },
+  {
+    "id": "job_98",
+    "name": "Culinary Expert",
+    "details": "Specializing in the art and science of food, understanding gastronomy, developing culinary concepts, and possibly working on menu innovation or food critique.",
+    "intelligences": [
+      "Aesthetic Intelligence",
+      "Creative Intelligence",
+      "Scientific Intelligence",
+      "Social Intelligence"
+    ]
+  },
+  {
+    "id": "job_99",
+    "name": "Sports Manager",
+    "details": "Organizing and managing sports teams or athletic programs, handling budgets and logistics, and developing strategies to improve team performance and revenue.",
+    "intelligences": [
+      "Strategic Intelligence",
+      "Social Intelligence",
+      "Communicative Intelligence",
+      "Analytical Intelligence"
+    ]
+  },
+  {
+    "id": "job_100",
+    "name": "Physical Education Teacher",
+    "details": "Teaching students sports and exercise, promoting physical fitness, and organizing school athletic activities and health education.",
+    "intelligences": [
+      "Physical Intelligence",
+      "Communicative Intelligence",
+      "Social Intelligence",
+      "Emotional Intelligence"
+    ]
+  },
+  {
+    "id": "job_101",
+    "name": "Sports Coach",
+    "details": "Training athletes or teams in a specific sport, developing practice plans and game strategies, and motivating players to improve their skills and performance.",
+    "intelligences": [
+      "Physical Intelligence",
+      "Strategic Intelligence",
+      "Social Intelligence",
+      "Emotional Intelligence"
+    ]
+  },
+  {
+    "id": "job_102",
+    "name": "Recreation Specialist",
+    "details": "Planning and leading recreational activities and programs for communities or organizations, promoting leisure, wellness, and active participation for various age groups.",
+    "intelligences": [
+      "Social Intelligence",
+      "Creative Intelligence",
+      "Communicative Intelligence",
+      "Practical Intelligence"
+    ]
+  },
+  {
+    "id": "job_103",
+    "name": "Photographer",
+    "details": "Capturing images using cameras, composing and lighting shots, and editing photographs for artistic, commercial, or journalistic purposes.",
+    "intelligences": [
+      "Aesthetic Intelligence",
+      "Technical Intelligence",
+      "Creative Intelligence",
+      "Digital Intelligence"
+    ]
+  },
+  {
+    "id": "job_104",
+    "name": "Fashion Photographer",
+    "details": "Specializing in photographing clothing and models, working closely with designers and art directors, and creating images that showcase fashion in a creative way.",
+    "intelligences": [
+      "Aesthetic Intelligence",
+      "Creative Intelligence",
+      "Technical Intelligence",
+      "Social Intelligence"
+    ]
+  },
+  {
+    "id": "job_105",
+    "name": "Information and Records Manager",
+    "details": "Organizing and maintaining information systems and archives, managing document databases, and ensuring efficient retrieval and preservation of records.",
+    "intelligences": [
+      "Analytical Intelligence",
+      "Digital Intelligence",
+      "Communicative Intelligence",
+      "Practical Intelligence"
+    ]
+  },
+  {
+    "id": "job_106",
+    "name": "Librarian",
+    "details": "Managing library resources, helping people find information, organizing books and digital media, and promoting reading and information literacy.",
+    "intelligences": [
+      "Communicative Intelligence",
+      "Analytical Intelligence",
+      "Social Intelligence",
+      "Linguistic Intelligence"
+    ]
+  },
+  {
+    "id": "job_107",
+    "name": "Animator",
+    "details": "Creating animated images or characters using drawings or computer software, bringing stories to life through motion graphics in films, games, or videos.",
+    "intelligences": [
+      "Creative Intelligence",
+      "Aesthetic Intelligence",
+      "Digital Intelligence",
+      "Technical Intelligence"
+    ]
+  },
+  {
+    "id": "job_108",
+    "name": "Game Designer",
+    "details": "Conceptualizing and developing video game ideas, designing gameplay mechanics and storylines, and collaborating with developers and artists to create interactive entertainment.",
+    "intelligences": [
+      "Creative Intelligence",
+      "Analytical Intelligence",
+      "Digital Intelligence",
+      "Strategic Intelligence"
+    ]
+  },
+  {
+    "id": "job_109",
+    "name": "3D Animator",
+    "details": "Designing and animating three-dimensional models for films, games, or simulations, using specialized software to create lifelike motion and visual effects.",
+    "intelligences": [
+      "Technical Intelligence",
+      "Creative Intelligence",
+      "Aesthetic Intelligence",
+      "Digital Intelligence"
+    ]
+  },
+  {
+    "id": "job_110",
+    "name": "Web Developer",
+    "details": "Designing and coding websites, ensuring functionality and user-friendly design, and working with web technologies to build online applications.",
+    "intelligences": [
+      "Digital Intelligence",
+      "Technical Intelligence",
+      "Analytical Intelligence",
+      "Creative Intelligence"
+    ]
+  },
+  {
+    "id": "job_111",
+    "name": "Mobile App Developer",
+    "details": "Creating applications for mobile devices, writing code for iOS or Android, and designing user interfaces and features for smartphone and tablet apps.",
+    "intelligences": [
+      "Digital Intelligence",
+      "Technical Intelligence",
+      "Analytical Intelligence",
+      "Creative Intelligence"
+    ]
+  },
+  {
+    "id": "job_112",
+    "name": "Software Test Specialist",
+    "details": "Testing software applications to find bugs and issues, creating test cases, and ensuring that programs meet quality standards and user requirements.",
+    "intelligences": [
+      "Analytical Intelligence",
+      "Technical Intelligence",
+      "Communicative Intelligence",
+      "Practical Intelligence"
+    ]
+  },
+  {
+    "id": "job_113",
+    "name": "Data Analyst",
+    "details": "Examining and interpreting data sets to identify trends and insights, preparing reports or visualizations, and aiding organizations in making data-driven decisions.",
+    "intelligences": [
+      "Analytical Intelligence",
+      "Scientific Intelligence",
+      "Digital Intelligence",
+      "Communicative Intelligence"
+    ]
+  },
+  {
+    "id": "job_114",
+    "name": "Cybersecurity Specialist",
+    "details": "Protecting computer systems and networks from security breaches, monitoring for cyber threats, and implementing measures to secure data and infrastructure.",
+    "intelligences": [
+      "Technical Intelligence",
+      "Analytical Intelligence",
+      "Digital Intelligence",
+      "Strategic Intelligence"
+    ]
+  },
+  {
+    "id": "job_115",
+    "name": "Robotics Programmer",
+    "details": "Developing software for robots and automated systems, integrating sensors and actuators, and writing code to enable robots to perform desired tasks.",
+    "intelligences": [
+      "Technical Intelligence",
+      "Analytical Intelligence",
+      "Digital Intelligence",
+      "Creative Intelligence"
+    ]
+  },
+  {
+    "id": "job_116",
+    "name": "AI Systems Engineer",
+    "details": "Building and maintaining artificial intelligence systems, developing machine learning models, and implementing AI solutions to solve complex problems.",
+    "intelligences": [
+      "Analytical Intelligence",
+      "Scientific Intelligence",
+      "Technical Intelligence",
+      "Digital Intelligence"
+    ]
+  },
+  {
+    "id": "job_117",
+    "name": "Business Intelligence Analyst",
+    "details": "Analyzing business data and trends, using data mining techniques to extract insights, and helping organizations make strategic, data-driven decisions.",
+    "intelligences": [
+      "Analytical Intelligence",
+      "Digital Intelligence",
+      "Strategic Intelligence",
+      "Scientific Intelligence"
+    ]
+  }
+]

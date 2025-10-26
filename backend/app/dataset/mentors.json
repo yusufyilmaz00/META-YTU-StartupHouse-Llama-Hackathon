@@ -1,0 +1,1491 @@
+[
+    {
+    "id": "mentor_001",
+    "name": "Dr. Elara Finch",
+    "email": "elara.finch@example.com",
+    "field": "Computer Systems and Hardware",
+    "biography": "Elara Finch is a senior computer engineer with experience in designing computer hardware and integrated systems.",
+    "knowledge_areas": ["Computer architecture", "Embedded systems", "Hardware design", "System optimization"],
+    "dominant_intelligences": ["Analytical Intelligence", "Technical Intelligence", "Digital Intelligence", "Strategic Intelligence"]
+    },
+    {
+    "id": "mentor_002",
+    "name": "Alan Mercer",
+    "email": "alan.mercer@example.com",
+    "field": "Software and Systems Integration",
+    "biography": "Alan Mercer focuses on software-hardware integration and efficient computing systems for automation projects.",
+    "knowledge_areas": ["Systems integration", "Software engineering", "Automation systems"],
+    "dominant_intelligences": ["Analytical Intelligence", "Digital Intelligence", "Scientific Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_003",
+    "name": "Sophia Lang",
+    "email": "sophia.lang@example.com",
+    "field": "Application Development",
+    "biography": "Sophia Lang specializes in developing scalable web and mobile software applications.",
+    "knowledge_areas": ["App development", "Software testing", "Agile methodologies"],
+    "dominant_intelligences": ["Digital Intelligence", "Analytical Intelligence", "Creative Intelligence"]
+    },
+    {
+    "id": "mentor_004",
+    "name": "Ryan Blake",
+    "email": "ryan.blake@example.com",
+    "field": "Software Design and Maintenance",
+    "biography": "Ryan Blake is a full-stack developer experienced in modern frameworks and software lifecycle management.",
+    "knowledge_areas": ["Frontend-backend integration", "Database systems", "Code optimization"],
+    "dominant_intelligences": ["Technical Intelligence", "Digital Intelligence", "Analytical Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_005",
+    "name": "Dr. Mila Torres",
+    "email": "mila.torres@example.com",
+    "field": "Machine Learning Applications",
+    "biography": "Mila Torres works on artificial intelligence systems for automation and decision-making.",
+    "knowledge_areas": ["Machine learning", "Neural networks", "Data modeling"],
+    "dominant_intelligences": ["Analytical Intelligence", "Scientific Intelligence", "Digital Intelligence"]
+    },
+    {
+    "id": "mentor_006",
+    "name": "Ethan Rowe",
+    "email": "ethan.rowe@example.com",
+    "field": "AI Development and Research",
+    "biography": "Ethan Rowe focuses on developing AI-driven solutions for businesses and education.",
+    "knowledge_areas": ["AI algorithms", "Programming", "Problem-solving"],
+    "dominant_intelligences": ["Analytical Intelligence", "Digital Intelligence", "Strategic Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_007",
+    "name": "Luna Hayes",
+    "email": "luna.hayes@example.com",
+    "field": "Data Analytics",
+    "biography": "Luna Hayes is a data scientist with a background in statistics and predictive modeling.",
+    "knowledge_areas": ["Data visualization", "Statistical analysis", "Predictive models"],
+    "dominant_intelligences": ["Analytical Intelligence", "Scientific Intelligence", "Strategic Intelligence"]
+    },
+    {
+    "id": "mentor_008",
+    "name": "Noah Kent",
+    "email": "noah.kent@example.com",
+    "field": "Machine Learning for Business",
+    "biography": "Noah Kent applies data science to business insights and decision-making systems.",
+    "knowledge_areas": ["Business analytics", "Machine learning", "Data management"],
+    "dominant_intelligences": ["Analytical Intelligence", "Digital Intelligence", "Scientific Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_009",
+    "name": "Dr. Felix Grant",
+    "email": "felix.grant@example.com",
+    "field": "Electronics Design",
+    "biography": "Felix Grant is an electrical engineer focusing on power systems and microelectronics.",
+    "knowledge_areas": ["Circuit design", "Signal processing", "Electrical systems"],
+    "dominant_intelligences": ["Technical Intelligence", "Analytical Intelligence", "Scientific Intelligence"]
+    },
+    {
+    "id": "mentor_010",
+    "name": "Amelia Frost",
+    "email": "amelia.frost@example.com",
+    "field": "Power Systems Engineering",
+    "biography": "Amelia Frost works on energy distribution systems and renewable energy projects.",
+    "knowledge_areas": ["Power grids", "Renewable energy", "Automation control"],
+    "dominant_intelligences": ["Scientific Intelligence", "Technical Intelligence", "Strategic Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_011",
+    "name": "Kai Archer",
+    "email": "kai.archer@example.com",
+    "field": "Communication Systems",
+    "biography": "Kai Archer is a communication engineer with a focus on network protocols and signal transmission.",
+    "knowledge_areas": ["Network communication", "Signal processing", "Wireless systems"],
+    "dominant_intelligences": ["Technical Intelligence", "Scientific Intelligence", "Analytical Intelligence"]
+    },
+    {
+    "id": "mentor_012",
+    "name": "Nora Wells",
+    "email": "nora.wells@example.com",
+    "field": "Telecommunication Systems",
+    "biography": "Nora Wells designs communication devices and transmission protocols for secure data transfer.",
+    "knowledge_areas": ["Digital communication", "Electronics", "Security protocols"],
+    "dominant_intelligences": ["Technical Intelligence", "Digital Intelligence", "Analytical Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_013",
+    "name": "Daniel Cross",
+    "email": "daniel.cross@example.com",
+    "field": "Process Optimization",
+    "biography": "Daniel Cross helps industries improve efficiency through process design and systems analysis.",
+    "knowledge_areas": ["Process design", "Operations management", "Systems thinking"],
+    "dominant_intelligences": ["Strategic Intelligence", "Analytical Intelligence", "Practical Intelligence"]
+    },
+    {
+    "id": "mentor_014",
+    "name": "Ava Reign",
+    "email": "ava.reign@example.com",
+    "field": "Production Systems",
+    "biography": "Ava Reign specializes in industrial production systems and quality control.",
+    "knowledge_areas": ["Production planning", "Quality assurance", "Workflow optimization"],
+    "dominant_intelligences": ["Analytical Intelligence", "Strategic Intelligence", "Technical Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_015",
+    "name": "Leo Hayes",
+    "email": "leo.hayes@example.com",
+    "field": "Mechanical Systems Design",
+    "biography": "Leo Hayes works on designing mechanical components and machines for manufacturing.",
+    "knowledge_areas": ["Thermodynamics", "Machine design", "Material science"],
+    "dominant_intelligences": ["Technical Intelligence", "Analytical Intelligence", "Scientific Intelligence"]
+    },
+    {
+    "id": "mentor_016",
+    "name": "Isla Monroe",
+    "email": "isla.monroe@example.com",
+    "field": "Energy Systems Engineering",
+    "biography": "Isla Monroe focuses on developing efficient energy systems and sustainable technologies.",
+    "knowledge_areas": ["Renewable systems", "Thermal energy", "Fluid dynamics"],
+    "dominant_intelligences": ["Scientific Intelligence", "Technical Intelligence", "Strategic Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_017",
+    "name": "Liam Torres",
+    "email": "liam.torres@example.com",
+    "field": "Structural Engineering",
+    "biography": "Liam Torres designs bridges and buildings with a focus on sustainability and safety.",
+    "knowledge_areas": ["Structural design", "Construction management", "Urban planning"],
+    "dominant_intelligences": ["Analytical Intelligence", "Strategic Intelligence", "Technical Intelligence"]
+    },
+    {
+    "id": "mentor_018",
+    "name": "Emily Rhodes",
+    "email": "emily.rhodes@example.com",
+    "field": "Environmental Construction",
+    "biography": "Emily Rhodes manages large-scale infrastructure projects with environmental awareness.",
+    "knowledge_areas": ["Environmental engineering", "Urban systems", "Sustainable materials"],
+    "dominant_intelligences": ["Scientific Intelligence", "Strategic Intelligence", "Analytical Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_019",
+    "name": "Owen Nash",
+    "email": "owen.nash@example.com",
+    "field": "Surveying and Mapping",
+    "biography": "Owen Nash works with geospatial data and mapping technologies.",
+    "knowledge_areas": ["GIS", "Remote sensing", "Cartography"],
+    "dominant_intelligences": ["Analytical Intelligence", "Scientific Intelligence", "Technical Intelligence"]
+    },
+    {
+    "id": "mentor_020",
+    "name": "Clara Liu",
+    "email": "clara.liu@example.com",
+    "field": "Geoinformatics",
+    "biography": "Clara Liu develops geospatial databases and applications for mapping systems.",
+    "knowledge_areas": ["Database management", "GIS analysis", "3D mapping"],
+    "dominant_intelligences": ["Digital Intelligence", "Analytical Intelligence", "Scientific Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_021",
+    "name": "Dr. Iris Bell",
+    "email": "iris.bell@example.com",
+    "field": "Automation Systems",
+    "biography": "Iris Bell works on robotics and automated systems for industrial applications.",
+    "knowledge_areas": ["Robotics", "Control systems", "Automation engineering"],
+    "dominant_intelligences": ["Technical Intelligence", "Analytical Intelligence", "Scientific Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_022",
+    "name": "Miles Turner",
+    "email": "miles.turner@example.com",
+    "field": "Mechanical-Electronic Systems",
+    "biography": "Miles Turner focuses on integrating mechanical and electronic components in robotic systems.",
+    "knowledge_areas": ["Embedded systems", "Sensors", "Electromechanics"],
+    "dominant_intelligences": ["Analytical Intelligence", "Technical Intelligence", "Digital Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_023",
+    "name": "Lena Brooks",
+    "email": "lena.brooks@example.com",
+    "field": "Sustainable Design",
+    "biography": "Lena Brooks develops eco-friendly engineering solutions for urban and rural systems.",
+    "knowledge_areas": ["Sustainability", "Waste management", "Water resources"],
+    "dominant_intelligences": ["Scientific Intelligence", "Strategic Intelligence", "Naturalistic Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_024",
+    "name": "Hugo Grant",
+    "email": "hugo.grant@example.com",
+    "field": "Climate and Energy Systems",
+    "biography": "Hugo Grant works on environmental impact assessment and renewable energy systems.",
+    "knowledge_areas": ["Energy systems", "Climate studies", "Environmental policy"],
+    "dominant_intelligences": ["Scientific Intelligence", "Strategic Intelligence", "Analytical Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_025",
+    "name": "Maya Ellis",
+    "email": "maya.ellis@example.com",
+    "field": "Food Production Systems",
+    "biography": "Maya Ellis focuses on sustainable food processing and quality control.",
+    "knowledge_areas": ["Food chemistry", "Process design", "Sustainability"],
+    "dominant_intelligences": ["Scientific Intelligence", "Practical Intelligence", "Strategic Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_026",
+    "name": "Oliver Stone",
+    "email": "oliver.stone@example.com",
+    "field": "Food Technology",
+    "biography": "Oliver Stone works on developing new food products using innovative techniques.",
+    "knowledge_areas": ["Product design", "Nutrition", "Food innovation"],
+    "dominant_intelligences": ["Scientific Intelligence", "Creative Intelligence", "Analytical Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_027",
+    "name": "Dr. Evelyn Cruz",
+    "email": "evelyn.cruz@example.com",
+    "field": "Biomedical Systems",
+    "biography": "Evelyn Cruz designs medical devices and biocompatible systems for healthcare applications.",
+    "knowledge_areas": ["Biomedical devices", "Genetic research", "Tissue engineering"],
+    "dominant_intelligences": ["Scientific Intelligence", "Analytical Intelligence", "Technical Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_028",
+    "name": "Luca Meyer",
+    "email": "luca.meyer@example.com",
+    "field": "Biotechnology",
+    "biography": "Luca Meyer develops biotechnology solutions for pharmaceuticals and bioenergy.",
+    "knowledge_areas": ["Genetics", "Bioinformatics", "Molecular biology"],
+    "dominant_intelligences": ["Scientific Intelligence", "Digital Intelligence", "Strategic Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_029",
+    "name": "Dr. Adrian Wells",
+    "email": "adrian.wells@example.com",
+    "field": "Internal Medicine",
+    "biography": "Adrian Wells is an experienced physician focusing on patient care and diagnostics.",
+    "knowledge_areas": ["Diagnosis", "Medical treatment", "Patient care"],
+    "dominant_intelligences": ["Scientific Intelligence", "Emotional Intelligence", "Practical Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_030",
+    "name": "Dr. Nora Fields",
+    "email": "nora.fields@example.com",
+    "field": "Surgery",
+    "biography": "Nora Fields specializes in surgical procedures and clinical education.",
+    "knowledge_areas": ["Anatomy", "Clinical practice", "Medical training"],
+    "dominant_intelligences": ["Scientific Intelligence", "Physical Intelligence", "Emotional Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_031",
+    "name": "Dr. Leo Crane",
+    "email": "leo.crane@example.com",
+    "field": "Dental Surgery",
+    "biography": "Leo Crane practices general and aesthetic dentistry, focusing on patient comfort and precision.",
+    "knowledge_areas": ["Oral health", "Dental surgery", "Aesthetic treatment"],
+    "dominant_intelligences": ["Practical Intelligence", "Scientific Intelligence", "Aesthetic Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_032",
+    "name": "Clara Rivers",
+    "email": "clara.rivers@example.com",
+    "field": "Orthodontics",
+    "biography": "Clara Rivers designs dental correction and alignment treatments for children and adults.",
+    "knowledge_areas": ["Orthodontics", "Dental design", "Patient care"],
+    "dominant_intelligences": ["Scientific Intelligence", "Aesthetic Intelligence", "Emotional Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_033",
+    "name": "Dr. Simon Blake",
+    "email": "simon.blake@example.com",
+    "field": "Pharmaceutical Research",
+    "biography": "Simon Blake conducts research on new drugs and medication safety.",
+    "knowledge_areas": ["Pharmacology", "Drug design", "Clinical trials"],
+    "dominant_intelligences": ["Scientific Intelligence", "Analytical Intelligence", "Strategic Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_034",
+    "name": "Alice Ford",
+    "email": "alice.ford@example.com",
+    "field": "Clinical Pharmacy",
+    "biography": "Alice Ford focuses on patient counseling and personalized medicine.",
+    "knowledge_areas": ["Medical chemistry", "Therapy planning", "Health communication"],
+    "dominant_intelligences": ["Scientific Intelligence", "Emotional Intelligence", "Communicative Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_035",
+    "name": "Dr. Rachel Cole",
+    "email": "rachel.cole@example.com",
+    "field": "Rehabilitation Therapy",
+    "biography": "Rachel Cole designs personalized physical therapy programs to restore mobility and strength.",
+    "knowledge_areas": ["Physiotherapy", "Exercise science", "Rehabilitation"],
+    "dominant_intelligences": ["Physical Intelligence", "Emotional Intelligence", "Scientific Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_036",
+    "name": "Liam Ray",
+    "email": "liam.ray@example.com",
+    "field": "Sports Rehabilitation",
+    "biography": "Liam Ray helps athletes recover from injuries using modern rehabilitation techniques.",
+    "knowledge_areas": ["Sports medicine", "Anatomy", "Kinesiology"],
+    "dominant_intelligences": ["Physical Intelligence", "Scientific Intelligence", "Practical Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_037",
+    "name": "Hannah Rose",
+    "email": "hannah.rose@example.com",
+    "field": "Clinical Nursing",
+    "biography": "Hannah Rose has over 15 years of nursing experience in intensive care and emergency units.",
+    "knowledge_areas": ["Patient care", "Medical administration", "Clinical support"],
+    "dominant_intelligences": ["Emotional Intelligence", "Practical Intelligence", "Scientific Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_038",
+    "name": "Jacob Flynn",
+    "email": "jacob.flynn@example.com",
+    "field": "Community Health Nursing",
+    "biography": "Jacob Flynn works with local communities to improve healthcare awareness and safety.",
+    "knowledge_areas": ["Public health", "Patient communication", "Healthcare planning"],
+    "dominant_intelligences": ["Communicative Intelligence", "Emotional Intelligence", "Practical Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_039",
+    "name": "Sophie Neal",
+    "email": "sophie.neal@example.com",
+    "field": "Prenatal Care",
+    "biography": "Sophie Neal supports mothers through prenatal and postnatal care.",
+    "knowledge_areas": ["Prenatal care", "Health counseling", "Birth planning"],
+    "dominant_intelligences": ["Emotional Intelligence", "Scientific Intelligence", "Practical Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_040",
+    "name": "Ella Brooks",
+    "email": "ella.brooks@example.com",
+    "field": "Obstetric Support",
+    "biography": "Ella Brooks works with medical teams during childbirth and maternal care.",
+    "knowledge_areas": ["Maternal health", "Patient communication", "Emergency support"],
+    "dominant_intelligences": ["Emotional Intelligence", "Scientific Intelligence", "Communicative Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_041",
+    "name": "Dr. Hazel Quinn",
+    "email": "hazel.quinn@example.com",
+    "field": "Hearing Sciences",
+    "biography": "Hazel Quinn is an audiologist focused on hearing assessment and auditory training.",
+    "knowledge_areas": ["Audiometry", "Hearing aids", "Speech therapy"],
+    "dominant_intelligences": ["Scientific Intelligence", "Analytical Intelligence", "Communicative Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_042",
+    "name": "Nina Walker",
+    "email": "nina.walker@example.com",
+    "field": "Audiology and Speech Therapy",
+    "biography": "Nina Walker helps patients with hearing and speech development using modern therapy tools.",
+    "knowledge_areas": ["Speech development", "Audiology equipment", "Patient interaction"],
+    "dominant_intelligences": ["Scientific Intelligence", "Communicative Intelligence", "Emotional Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_043",
+    "name": "Dr. Ian Carter",
+    "email": "ian.carter@example.com",
+    "field": "Radiology",
+    "biography": "Ian Carter is a medical imaging expert specializing in diagnostic radiology and imaging systems.",
+    "knowledge_areas": ["Radiology", "MRI/CT systems", "Image analysis"],
+    "dominant_intelligences": ["Scientific Intelligence", "Technical Intelligence", "Analytical Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_044",
+    "name": "Emma Wells",
+    "email": "emma.wells@example.com",
+    "field": "Diagnostic Imaging",
+    "biography": "Emma Wells focuses on medical imaging techniques and patient-centered diagnostics.",
+    "knowledge_areas": ["Medical imaging", "Patient diagnostics", "Healthcare systems"],
+    "dominant_intelligences": ["Scientific Intelligence", "Emotional Intelligence", "Technical Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_045",
+    "name": "Dr. Owen Miles",
+    "email": "owen.miles@example.com",
+    "field": "Dental Technology",
+    "biography": "Owen Miles creates dental prosthetics and restorative devices with precision and care.",
+    "knowledge_areas": ["Prosthetic design", "Dental materials", "Restorative treatment"],
+    "dominant_intelligences": ["Technical Intelligence", "Aesthetic Intelligence", "Scientific Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_046",
+    "name": "Lara Kent",
+    "email": "lara.kent@example.com",
+    "field": "Dental Manufacturing",
+    "biography": "Lara Kent manages dental laboratory production and material innovation.",
+    "knowledge_areas": ["3D modeling", "Dental manufacturing", "Product development"],
+    "dominant_intelligences": ["Creative Intelligence", "Technical Intelligence", "Analytical Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_047",
+    "name": "Dr. Iris Nolan",
+    "email": "iris.nolan@example.com",
+    "field": "Clinical Psychology",
+    "biography": "Iris Nolan provides mental health support and research-based therapy techniques.",
+    "knowledge_areas": ["Therapy", "Behavioral analysis", "Cognitive psychology"],
+    "dominant_intelligences": ["Emotional Intelligence", "Communicative Intelligence", "Scientific Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_048",
+    "name": "Eli Dawson",
+    "email": "eli.dawson@example.com",
+    "field": "Developmental Psychology",
+    "biography": "Eli Dawson focuses on emotional development and childhood behavior research.",
+    "knowledge_areas": ["Child psychology", "Education", "Counseling"],
+    "dominant_intelligences": ["Emotional Intelligence", "Social Intelligence", "Communicative Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_049",
+    "name": "Dr. Ava Stone",
+    "email": "ava.stone@example.com",
+    "field": "Guidance Counseling",
+    "biography": "Ava Stone helps students and adults manage emotions and improve decision-making skills.",
+    "knowledge_areas": ["Counseling", "Emotional development", "Communication"],
+    "dominant_intelligences": ["Emotional Intelligence", "Communicative Intelligence", "Social Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_050",
+    "name": "Caleb Harris",
+    "email": "caleb.harris@example.com",
+    "field": "Educational Counseling",
+    "biography": "Caleb Harris guides learners in understanding their strengths and improving focus and motivation.",
+    "knowledge_areas": ["Education", "Personal development", "Motivation"],
+    "dominant_intelligences": ["Communicative Intelligence", "Emotional Intelligence", "Social Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_051",
+    "name": "Dr. Naomi Wells",
+    "email": "naomi.wells@example.com",
+    "field": "Social Systems",
+    "biography": "Naomi Wells studies how societies function and change, focusing on community development.",
+    "knowledge_areas": ["Social behavior", "Community studies", "Cultural systems"],
+    "dominant_intelligences": ["Social Intelligence", "Analytical Intelligence", "Communicative Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_052",
+    "name": "Aaron Blake",
+    "email": "aaron.blake@example.com",
+    "field": "Cultural Studies",
+    "biography": "Aaron Blake researches social trends and collective behavior patterns across different societies.",
+    "knowledge_areas": ["Cultural analysis", "Group dynamics", "Social policy"],
+    "dominant_intelligences": ["Analytical Intelligence", "Social Intelligence", "Strategic Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_053",
+    "name": "Dr. Hugo Finch",
+    "email": "hugo.finch@example.com",
+    "field": "Ethics and Logic",
+    "biography": "Hugo Finch teaches philosophy with a focus on critical thinking and ethical reasoning.",
+    "knowledge_areas": ["Ethics", "Logic", "Metaphysics"],
+    "dominant_intelligences": ["Analytical Intelligence", "Spiritual Intelligence", "Linguistic Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_054",
+    "name": "Mira Jordan",
+    "email": "mira.jordan@example.com",
+    "field": "Philosophy of Mind",
+    "biography": "Mira Jordan explores questions about consciousness, identity, and the nature of thought.",
+    "knowledge_areas": ["Mind and consciousness", "Existential theory", "Philosophical writing"],
+    "dominant_intelligences": ["Analytical Intelligence", "Linguistic Intelligence", "Spiritual Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_055",
+    "name": "Grace Miller",
+    "email": "grace.miller@example.com",
+    "field": "Elementary Education",
+    "biography": "Grace Miller designs creative methods for young students to engage in learning.",
+    "knowledge_areas": ["Child development", "Classroom management", "Educational design"],
+    "dominant_intelligences": ["Communicative Intelligence", "Emotional Intelligence", "Linguistic Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_056",
+    "name": "Ethan James",
+    "email": "ethan.james@example.com",
+    "field": "Curriculum Development",
+    "biography": "Ethan James focuses on innovative approaches to teaching core academic skills.",
+    "knowledge_areas": ["Pedagogy", "Motivation", "Creative teaching"],
+    "dominant_intelligences": ["Creative Intelligence", "Communicative Intelligence", "Social Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_057",
+    "name": "Ella Smith",
+    "email": "ella.smith@example.com",
+    "field": "Early Childhood Education",
+    "biography": "Ella Smith helps children develop foundational skills through interactive learning.",
+    "knowledge_areas": ["Child psychology", "Play-based learning", "Early education"],
+    "dominant_intelligences": ["Emotional Intelligence", "Communicative Intelligence", "Linguistic Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_058",
+    "name": "Daniel Cooper",
+    "email": "daniel.cooper@example.com",
+    "field": "Child Development",
+    "biography": "Daniel Cooper focuses on emotional and cognitive growth in preschool-aged children.",
+    "knowledge_areas": ["Behavioral development", "Parent collaboration", "Creative learning"],
+    "dominant_intelligences": ["Emotional Intelligence", "Social Intelligence", "Creative Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_059",
+    "name": "Olivia Reed",
+    "email": "olivia.reed@example.com",
+    "field": "Language Education",
+    "biography": "Olivia Reed teaches English communication and academic writing skills.",
+    "knowledge_areas": ["Grammar", "Communication", "Educational methods"],
+    "dominant_intelligences": ["Linguistic Intelligence", "Communicative Intelligence", "Analytical Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_060",
+    "name": "Lucas Grant",
+    "email": "lucas.grant@example.com",
+    "field": "Language Arts",
+    "biography": "Lucas Grant creates effective teaching techniques for foreign language learners.",
+    "knowledge_areas": ["Language acquisition", "Cultural communication", "Teaching techniques"],
+    "dominant_intelligences": ["Communicative Intelligence", "Linguistic Intelligence", "Social Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_061",
+    "name": "Nora Atkin",
+    "email": "nora.atkin@example.com",
+    "field": "Turkish Language and Literature",
+    "biography": "Nora Atkin helps students understand the richness of Turkish language and culture.",
+    "knowledge_areas": ["Literature", "Reading comprehension", "Grammar"],
+    "dominant_intelligences": ["Linguistic Intelligence", "Communicative Intelligence", "Creative Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_062",
+    "name": "Emir Kaplan",
+    "email": "emir.kaplan@example.com",
+    "field": "Language Pedagogy",
+    "biography": "Emir Kaplan develops innovative teaching strategies for native language learning.",
+    "knowledge_areas": ["Language instruction", "Creative writing", "Education"],
+    "dominant_intelligences": ["Linguistic Intelligence", "Creative Intelligence", "Communicative Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_063",
+    "name": "Henry Lee",
+    "email": "henry.lee@example.com",
+    "field": "Mathematics Education",
+    "biography": "Henry Lee teaches mathematical reasoning and problem-solving with real-world examples.",
+    "knowledge_areas": ["Algebra", "Geometry", "Mathematical thinking"],
+    "dominant_intelligences": ["Analytical Intelligence", "Scientific Intelligence", "Communicative Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_064",
+    "name": "Amara Dixon",
+    "email": "amara.dixon@example.com",
+    "field": "STEM Pedagogy",
+    "biography": "Amara Dixon focuses on engaging teaching methods for mathematics and STEM integration.",
+    "knowledge_areas": ["STEM education", "Pedagogical design", "Critical thinking"],
+    "dominant_intelligences": ["Analytical Intelligence", "Communicative Intelligence", "Strategic Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_065",
+    "name": "Dr. Ian Porter",
+    "email": "ian.porter@example.com",
+    "field": "Science Education",
+    "biography": "Ian Porter teaches science through experimentation and curiosity-driven methods.",
+    "knowledge_areas": ["Physics", "Chemistry", "Biology education"],
+    "dominant_intelligences": ["Scientific Intelligence", "Analytical Intelligence", "Communicative Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_066",
+    "name": "Laura Finn",
+    "email": "laura.finn@example.com",
+    "field": "STEM Innovation",
+    "biography": "Laura Finn connects scientific learning with creative projects for better engagement.",
+    "knowledge_areas": ["Innovation in education", "Lab safety", "Student motivation"],
+    "dominant_intelligences": ["Scientific Intelligence", "Creative Intelligence", "Communicative Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_067",
+    "name": "Evelyn Tate",
+    "email": "evelyn.tate@example.com",
+    "field": "Digital Learning",
+    "biography": "Evelyn Tate designs interactive e-learning systems and educational technologies.",
+    "knowledge_areas": ["Instructional design", "Educational software", "Digital literacy"],
+    "dominant_intelligences": ["Digital Intelligence", "Communicative Intelligence", "Analytical Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_068",
+    "name": "Marcus Cole",
+    "email": "marcus.cole@example.com",
+    "field": "Technology Integration",
+    "biography": "Marcus Cole focuses on using digital tools to improve classroom learning.",
+    "knowledge_areas": ["EdTech", "Interactive systems", "Pedagogical tools"],
+    "dominant_intelligences": ["Digital Intelligence", "Technical Intelligence", "Creative Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_069",
+    "name": "Dr. Nathan Hale",
+    "email": "nathan.hale@example.com",
+    "field": "Statistical Analysis",
+    "biography": "Nathan Hale applies statistical modeling to research and business problems.",
+    "knowledge_areas": ["Probability", "Data modeling", "Statistical programming"],
+    "dominant_intelligences": ["Analytical Intelligence", "Scientific Intelligence", "Digital Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_070",
+    "name": "Ivy Thomas",
+    "email": "ivy.thomas@example.com",
+    "field": "Data Interpretation",
+    "biography": "Ivy Thomas interprets complex datasets to uncover trends and inform decisions.",
+    "knowledge_areas": ["Data visualization", "Business analytics", "Data communication"],
+    "dominant_intelligences": ["Analytical Intelligence", "Digital Intelligence", "Strategic Intelligence"]
+    }
+    ,
+    {   
+    "id": "mentor_071",
+    "name": "Noah Green",
+    "email": "noah.green@example.com",
+    "field": "Statistical Analysis",
+    "biography": "Noah builds models to interpret data and extract meaningful insights.",
+    "knowledge_areas": ["Probability", "Data analysis", "Model building"],
+    "dominant_intelligences": ["Analytical Intelligence", "Scientific Intelligence", "Strategic Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_072",
+    "name": "Emily Carter",
+    "email": "emily.carter@example.com",
+    "field": "Data Science",
+    "biography": "Emily specializes in predictive modeling and data-driven decision-making.",
+    "knowledge_areas": ["Statistics", "Machine learning", "Data visualization"],
+    "dominant_intelligences": ["Scientific Intelligence", "Analytical Intelligence", "Digital Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_073",
+    "name": "Ethan Scott",
+    "email": "ethan.scott@example.com",
+    "field": "Applied Mathematics",
+    "biography": "Ethan develops mathematical models for physics and engineering problems.",
+    "knowledge_areas": ["Applied math", "Theoretical math", "Problem solving"],
+    "dominant_intelligences": ["Analytical Intelligence", "Scientific Intelligence", "Strategic Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_074",
+    "name": "Mia Evans",
+    "email": "mia.evans@example.com",
+    "field": "Mathematical Research",
+    "biography": "Mia focuses on abstract algebra and mathematical logic.",
+    "knowledge_areas": ["Algebra", "Logic", "Computation"],
+    "dominant_intelligences": ["Scientific Intelligence", "Analytical Intelligence", "Digital Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_075",
+    "name": "Lucas Hayes",
+    "email": "lucas.hayes@example.com",
+    "field": "Experimental Physics",
+    "biography": "Lucas researches particle systems and conducts advanced lab experiments.",
+    "knowledge_areas": ["Mechanics", "Quantum theory", "Experimental design"],
+    "dominant_intelligences": ["Scientific Intelligence", "Analytical Intelligence", "Technical Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_076",
+    "name": "Chloe Adams",
+        "email": "chloe.adams@example.com",
+    "field": "Astrophysics",
+    "biography": "Chloe explores stellar phenomena and data from observatories.",
+    "knowledge_areas": ["Astrophysics", "Mathematical modeling", "Data analysis"],
+    "dominant_intelligences": ["Scientific Intelligence", "Analytical Intelligence", "Strategic Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_077",
+    "name": "Benjamin Foster",
+    "email": "benjamin.foster@example.com",
+    "field": "Organic Chemistry",
+    "biography": "Benjamin studies molecular interactions to create new compounds.",
+    "knowledge_areas": ["Organic synthesis", "Lab work", "Chemical analysis"],
+    "dominant_intelligences": ["Scientific Intelligence", "Analytical Intelligence", "Practical Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_078",
+    "name": "Isabella Reed",
+    "email": "isabella.reed@example.com",
+    "field": "Chemical Engineering",
+    "biography": "Isabella applies chemistry in industrial design and sustainable materials.",
+    "knowledge_areas": ["Chemical engineering", "Material science", "Sustainability"],
+    "dominant_intelligences": ["Technical Intelligence", "Scientific Intelligence", "Strategic Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_079",
+    "name": "Henry Walker",
+    "email": "henry.walker@example.com",
+    "field": "Molecular Biology",
+    "biography": "Henry researches genetic mechanisms and biological systems.",
+    "knowledge_areas": ["Genetics", "Cell biology", "Microbiology"],
+    "dominant_intelligences": ["Scientific Intelligence", "Analytical Intelligence", "Naturalistic Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_080",
+    "name": "Grace Allen",
+    "email": "grace.allen@example.com",
+    "field": "Ecology",
+    "biography": "Grace studies ecosystems and biodiversity conservation.",
+    "knowledge_areas": ["Ecology", "Biodiversity", "Environmental research"],
+    "dominant_intelligences": ["Naturalistic Intelligence", "Scientific Intelligence", "Analytical Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_081",
+    "name": "Nathan Rivera",
+    "email": "nathan.rivera@example.com",
+    "field": "Architectural Design",
+    "biography": "Nathan creates sustainable architectural solutions for urban spaces.",
+    "knowledge_areas": ["Design", "Sustainability", "Urban planning"],
+    "dominant_intelligences": ["Aesthetic Intelligence", "Strategic Intelligence", "Creative Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_082",
+    "name": "Ella Brooks",
+    "email": "ella.brooks@example.com",
+    "field": "Restoration Architecture",
+    "biography": "Ella specializes in historical building restoration and design conservation.",
+    "knowledge_areas": ["Heritage preservation", "Architecture", "Design"],
+    "dominant_intelligences": ["Aesthetic Intelligence", "Creative Intelligence", "Analytical Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_083",
+    "name": "Zoe Harrison",
+    "email": "zoe.harrison@example.com",
+    "field": "Interior Design",
+    "biography": "Zoe focuses on designing aesthetic, functional indoor spaces.",
+    "knowledge_areas": ["Interior design", "Color theory", "Spatial planning"],
+    "dominant_intelligences": ["Aesthetic Intelligence", "Creative Intelligence", "Practical Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_084",
+    "name": "Jack Simmons",
+    "email": "jack.simmons@example.com",
+    "field": "Furniture Design",
+    "biography": "Jack designs ergonomic and artistic furniture collections.",
+    "knowledge_areas": ["Furniture design", "Material usage", "3D modeling"],
+    "dominant_intelligences": ["Creative Intelligence", "Technical Intelligence", "Aesthetic Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_085",
+    "name": "Harper Lewis",
+    "email": "harper.lewis@example.com",
+    "field": "Visual Design",
+    "biography": "Harper creates visual identities for digital and print media.",
+    "knowledge_areas": ["Branding", "Typography", "Digital design"],
+    "dominant_intelligences": ["Creative Intelligence", "Aesthetic Intelligence", "Digital Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_086",
+    "name": "Ryan Cooper",
+    "email": "ryan.cooper@example.com",
+    "field": "Illustration and Design",
+    "biography": "Ryan illustrates concept art and creates marketing visuals.",
+    "knowledge_areas": ["Illustration", "Advertising", "UI/UX"],
+    "dominant_intelligences": ["Creative Intelligence", "Aesthetic Intelligence", "Communicative Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_087",
+    "name": "Layla Morgan",
+    "email": "layla.morgan@example.com",
+    "field": "Product Design",
+    "biography": "Layla designs innovative products that balance usability and beauty.",
+    "knowledge_areas": ["Product design", "Ergonomics", "Prototyping"],
+    "dominant_intelligences": ["Creative Intelligence", "Technical Intelligence", "Aesthetic Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_088",
+    "name": "Owen Miller",
+    "email": "owen.miller@example.com",
+    "field": "User Experience Design",
+    "biography": "Owen combines design thinking and user research to improve product experiences.",
+    "knowledge_areas": ["User research", "UX design", "Prototyping"],
+    "dominant_intelligences": ["Strategic Intelligence", "Creative Intelligence", "Analytical Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_089",
+    "name": "Amelia Wood",
+    "email": "amelia.wood@example.com",
+    "field": "Visual Storytelling",
+    "biography": "Amelia crafts digital narratives through impactful visual design.",
+    "knowledge_areas": ["Motion graphics", "Brand design", "Advertising"],
+    "dominant_intelligences": ["Creative Intelligence", "Communicative Intelligence", "Aesthetic Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_090",
+    "name": "Evan Gray",
+    "email": "evan.gray@example.com",
+    "field": "Multimedia Design",
+    "biography": "Evan merges graphic, video, and web elements for cohesive brand visuals.",
+    "knowledge_areas": ["Multimedia", "Animation", "Digital art"],
+    "dominant_intelligences": ["Creative Intelligence", "Digital Intelligence", "Aesthetic Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_091",
+    "name": "Isla Mitchell",
+    "email": "isla.mitchell@example.com",
+    "field": "Fashion Creation",
+    "biography": "Isla creates modern clothing collections with sustainable materials.",
+    "knowledge_areas": ["Textiles", "Color theory", "Pattern making"],
+    "dominant_intelligences": ["Aesthetic Intelligence", "Creative Intelligence", "Practical Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_092",
+    "name": "Oliver Barnes",
+    "email": "oliver.barnes@example.com",
+    "field": "Fashion Marketing",
+    "biography": "Oliver blends creative design with marketing and fashion business strategy.",
+    "knowledge_areas": ["Fashion marketing", "Trends", "Visual styling"],
+    "dominant_intelligences": ["Communicative Intelligence", "Creative Intelligence", "Strategic Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_093",
+    "name": "Ella Peterson",
+    "email": "ella.peterson@example.com",
+    "field": "Ceramic Art",
+    "biography": "Ella designs contemporary ceramic artworks and pottery collections.",
+    "knowledge_areas": ["Ceramic art", "Sculpting", "Material techniques"],
+    "dominant_intelligences": ["Aesthetic Intelligence", "Creative Intelligence", "Practical Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_094",
+    "name": "Caleb Wright",
+    "email": "caleb.wright@example.com",
+    "field": "Glass Design",
+    "biography": "Caleb specializes in glass sculpture and experimental glass design.",
+    "knowledge_areas": ["Glass forming", "Lighting design", "Art installations"],
+    "dominant_intelligences": ["Aesthetic Intelligence", "Creative Intelligence", "Technical Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_095",
+    "name": "Charlotte Young",
+    "email": "charlotte.young@example.com",
+    "field": "Fine Arts",
+    "biography": "Charlotte paints expressive works exploring human emotion and movement.",
+    "knowledge_areas": ["Painting", "Color theory", "Art history"],
+    "dominant_intelligences": ["Aesthetic Intelligence", "Creative Intelligence", "Emotional Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_096",
+    "name": "Daniel Brooks",
+    "email": "daniel.brooks@example.com",
+    "field": "Abstract Art",
+    "biography": "Daniel focuses on large-scale abstract paintings for exhibitions.",
+    "knowledge_areas": ["Abstract art", "Composition", "Mixed media"],
+    "dominant_intelligences": ["Creative Intelligence", "Aesthetic Intelligence", "Spiritual Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_097",
+    "name": "Grace Thompson",
+    "email": "grace.thompson@example.com",
+    "field": "Sculptural Arts",
+    "biography": "Grace creates sculptures that combine classical techniques with modern forms.",
+    "knowledge_areas": ["Sculpting", "Material handling", "3D modeling"],
+    "dominant_intelligences": ["Aesthetic Intelligence", "Practical Intelligence", "Creative Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_098",
+    "name": "William Hughes",
+    "email": "william.hughes@example.com",
+    "field": "Installation Art",
+    "biography": "William designs spatial sculptures and experimental installations.",
+    "knowledge_areas": ["Spatial design", "Installation art", "Conceptual art"],
+    "dominant_intelligences": ["Creative Intelligence", "Aesthetic Intelligence", "Strategic Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_099",
+    "name": "Ava Monroe",
+    "email": "ava.monroe@example.com",
+    "field": "Music Composition",
+    "biography": "Ava Monroe composes film scores and performs live orchestral music.",
+    "knowledge_areas": ["Composition", "Harmony", "Performance"],
+    "dominant_intelligences": ["Aesthetic Intelligence", "Emotional Intelligence", "Creative Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_100",
+    "name": "Leo Hart",
+    "email": "leo.hart@example.com",
+    "field": "Sound Production",
+    "biography": "Leo Hart works as a music producer for both studio and live settings.",
+    "knowledge_areas": ["Sound design", "Mixing", "Music technology"],
+    "dominant_intelligences": ["Creative Intelligence", "Aesthetic Intelligence", "Digital Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_101",
+    "name": "Miles Porter",
+    "email": "miles.porter@example.com",
+    "field": "Studio Recording",
+    "biography": "Miles records and mixes albums for indie and commercial artists.",
+    "knowledge_areas": ["Signal flow", "Mixing", "Mic placement", "DAWs"],
+    "dominant_intelligences": ["Technical Intelligence", "Digital Intelligence", "Analytical Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_102",
+    "name": "Iris Lane",
+    "email": "iris.lane@example.com",
+    "field": "Live Sound",
+    "biography": "Iris engineers FOH sound for concerts and festivals.",
+    "knowledge_areas": ["Live mixing", "Stage acoustics", "RF systems"],
+    "dominant_intelligences": ["Technical Intelligence", "Digital Intelligence", "Creative Intelligence"]
+    }
+    ,
+    { 
+    "id": "mentor_103",
+    "name": "Adrian Novak",
+    "email": "adrian.novak@example.com",
+    "field": "Orchestral Performance",
+    "biography": "Adrian is a principal violinist and chamber music coach.",
+    "knowledge_areas": ["Performance", "Sight-reading", "Ensemble practice"],
+    "dominant_intelligences": ["Aesthetic Intelligence", "Emotional Intelligence", "Physical Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_104",
+    "name": "Siena Park",
+    "email": "siena.park@example.com",
+    "field": "Classical Piano",
+    "biography": "Siena performs solo recitals and teaches advanced repertoire.",
+    "knowledge_areas": ["Technique", "Interpretation", "Music theory"],
+    "dominant_intelligences": ["Aesthetic Intelligence", "Creative Intelligence", "Emotional Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_105",
+    "name": "Rowan Pierce",
+    "email": "rowan.pierce@example.com",
+    "field": "Stage Acting",
+    "biography": "Rowan coaches method acting and stage presence.",
+    "knowledge_areas": ["Script analysis", "Improvisation", "Voice"],
+    "dominant_intelligences": ["Creative Intelligence", "Emotional Intelligence", "Communicative Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_106",
+    "name": "Mae Collins",
+    "email": "mae.collins@example.com",
+    "field": "Screen Acting",
+    "biography": "Mae mentors actors for film auditions and on-camera work.",
+    "knowledge_areas": ["On-camera technique", "Blocking", "Character work"],
+    "dominant_intelligences": ["Emotional Intelligence", "Communicative Intelligence", "Social Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_107",
+    "name": "Victor Han",
+    "email": "victor.han@example.com",
+    "field": "TV Production",
+    "biography": "Victor runs end-to-end TV productions and live broadcasts.",
+    "knowledge_areas": ["Budgeting", "Scheduling", "Team leadership"],
+    "dominant_intelligences": ["Strategic Intelligence", "Communicative Intelligence", "Creative Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_108",
+    "name": "Tara Whitman",
+    "email": "tara.whitman@example.com",
+    "field": "Film Producing",
+    "biography": "Tara produces independent films and manages post pipelines.",
+    "knowledge_areas": ["Deal-making", "Post-production", "Distribution"],
+    "dominant_intelligences": ["Strategic Intelligence", "Social Intelligence", "Analytical Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_109",
+    "name": "Elliot Reyes",
+    "email": "elliot.reyes@example.com",
+    "field": "Investigative Reporting",
+    "biography": "Elliot covers public-interest stories and data journalism.",
+    "knowledge_areas": ["Interviewing", "Fact-checking", "Story structure"],
+    "dominant_intelligences": ["Linguistic Intelligence", "Analytical Intelligence", "Communicative Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_110",
+    "name": "Zara Quinn",
+    "email": "zara.quinn@example.com",
+    "field": "Feature Writing",
+    "biography": "Zara writes long-form features for digital outlets.",
+    "knowledge_areas": ["Narrative", "Editing", "Source development"],
+    "dominant_intelligences": ["Linguistic Intelligence", "Communicative Intelligence", "Social Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_111",
+    "name": "Kai Mercer",
+    "email": "kai.mercer@example.com",
+    "field": "Social Media Strategy",
+    "biography": "Kai scales creator channels with analytics-led content.",
+    "knowledge_areas": ["Content planning", "Analytics", "Growth"],
+    "dominant_intelligences": ["Digital Intelligence", "Creative Intelligence", "Entrepreneurial Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_112",
+    "name": "Nova Blake",
+    "email": "nova.blake@example.com",
+    "field": "Video Creation",
+    "biography": "Nova produces shorts and long-form videos across platforms.",
+    "knowledge_areas": ["Scripting", "Editing", "Audience engagement"],
+    "dominant_intelligences": ["Creative Intelligence", "Digital Intelligence", "Communicative Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_113",
+    "name": "Renee Caldwell",
+    "email": "renee.caldwell@example.com",
+    "field": "Corporate PR",
+    "biography": "Renee designs press strategies for tech companies.",
+    "knowledge_areas": ["Press releases", "Media relations", "Crisis comms"],
+    "dominant_intelligences": ["Communicative Intelligence", "Social Intelligence", "Strategic Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_114",
+    "name": "Omar Aziz",
+    "email": "omar.aziz@example.com",
+    "field": "Brand Communications",
+    "biography": "Omar builds brand narratives and thought leadership.",
+    "knowledge_areas": ["Messaging", "Storytelling", "Stakeholder mapping"],
+    "dominant_intelligences": ["Communicative Intelligence", "Linguistic Intelligence", "Strategic Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_115",
+    "name": "Bianca Russo",
+    "email": "bianca.russo@example.com",
+    "field": "Creative Direction",
+    "biography": "Bianca leads creative for integrated ad campaigns.",
+    "knowledge_areas": ["Concepting", "Art direction", "Copywriting"],
+    "dominant_intelligences": ["Creative Intelligence", "Strategic Intelligence", "Communicative Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_116",
+    "name": "Mason Liu",
+    "email": "mason.liu@example.com",
+    "field": "Performance Marketing",
+    "biography": "Mason optimizes paid channels through rigorous testing.",
+    "knowledge_areas": ["Media buying", "Attribution", "A/B testing"],
+    "dominant_intelligences": ["Analytical Intelligence", "Strategic Intelligence", "Digital Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_117",
+    "name": "June Barrett",
+    "email": "june.barrett@example.com",
+    "field": "Brand Design",
+    "biography": "June builds visual systems that clarify complex messages.",
+    "knowledge_areas": ["Identity systems", "Layout", "Information design"],
+    "dominant_intelligences": ["Aesthetic Intelligence", "Creative Intelligence", "Communicative Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_118",
+    "name": "Felix Moran",
+    "email": "felix.moran@example.com",
+    "field": "Design Strategy",
+    "biography": "Felix aligns design with business objectives and KPIs.",
+    "knowledge_areas": ["Design ops", "Stakeholder comms", "UX writing"],
+    "dominant_intelligences": ["Strategic Intelligence", "Communicative Intelligence", "Creative Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_119",
+    "name": "Aiden Brooks",
+    "email": "aiden.brooks@example.com",
+    "field": "Operations Management",
+    "biography": "Aiden streamlines ops and builds high-performing teams.",
+    "knowledge_areas": ["OKRs", "Process design", "People management"],
+    "dominant_intelligences": ["Strategic Intelligence", "Analytical Intelligence", "Social Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_120",
+    "name": "Clara Nguyen",
+    "email": "clara.nguyen@example.com",
+    "field": "Business Development",
+    "biography": "Clara drives partnerships and market expansion.",
+    "knowledge_areas": ["Go-to-market", "Negotiation", "Forecasting"],
+    "dominant_intelligences": ["Entrepreneurial Intelligence", "Communicative Intelligence", "Strategic Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_121",
+    "name": "Julian Ortiz",
+    "email": "julian.ortiz@example.com",
+    "field": "Macroeconomics",
+    "biography": "Julian analyzes growth, inflation, and policy impacts.",
+    "knowledge_areas": ["Time series", "Policy analysis", "Modeling"],
+    "dominant_intelligences": ["Analytical Intelligence", "Scientific Intelligence", "Strategic Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_122",
+    "name": "Beatrice King",
+    "email": "beatrice.king@example.com",
+    "field": "Applied Microeconomics",
+    "biography": "Beatrice studies incentives and market design.",
+    "knowledge_areas": ["Causal inference", "Experiment design", "Data"],
+    "dominant_intelligences": ["Analytical Intelligence", "Scientific Intelligence", "Linguistic Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_123",
+    "name": "Owen Castillo",
+    "email": "owen.castillo@example.com",
+    "field": "Diplomacy",
+    "biography": "Owen advises on multilateral negotiations and policy.",
+    "knowledge_areas": ["Geopolitics", "Negotiation", "Policy writing"],
+    "dominant_intelligences": ["Strategic Intelligence", "Communicative Intelligence", "Social Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_124",
+    "name": "Lina Faris",
+    "email": "lina.faris@example.com",
+    "field": "International Organizations",
+    "biography": "Lina works on humanitarian programs and global governance.",
+    "knowledge_areas": ["Program design", "Monitoring & evaluation", "Advocacy"],
+    "dominant_intelligences": ["Social Intelligence", "Analytical Intelligence", "Linguistic Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_125",
+    "name": "Hannah Patel",
+    "email": "hannah.patel@example.com",
+    "field": "Municipal Management",
+    "biography": "Hannah improves city services through data and policy.",
+    "knowledge_areas": ["Public budgeting", "Service design", "Change mgmt"],
+    "dominant_intelligences": ["Strategic Intelligence", "Analytical Intelligence", "Practical Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_126",
+    "name": "Gavin Shaw",
+    "email": "gavin.shaw@example.com",
+    "field": "Public Policy",
+    "biography": "Gavin implements social programs across agencies.",
+    "knowledge_areas": ["Program ops", "Stakeholder mgmt", "Compliance"],
+    "dominant_intelligences": ["Social Intelligence", "Communicative Intelligence", "Strategic Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_127",
+    "name": "Priya Mehta",
+    "email": "priya.mehta@example.com",
+    "field": "Supply Chain",
+    "biography": "Priya optimizes warehousing and transportation flows.",
+    "knowledge_areas": ["Inventory", "Routing", "S&OP"],
+    "dominant_intelligences": ["Analytical Intelligence", "Practical Intelligence", "Strategic Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_128",
+    "name": "Rafael Costa",
+    "email": "rafael.costa@example.com",
+    "field": "E-commerce Logistics",
+    "biography": "Rafael scales last-mile delivery operations.",
+    "knowledge_areas": ["Network design", "3PL", "Automation"],
+    "dominant_intelligences": ["Technical Intelligence", "Analytical Intelligence", "Communicative Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_129",
+    "name": "Naomi Fraser",
+    "email": "naomi.fraser@example.com",
+    "field": "Brand Marketing",
+    "biography": "Naomi grows brands through audience insights.",
+    "knowledge_areas": ["Positioning", "Segmentation", "Campaigns"],
+    "dominant_intelligences": ["Creative Intelligence", "Social Intelligence", "Communicative Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_130",
+    "name": "Dylan Park",
+    "email": "dylan.park@example.com",
+    "field": "Growth Marketing",
+    "biography": "Dylan leads data-driven acquisition and retention.",
+    "knowledge_areas": ["Funnel design", "Cohorts", "Experimentation"],
+    "dominant_intelligences": ["Analytical Intelligence", "Entrepreneurial Intelligence", "Strategic Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_131",
+    "name": "Amir Rahman",
+    "email": "amir.rahman@example.com",
+    "field": "Global Trade",
+    "biography": "Amir handles export operations and trade compliance.",
+    "knowledge_areas": ["Incoterms", "Customs", "Contracts"],
+    "dominant_intelligences": ["Entrepreneurial Intelligence", "Communicative Intelligence", "Strategic Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_132",
+    "name": "Helena Ortiz",
+    "email": "helena.ortiz@example.com",
+    "field": "Market Entry",
+    "biography": "Helena develops market-entry strategies for SMEs.",
+    "knowledge_areas": ["Market research", "Partner scouting", "Pricing"],
+    "dominant_intelligences": ["Strategic Intelligence", "Social Intelligence", "Analytical Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_133",
+    "name": "Ethan Walsh",
+    "email": "ethan.walsh@example.com",
+    "field": "Corporate Finance",
+    "biography": "Ethan manages FP&A and capital allocation.",
+    "knowledge_areas": ["Modeling", "Budgeting", "Valuation"],
+    "dominant_intelligences": ["Analytical Intelligence", "Strategic Intelligence", "Communicative Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_134",
+    "name": "Veronica Chu",
+    "email": "veronica.chu@example.com",
+    "field": "Public Finance",
+    "biography": "Veronica oversees fiscal planning for agencies.",
+    "knowledge_areas": ["Treasury", "Risk", "Reporting"],
+    "dominant_intelligences": ["Analytical Intelligence", "Strategic Intelligence", "Entrepreneurial Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_135",
+    "name": "Marco Leone",
+    "email": "marco.leone@example.com",
+    "field": "Labor Policy",
+    "biography": "Marco evaluates wage policy and employment trends.",
+    "knowledge_areas": ["Labor markets", "Program eval", "R programming"],
+    "dominant_intelligences": ["Analytical Intelligence", "Scientific Intelligence", "Strategic Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_136",
+    "name": "Tessa Wong",
+    "email": "tessa.wong@example.com",
+    "field": "Workforce Analytics",
+    "biography": "Tessa builds datasets on skills and mobility.",
+    "knowledge_areas": ["Data pipelines", "Causal methods", "Viz"],
+    "dominant_intelligences": ["Analytical Intelligence", "Communicative Intelligence", "Social Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_137",
+    "name": "Samuel Drake",
+    "email": "samuel.drake@example.com",
+    "field": "Comparative Politics",
+    "biography": "Samuel researches institutions and democratization.",
+    "knowledge_areas": ["Fieldwork", "Survey design", "Statistics"],
+    "dominant_intelligences": ["Analytical Intelligence", "Strategic Intelligence", "Communicative Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_138",
+    "name": "Nadia Petrov",
+    "email": "nadia.petrov@example.com",
+    "field": "International Politics",
+    "biography": "Nadia analyzes conflict, security, and diplomacy.",
+    "knowledge_areas": ["Policy analysis", "Modeling", "Writing"],
+    "dominant_intelligences": ["Strategic Intelligence", "Analytical Intelligence", "Social Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_139",
+    "name": "Carmen Ruiz",
+    "email": "carmen.ruiz@example.com",
+    "field": "Community Services",
+    "biography": "Carmen coordinates support for vulnerable families.",
+    "knowledge_areas": ["Case management", "Safeguarding", "Advocacy"],
+    "dominant_intelligences": ["Emotional Intelligence", "Social Intelligence", "Practical Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_140",
+    "name": "Jamal Peters",
+    "email": "jamal.peters@example.com",
+    "field": "Clinical Social Work",
+    "biography": "Jamal provides counseling and crisis interventions.",
+    "knowledge_areas": ["Therapeutic methods", "Assessment", "Referrals"],
+    "dominant_intelligences": ["Emotional Intelligence", "Communicative Intelligence", "Social Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_141",
+    "name": "Riley Grant",
+    "email": "riley.grant@example.com",
+    "field": "Startup Strategy",
+    "biography": "Riley mentors founders on discovery and PMF.",
+    "knowledge_areas": ["MVPs", "Fundraising", "Metrics"],
+    "dominant_intelligences": ["Entrepreneurial Intelligence", "Strategic Intelligence", "Analytical Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_142",
+    "name": "Ayla Stone",
+    "email": "ayla.stone@example.com",
+    "field": "Growth & Partnerships",
+    "biography": "Ayla builds partnerships and scalable GTM motions.",
+    "knowledge_areas": ["Partnerships", "Pricing", "Sales ops"],
+    "dominant_intelligences": ["Entrepreneurial Intelligence", "Social Intelligence", "Communicative Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_143",
+    "name": "Logan Fry",
+    "email": "logan.fry@example.com",
+    "field": "Airline Operations",
+    "biography": "Logan manages ops control and on-time performance.",
+    "knowledge_areas": ["Scheduling", "Safety", "Compliance"],
+    "dominant_intelligences": ["Strategic Intelligence", "Technical Intelligence", "Analytical Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_144",
+    "name": "Nina Duarte",
+    "email": "nina.duarte@example.com",
+    "field": "Airport Management",
+    "biography": "Nina oversees ground services and passenger flows.",
+    "knowledge_areas": ["Resource planning", "SLAs", "Crisis mgmt"],
+    "dominant_intelligences": ["Social Intelligence", "Strategic Intelligence", "Communicative Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_145",
+    "name": "Declan Moore",
+    "email": "declan.moore@example.com",
+    "field": "Commercial Aviation",
+    "biography": "Declan flies narrow-body routes and mentors cadets.",
+    "knowledge_areas": ["Navigation", "CRM", "Procedures"],
+    "dominant_intelligences": ["Physical Intelligence", "Technical Intelligence", "Strategic Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_146",
+    "name": "Aisha Karim",
+    "email": "aisha.karim@example.com",
+    "field": "Flight Instruction",
+    "biography": "Aisha trains pilots in simulators and check-rides.",
+    "knowledge_areas": ["IFR", "Emergency handling", "Checklists"],
+     "dominant_intelligences": ["Technical Intelligence", "Analytical Intelligence", "Physical Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_147",
+    "name": "Graham Watts",
+    "email": "graham.watts@example.com",
+    "field": "Aircraft Design",
+    "biography": "Graham works on aero structures and performance.",
+    "knowledge_areas": ["Aerodynamics", "FEA", "Materials"],
+    "dominant_intelligences": ["Analytical Intelligence", "Technical Intelligence", "Scientific Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_148",
+    "name": "Mira Chen",
+    "email": "mira.chen@example.com",
+    "field": "Flight Systems",
+    "biography": "Mira engineers avionics and control systems.",
+    "knowledge_areas": ["Control theory", "Avionics", "Safety"],
+    "dominant_intelligences": ["Technical Intelligence", "Analytical Intelligence", "Creative Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_149",
+    "name": "Diego Martins",
+    "email": "diego.martins@example.com",
+    "field": "Port Operations",
+    "biography": "Diego optimizes port logistics and vessel turnaround.",
+    "knowledge_areas": ["Route planning", "Regulations", "Port ops"],
+    "dominant_intelligences": ["Strategic Intelligence", "Technical Intelligence", "Practical Intelligence"]
+    }
+    ,
+    {
+    "id": "mentor_150",
+    "name": "Hanna Voss",
+    "email": "hanna.voss@example.com",
+    "field": "Maritime Engineering",
+    "biography": "Hanna focuses on ship systems and safety at sea.",
+    "knowledge_areas": ["Marine systems", "Compliance", "Maintenance"],
+    "dominant_intelligences": ["Technical Intelligence", "Analytical Intelligence", "Social Intelligence"]
+    }
+]

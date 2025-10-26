@@ -1,5 +1,7 @@
 # app/main.py
-from fastapi import FastAPI
+from fastapi import FastAPI, Body
+import json
+import re
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import Depends, HTTPException
 from pydantic import BaseModel, EmailStr, Field
@@ -7,9 +9,18 @@ from typing import Optional, Dict, Any
 from supabase import Client
 from .supa import get_supabase
 from .deps import auth_required
+from groq import Groq
+import os
+from .decision_agent import find_best_job, generate_mentor_suggestion
+from .rag_manager import BASE_DIR, all_rag
+
+GROQ_API_KEY = os.getenv("GROQ_API_KEY", "")
 
 
 app = FastAPI(title="Hackathon Backend", version="0.1.0")
+client = Groq(api_key=GROQ_API_KEY)
+
+
 
 # CORS (mobil geliştirme için şimdilik açık; ileride kısıtlarız)
 app.add_middleware(
@@ -19,6 +30,20 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+@app.on_event("startup")
+def warmup_rag():
+    if not hasattr(app.state, "rag_loaded"):
+        app.state.rag_loaded = False
+
+    if not app.state.rag_loaded:
+        try:
+            res = all_rag()
+            print("🔄 RAG warmup:", res)
+            app.state.rag_loaded = True
+        except Exception as e:
+            print(f"❌ RAG warmup hata: {e}")
+
 
 @app.get("/")
 def health():
@@ -134,3 +159,165 @@ def me(auth=Depends(auth_required)):
         "user_metadata": claims.get("user_metadata", {}),
         "app_metadata": claims.get("app_metadata", {}),
     }
+
+
+
+
+def system_prompt():
+    return (
+    "You are a professional career counselor and cognitive analyst. "
+    "Your role is to help users explore career paths, understand their job-related skills, and plan long-term professional growth. "
+    "If a user asks about topics unrelated to careers, politely respond with: "
+    "'I wasn't given any information on this topic. I can only answer career counseling questions.' "
+    "When the user provides intelligence percentages, analyze them carefully and ask clarifying questions "
+    "to test the accuracy and consistency of those values. You may adjust the percentages up or down "
+    "based on the user's answers, but always explain your reasoning clearly and logically. "
+    "Limit yourself to asking a maximum of three questions during this analysis process. "
+    "After evaluating the intelligence profile, summarize your findings by identifying the user's cognitive strengths and weaknesses, "
+    "and suggest the most suitable career paths and job roles that align with their intelligence profile. "
+    "Finally, provide clear, actionable recommendations for professional growth tailored to their unique combination of intelligences. "
+    "At the end of your analysis, output the final adjusted intelligence percentages in strict JSON format as follows: "
+    "{\"intelligence_profile\": {\"Analytical Intelligence\": X, \"Social Intelligence\": Y, ...}} "
+    "Ensure the JSON block is valid and includes all intelligence types mentioned by the user, using floating-point numbers for values."
+)
+
+
+# --- Global history ---
+
+history = [{"role": "system", "content": system_prompt()}]
+def ask_groq(prompt: str, max_tokens: int = 1000, temperature: float = 0.7):
+    """
+    Groq modeline sistem prompt + geçmişle birlikte istek atar.
+    Assistant cevabındaki "intelligence_profile" JSON kısmını "data/current_metrics.json" olarak kaydeder.
+    """
+    # Geçmiş + yeni mesaj
+    messages = history + [{"role": "user", "content": prompt}]
+    
+    try:
+        completion = client.chat.completions.create(
+            model="llama-3.1-8b-instant",
+            messages=messages,
+            temperature=temperature,
+            max_completion_tokens=max_tokens,
+            top_p=1,
+            stream=False  # Tek seferde JSON cevabı
+        )
+        answer = completion.choices[0].message.content.strip()
+        
+        # History'e ekle
+        history.append({"role": "user", "content": prompt})
+        history.append({"role": "assistant", "content": answer})
+
+        # intelligence_profile kelimesinden sonra gelen JSON'u yakala
+        json_pattern = re.search(r'(\{[\s\S]*?"intelligence_profile"\s*:\s*\{[\s\S]*?\}\s*\})', answer)
+        if json_pattern:
+            json_str = json_pattern.group(1)
+            try:
+                data = json.loads(json_str)
+
+                # Klasör oluştur (varsa hata vermez)
+                os.makedirs("data", exist_ok=True)
+                filename = os.path.join("data", "current_metrics.json")
+
+                # JSON'u kaydet (her zaman üzerine yazar)
+                with open(filename, "w", encoding="utf-8") as f:
+                    json.dump(data, f, ensure_ascii=False, indent=2)
+
+                print(f"✅ Güncel metrikler kaydedildi: {filename}")
+
+            except json.JSONDecodeError:
+                print("⚠️ Yanıtta geçersiz JSON bulundu, kaydedilmedi.")
+        else:
+            print("⚠️ Yanıt içinde 'intelligence_profile' JSON bulunamadı.")
+        
+        return answer
+
+    except Exception as e:
+        return f"Model hatası: {e}"
+
+
+
+@app.post("/chat")
+def chat_endpoint(user_input: str = Body(..., embed=True)):
+    """
+    Kullanıcıdan gelen normal sohbet mesajlarını işler.
+    """
+    answer = ask_groq(user_input)
+    return {"response": answer}
+
+@app.post("/intelligence")
+def intelligence_endpoint(ratios: dict = Body(...)):
+    """
+    Zeka oranlarını modele gönderir.
+    Örnek istek:
+    {
+      "analytical": 40,
+      "emotional": 35,
+      "creative": 25
+    }
+    """
+    ratios_str = ", ".join([f"{k}: {v}%" for k, v in ratios.items()])
+    prompt = (
+        f"Here are the intelligence ratios for an individual: {ratios_str}. "
+        "Carefully analyze whether these percentages appear realistic and balanced. "
+        "Ask insightful diagnostic questions (no more than five) to verify their accuracy. "
+        "Based on the user's responses, you may adjust the ratios upward or downward, "
+        "explaining your reasoning clearly at each step. "
+        "Once the analysis is complete, summarize the final intelligence profile, "
+        "highlighting the individual’s cognitive strengths and areas for improvement. "
+        "Finally, suggest the most suitable career paths and specific job roles that align with their intelligence profile, "
+        "and provide clear, practical recommendations for their professional growth and development."
+    )
+
+    answer = ask_groq(prompt)
+    return {"response": answer}
+
+
+def job_recommendation_prompt(user_input: str, last_chat: str = "") -> str:
+    return (
+        "You are a professional career counselor. "
+        "Based on the user's input and the previous conversation, suggest the most suitable job roles or career paths. "
+        "Consider their skills, preferences, and potential. "
+        "Limit your recommendations to the **top five most relevant professions**, "
+        "and give a short explanation for each suggestion. "
+        f"Previous conversation: {last_chat}\n"
+        f"User input for job recommendation: {user_input}"
+    )
+
+
+@app.post("/jobrecommendation")
+def job_recommendation_endpoint(ratios: dict = Body(...)):
+    """
+    Kullanıcıdan gelen iş önerisi isteklerini işler.
+    Önceki sohbeti prompta ekleyerek daha bağlamsal öneri üretir.
+    """
+    # Son assistant cevabını al
+    answer = find_best_job(metrics=ratios)
+    return {"response": answer}
+
+
+@app.post("/findmentor")
+def find_mentor_endpoint(ratios: dict = Body(...)):
+    """
+    Kullanıcıdan gelen mentor önerisi isteklerini işler.
+    """
+    # Son assistant cevabını al
+    answer = generate_mentor_suggestion(suggested_job="", metrics=ratios)
+    return {"response": answer}
+
+
+@app.get("/current_metrics")
+def get_current_metrics():
+    """
+    Kaydedilmiş intelligence profile JSON'unu döner.
+    """
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    json_file = os.path.join(BASE_DIR, "dataset", "current_metrics.json")
+    
+    if not os.path.exists(json_file):
+        raise HTTPException(status_code=404, detail="Güncel metrikler bulunamadı")
+
+    with open(json_file, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    return data

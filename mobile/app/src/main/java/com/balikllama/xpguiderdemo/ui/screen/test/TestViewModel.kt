@@ -21,6 +21,23 @@ import android.util.Log
 import com.balikllama.xpguiderdemo.data.local.entity.TestResult
 import com.balikllama.xpguiderdemo.repository.ChatbotRepository
 import com.balikllama.xpguiderdemo.repository.TestResultRepository
+import com.balikllama.xpguiderdemo.ui.screen.testresult.TraitResult
+
+private const val DEFAULT_ANSWER_STRING =
+    "E,H,E,H,E,E,E,E,E,E,E,H,E,E,E,E,E,H,E,K,H,K,E,H,E,E,H,H,H,E,E,K,H,E,H,K,K,E,E,E,E,E,E,H,H,K,E,E"
+
+private fun parseAnswers(input: String): List<AnswerType> {
+    return input.split(",")
+        .map { it.trim().uppercase() }
+        .map { letter ->
+            when (letter) {
+                "E" -> AnswerType.YES
+                "K" -> AnswerType.NEUTRAL
+                "H" -> AnswerType.NO
+                else -> error("Unknown answer code: $letter")
+            }
+        }
+}
 
 @HiltViewModel
 class TestViewModel @Inject constructor(

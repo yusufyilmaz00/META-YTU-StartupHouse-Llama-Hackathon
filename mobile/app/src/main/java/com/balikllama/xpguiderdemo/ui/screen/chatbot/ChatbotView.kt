@@ -32,6 +32,7 @@ import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
@@ -51,7 +52,8 @@ fun ChatbotView(
     modifier: Modifier = Modifier,
     uiState: ChatUIState,
     onInputChanged: (String) -> Unit,
-    onSendMessage: () -> Unit
+    onSendMessage: () -> Unit,
+    onNavigateToTestResults: () -> Unit = {}
 ) {
     val listState = rememberLazyListState()
 
@@ -66,7 +68,21 @@ fun ChatbotView(
     AppTheme {
         Scaffold(
             modifier = modifier.fillMaxSize(),
-            topBar = { AppTopBar(title = "Carrier Assistan AI", creditInfo = uiState.credit.toString()) },            // Sistem çubuklarının (örn: klavye) içeriği sıkıştırmasını yönet
+            topBar = {
+                AppTopBar(
+                    title = "Carrier Assistant AI",
+                    creditInfo = uiState.credit.toString(),
+                    // --- 2. YENİLİK: TopBar'a actions (eylemler) bölümünü ekliyoruz ---
+                    actions = {
+                        TextButton(onClick = onNavigateToTestResults) {
+                            Text(
+                                text = "Analiz Sonuçları",
+                                color = MaterialTheme.colorScheme.onPrimaryContainer
+                            )
+                        }
+                    }
+                )
+            }           // Sistem çubuklarının (örn: klavye) içeriği sıkıştırmasını yönet
         ) { innerPadding ->
             Column(
                 modifier = Modifier

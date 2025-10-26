@@ -7,6 +7,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.balikllama.xpguiderdemo.ui.navigation.Routes
 import com.balikllama.xpguiderdemo.viewmodel.CreditViewModel
 
 @Composable
@@ -24,6 +25,9 @@ fun ChatbotScreen(
         modifier = modifier,
         uiState = uiState,
         onInputChanged = viewModel::onInputChanged,
-        onSendMessage = viewModel::onSendMessage
+        onSendMessage = viewModel::onSendMessage,
+        onNavigateToTestResults = {
+            navController.navigate(Routes.TEST_RESULTS)
+        }
     )
 }

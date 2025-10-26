@@ -3,6 +3,7 @@ package com.balikllama.xpguiderdemo.ui.components
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -24,7 +25,8 @@ import com.balikllama.xpguiderdemo.ui.designsystem.Spacing
 fun AppTopBar(
     modifier: Modifier = Modifier,
     title: String,
-    creditInfo: String
+    creditInfo: String,
+    actions: @Composable RowScope.() -> Unit = {}
 ) {
     TopAppBar(
         modifier = modifier,
@@ -36,6 +38,7 @@ fun AppTopBar(
         },
         actions = {
             CreditChip(creditInfo = creditInfo)
+            actions()
         },
         colors = TopAppBarDefaults.topAppBarColors(
             containerColor = MaterialTheme.colorScheme.surface,

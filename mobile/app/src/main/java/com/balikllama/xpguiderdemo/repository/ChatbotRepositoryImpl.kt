@@ -5,6 +5,7 @@ import com.balikllama.xpguiderdemo.model.chatbot.ChatRequest
 import com.balikllama.xpguiderdemo.service.ApiService
 import com.google.gson.JsonObject
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 import java.io.IOException
@@ -13,7 +14,8 @@ import javax.inject.Singleton
 
 @Singleton
 class ChatbotRepositoryImpl @Inject constructor(
-    private val apiService: ApiService
+    private val apiService: ApiService,
+    private val creditRepository: CreditRepository
 ) : ChatbotRepository {
     private var initialMessage: String? = null
 
@@ -71,6 +73,12 @@ class ChatbotRepositoryImpl @Inject constructor(
     override suspend fun sendMessage(message: String): ApiResult<String> {
         return withContext(Dispatchers.IO) {
             try {
+                val currentCredits = creditRepository.userCredits.first() // Anlık krediyi al
+                if (currentCredits < 15) {
+                    Log.w("ChatbotRepository", "Yetersiz kredi ($currentCredits). Mesaj gönderilemedi.")
+                    // Yetersiz kredi durumunu UI'a bildirmek için özel bir hata döndür
+                    return@withContext ApiResult.Error("Mesaj göndermek için yeterli krediniz yok. (15 Kredi gerekli)")
+                }
                 // 1. İsteği oluştur
                 val request = ChatRequest(userInput = message)
                 // 2. ApiService üzerinden endpoint'i çağır

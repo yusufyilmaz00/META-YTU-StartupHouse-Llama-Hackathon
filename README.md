@@ -112,7 +112,7 @@ c. Öneriler, zeka profili + ilgi alanı uyumu + chatbot doğrulamasına dayalı
 
 ---
 
-**6) SOHBET BOTU — Llama 3.2 3B**  
+**6) SOHBET BOTU — Llama 3.2 8B**  
 *a. Amaç*  
 - Top-3 zeka tipini kısa sorularla doğrulamak ve gri alanları netleştirmek.  
 
@@ -154,7 +154,7 @@ c. Öneriler, zeka profili + ilgi alanı uyumu + chatbot doğrulamasına dayalı
 - Zeka dağılımı ve toplam sayılar için sunucu tarafı toplulaştırma; istemci tarafında grafik bileşenleri.  
 
 *g. Chatbot Entegrasyonu*  
-- Llama 3.2 3B için bir inference servisi üzerinden soru/cevap akışı; doğrulama çıktıları skor modeline küçük düzeltme olarak yansıtılır.  
+- Llama 3.2 8B için bir inference servisi üzerinden soru/cevap akışı; doğrulama çıktıları skor modeline küçük düzeltme olarak yansıtılır.  
 
 *h. Günlükleme ve İzleme*  
 - Anonimleştirilmiş olay günlükleri, hata takip ve temel performans metrikleri toplanır.  

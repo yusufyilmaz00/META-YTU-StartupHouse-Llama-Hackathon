@@ -188,7 +188,7 @@ history = [{"role": "system", "content": system_prompt()}]
 def ask_groq(prompt: str, max_tokens: int = 1000, temperature: float = 0.7):
     """
     Groq modeline sistem prompt + geçmişle birlikte istek atar.
-    Assistant cevabındaki JSON kısmı "data/current_metrics.json" olarak kaydeder.
+    Assistant cevabındaki "intelligence_profile" JSON kısmını "data/current_metrics.json" olarak kaydeder.
     """
     # Geçmiş + yeni mesaj
     messages = history + [{"role": "user", "content": prompt}]
@@ -208,10 +208,10 @@ def ask_groq(prompt: str, max_tokens: int = 1000, temperature: float = 0.7):
         history.append({"role": "user", "content": prompt})
         history.append({"role": "assistant", "content": answer})
 
-        # ```json ... ``` kod bloklarını yakala
-        json_block_pattern = re.search(r'```json\s*([\s\S]*?)```', answer)
-        if json_block_pattern:
-            json_str = json_block_pattern.group(1)
+        # intelligence_profile kelimesinden sonra gelen JSON'u yakala
+        json_pattern = re.search(r'(\{[\s\S]*?"intelligence_profile"\s*:\s*\{[\s\S]*?\}\s*\})', answer)
+        if json_pattern:
+            json_str = json_pattern.group(1)
             try:
                 data = json.loads(json_str)
 
@@ -228,7 +228,7 @@ def ask_groq(prompt: str, max_tokens: int = 1000, temperature: float = 0.7):
             except json.JSONDecodeError:
                 print("⚠️ Yanıtta geçersiz JSON bulundu, kaydedilmedi.")
         else:
-            print("⚠️ Yanıt içinde JSON kod bloğu bulunamadı.")
+            print("⚠️ Yanıt içinde 'intelligence_profile' JSON bulunamadı.")
         
         return answer
 

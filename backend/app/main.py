@@ -10,6 +10,7 @@ from .deps import auth_required
 from groq import Groq
 import os
 from .decision_agent import find_best_job, generate_mentor_suggestion
+from .rag_manager import all_rag
 
 GROQ_API_KEY = os.getenv("GROQ_API_KEY", "")
 
@@ -27,6 +28,20 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+@app.on_event("startup")
+def warmup_rag():
+    global _rag_loaded
+    if not _rag_loaded:
+        try:
+            res = all_rag()
+            # İstersen loglamak istersen:
+            print("🔄 RAG warmup:", res)
+            _rag_loaded = True
+        except Exception as e:
+            # Burada hata alırsan endpoint'ler yine de çalışır;
+            # sadece RAG context’i boş olabilir.
+            print(f"❌ RAG warmup hata: {e}")
 
 @app.get("/")
 def health():

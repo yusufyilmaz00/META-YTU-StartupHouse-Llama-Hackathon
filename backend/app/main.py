@@ -12,7 +12,7 @@ from .deps import auth_required
 from groq import Groq
 import os
 from .decision_agent import find_best_job, generate_mentor_suggestion
-from .rag_manager import all_rag
+from .rag_manager import BASE_DIR, all_rag
 
 GROQ_API_KEY = os.getenv("GROQ_API_KEY", "")
 
@@ -304,3 +304,20 @@ def find_mentor_endpoint(ratios: dict = Body(...)):
     # Son assistant cevabını al
     answer = generate_mentor_suggestion(suggested_job="", metrics=ratios)
     return {"response": answer}
+
+
+@app.get("/current_metrics")
+def get_current_metrics():
+    """
+    Kaydedilmiş intelligence profile JSON'unu döner.
+    """
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    json_file = os.path.join(BASE_DIR, "dataset", "current_metrics.json")
+    
+    if not os.path.exists(json_file):
+        raise HTTPException(status_code=404, detail="Güncel metrikler bulunamadı")
+
+    with open(json_file, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    return data

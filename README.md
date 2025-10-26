@@ -39,7 +39,7 @@ d. Ham veriler kullanıcıya açılmaz; yalnızca anonim ve toplu grafikler gör
 
 ---
 
-*5. Sohbet Botu — Llama 3.2 3B*  
+*5. Sohbet Botu — Llama 3.2 8B*  
 a. Anketten çıkan baskın 2–3 zeka için kısa, hedefli doğrulama soruları sorar.  
 b. Çelişki varsa kullanıcı açıklamasına göre küçük skor düzeltmesi (+/−) uygulanır.  
 

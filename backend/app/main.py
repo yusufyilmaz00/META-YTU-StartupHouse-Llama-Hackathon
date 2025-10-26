@@ -259,4 +259,3 @@ def find_mentor_endpoint(ratios: str = Body(..., embed=True)):
     # Son assistant cevabını al
     answer = generate_mentor_suggestion(suggested_job="", metrics=ratios)
     return {"response": answer}
-

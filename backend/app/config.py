@@ -9,9 +9,9 @@ from typing import Any
 load_dotenv() 
 
 # --- LLM VE OLLAMA KONFİGÜRASYONU ---
-OLLAMA_URL = os.getenv("OLLAMA_URL", "http://35.195.226.151:11434/api/generate")
+OLLAMA_URL = os.getenv("OLLAMA_URL", "http://35.195.226.151:11434")
 LLM_MODEL = os.getenv("LLM_MODEL", "llama3.2:3b")
-OLLAMA_EMBEDDING_MODEL = os.getenv("EMBED_MODEL", "http://35.195.226.151:11434/api/embeddings")
+OLLAMA_EMBEDDING_MODEL = os.getenv("EMBED_MODEL", "nomic-embed-text")
 
 # LLM Nesneleri (Sıcaklık ayarları ile farklı roller için)
 LLM_TEMP_LOW = ChatOllama(model=LLM_MODEL, temperature=0.1, format="json", base_url=OLLAMA_URL) # JSON/Analiz/Router için

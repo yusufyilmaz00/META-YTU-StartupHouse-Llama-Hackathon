@@ -11,8 +11,11 @@ object Routes {
     const val TEST = "TRAIT TEST"
     const val TEST_RESULTS = "TRAIT TEST RESULTS"
     const val TEST_GRAPH = "Test_graph"
-    const val INTEREST_SELECTION = "InterestSelection"
     const val SPLASH = "Splash"
+    const val AUTH_GRAPH = "auth_graph"
+    const val MAIN_GRAPH = "main_graph"
+    const val ONBOARDING_GRAPH = "onboarding_graph"
+    const val INTEREST_SELECTION = "InterestSelection"
 
 
     // Additional

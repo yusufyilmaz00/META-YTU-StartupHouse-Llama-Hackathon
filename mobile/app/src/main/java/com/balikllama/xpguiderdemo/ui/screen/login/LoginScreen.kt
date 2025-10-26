@@ -10,7 +10,8 @@ import com.balikllama.xpguiderdemo.ui.navigation.Routes
 @Composable
 fun LoginScreen(
     navController: NavController,
-    viewModel: LoginViewModel = hiltViewModel()
+    viewModel: LoginViewModel = hiltViewModel(),
+    onNavigateToRegister: () -> Unit
 ) {
     // ViewModel'den UI state'ini al
     val uiState by viewModel.uiState.collectAsState()
@@ -20,8 +21,7 @@ fun LoginScreen(
         if (uiState.loginSuccess) {
             // Splash'e yönlendirerek doğru akışın (ilgi alanı veya home) seçilmesini sağla
             navController.navigate(Routes.SPLASH) {
-                popUpTo(navController.graph.startDestinationId) { inclusive = true }
-            }
+                popUpTo(Routes.LOGIN) { inclusive = true }            }
         }
     }
 
@@ -31,8 +31,6 @@ fun LoginScreen(
         onEmailChanged = viewModel::onEmailChange,
         onPasswordChanged = viewModel::onPasswordChange,
         onLoginClicked = viewModel::login,
-        onNavigateToRegister = {
-            navController.navigate(Routes.REGISTER)
-        }
+        onNavigateToRegister = onNavigateToRegister
     )
 }

@@ -6,12 +6,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
+import androidx.navigation.compose.rememberNavController
+import com.balikllama.xpguiderdemo.repository.UserPreferencesRepository
 import com.balikllama.xpguiderdemo.ui.screen.calculationtest.CalculationTestScreen
 import com.balikllama.xpguiderdemo.ui.screen.dbtest.DBTestScreen
 import com.balikllama.xpguiderdemo.ui.screen.chatbot.ChatbotScreen
@@ -25,37 +28,43 @@ import com.balikllama.xpguiderdemo.ui.screen.test.TestScreen
 import com.balikllama.xpguiderdemo.ui.screen.test.TestViewModel
 import com.balikllama.xpguiderdemo.ui.screen.testresults.TestResultScreen
 import com.balikllama.xpguiderdemo.viewmodel.CreditViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
+
+
+@HiltViewModel
+class OnboardingViewModel @Inject constructor(
+    private val userPreferencesRepository: UserPreferencesRepository
+) : ViewModel() {
+    fun isInterestSelectionCompleted(): Boolean {
+        return userPreferencesRepository.isInterestSelectionCompleted()
+    }
+}
 
 @Composable
-fun AppNavGraph(navController: NavHostController,
-                modifier: Modifier,
-                windowSizeClass: WindowSizeClass,
-                creditViewModel: CreditViewModel) {
-
+fun AppNavGraph(
+    navController: NavHostController,
+    modifier: Modifier,
+    windowSizeClass: WindowSizeClass,
+    creditViewModel: CreditViewModel
+) {
     NavHost(
-        navController = navController as NavHostController,
-        startDestination = Routes.REGISTER
+        navController = navController,
+        // Uygulamanın başlangıç ekranı olarak RegisterScreen'i ayarlıyoruz.
+        startDestination = Routes.REGISTER,
+        modifier = modifier
     ) {
-
-        composable(Routes.SPLASH) {
-            SplashScreen(navController = navController)        }
-
-        composable(Routes.LOGIN) {
-            // LoginScreen artık kendi ViewModel'i üzerinden yönlendirmeyi yönetiyor.
-            LoginScreen(navController = navController)
-        }
-
-
+        // KAYIT EKRANI
         composable(Routes.REGISTER) {
             RegisterScreen(
                 onRegisterSuccess = {
-                    // Kayıt başarılı olunca Login ekranına git.
+                    // Kayıt başarılı olunca Login'e git ve Register'ı yığından temizle.
                     navController.navigate(Routes.LOGIN) {
                         popUpTo(Routes.REGISTER) { inclusive = true }
                     }
                 },
                 onNavigateToLogin = {
-                    // "Giriş Yap" butonuna basınca da Login ekranına git.
+                    // "Giriş Yap" butonuna basınca da Login'e git ve Register'ı yığından temizle.
                     navController.navigate(Routes.LOGIN) {
                         popUpTo(Routes.REGISTER) { inclusive = true }
                     }
@@ -63,11 +72,33 @@ fun AppNavGraph(navController: NavHostController,
             )
         }
 
+        // GİRİŞ EKRANI
+        composable(Routes.LOGIN) {
+            // LoginScreen zaten başarılı girişte Splash'e yönlendirme yapıyor.
+            // Bu en doğru akış çünkü Splash, ilgi alanı seçimi gerekip gerekmediğini kontrol ediyor.
+            LoginScreen(
+                navController = navController,
+                onNavigateToRegister = {
+                    // Kullanıcı "Kayıt Ol"a basarsa Register'a geri dönsün.
+                    navController.navigate(Routes.REGISTER) {
+                        popUpTo(Routes.LOGIN) { inclusive = true }
+                    }
+                }
+            )
+        }
+
+        // SPLASH EKRANI (Yönlendirme merkezi)
+        composable(Routes.SPLASH) {
+            SplashScreen(navController = navController)
+        }
+
+        // İLGİ ALANI SEÇİM EKRANI
         composable(Routes.INTEREST_SELECTION) {
             InterestSelectionScreen(navController = navController)
         }
+
         // ============================================
-        // MAIN SCREENS
+        // ANA EKRANLAR (Giriş yapıldıktan sonra)
         // ============================================
         composable(route = Routes.HOME) {
             HomeScreen(
@@ -93,17 +124,17 @@ fun AppNavGraph(navController: NavHostController,
             )
         }
 
+        // Test ile ilgili ekranları içeren alt graf
         testGraph(navController, modifier)
+
         // ============================================
-        // FUTURE SCREENS
+        // DİĞER EKRANLAR
         // ============================================
-        // Kredi satın alma ekranı
         composable(route = Routes.PURCHASE) {
             // TODO: PurchaseScreen eklenecek
         }
 
-        // Test ekranı (kredi harcayacak)
-        composable(route = Routes.DATABASE_TEST) { //
+        composable(route = Routes.DATABASE_TEST) {
             DBTestScreen(
                 modifier = modifier.fillMaxSize()
             )
@@ -112,16 +143,11 @@ fun AppNavGraph(navController: NavHostController,
 }
 
 private fun NavGraphBuilder.testGraph(navController: NavController, modifier: Modifier) {
-    // Yeni bir navigasyon grafiği oluşturuyoruz.
-    // Başlangıç noktası TEST ekranı, rota adı ise TEST_GRAPH olacak.
     navigation(
         startDestination = Routes.TEST,
         route = Routes.TEST_GRAPH
     ) {
-        // Bu grafik içindeki ekranlar
         composable(route = Routes.TEST) { backStackEntry ->
-            // hiltViewModel() fonksiyonuna, ViewModel'in hangi üst rotaya
-            // bağlanacağını söylüyoruz.
             val parentEntry = remember(backStackEntry) { navController.getBackStackEntry(Routes.TEST_GRAPH) }
             val testViewModel: TestViewModel = hiltViewModel(parentEntry)
 
@@ -150,7 +176,7 @@ private fun NavGraphBuilder.testGraph(navController: NavController, modifier: Mo
             CalculationTestScreen(
                 modifier = modifier,
                 navController = navController,
-                sharedTestViewModel = testViewModel // Paylaşılan ViewModel'i veriyoruz
+                sharedTestViewModel = testViewModel
             )
         }
     }

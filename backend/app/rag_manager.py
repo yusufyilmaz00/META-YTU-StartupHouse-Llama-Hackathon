@@ -10,6 +10,7 @@ from .config import TEXT_SPLITTER, COLLECTION_JOBS, COLLECTION_MENTORS
 # JSON Yükleme
 # ---------------------------------------------------------------------
 JOBS_PATH = os.path.join("dataset", "jobs.json")
+print("JOB PATH:", JOBS_PATH)
 MENTORS_PATH = os.path.join("dataset", "mentors.json")
 
 def load_json_data(file_path: str):

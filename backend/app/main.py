@@ -247,16 +247,16 @@ def job_recommendation_endpoint(ratios: dict = Body(...)):
     Önceki sohbeti prompta ekleyerek daha bağlamsal öneri üretir.
     """
     # Son assistant cevabını al
-    answer = find_best_job(ratios={})
+    answer = find_best_job(metrics=ratios)
     return {"response": answer}
 
 
 @app.post("/findmentor")
-def find_mentor_endpoint(user_input: str = Body(..., embed=True)):
+def find_mentor_endpoint(ratios: str = Body(..., embed=True)):
     """
     Kullanıcıdan gelen mentor önerisi isteklerini işler.
     """
     # Son assistant cevabını al
-    answer = generate_mentor_suggestion(suggested_job="", metrics={})
+    answer = generate_mentor_suggestion(suggested_job="", metrics=ratios)
     return {"response": answer}
 

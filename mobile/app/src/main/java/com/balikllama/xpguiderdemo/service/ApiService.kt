@@ -5,6 +5,8 @@ import com.balikllama.xpguiderdemo.model.auth.LoginRequest
 import com.balikllama.xpguiderdemo.model.auth.LoginResponse
 import com.balikllama.xpguiderdemo.model.auth.RegisterRequest
 import com.balikllama.xpguiderdemo.model.auth.RegisterResponse
+import com.balikllama.xpguiderdemo.model.chat.ChatResponse
+import com.balikllama.xpguiderdemo.model.chatbot.ChatRequest
 import com.google.gson.JsonObject
 import okhttp3.ResponseBody
 import retrofit2.Response
@@ -42,4 +44,9 @@ interface ApiService {
         // FastAPI'nin beklediği Map<String, Any> formatına güncelleyelim.
         @Body requestBody: Map<String, @JvmSuppressWildcards Any>
     ): Response<JsonObject>
+
+    @POST("chat")
+    suspend fun postChatMessage(
+        @Body request: ChatRequest
+    ): ChatResponse
 }

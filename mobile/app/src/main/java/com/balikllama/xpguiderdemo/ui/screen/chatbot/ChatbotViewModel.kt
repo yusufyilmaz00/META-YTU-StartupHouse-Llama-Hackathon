@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.balikllama.xpguiderdemo.model.chat.Message
 import com.balikllama.xpguiderdemo.model.chat.MessageAuthor
+import com.balikllama.xpguiderdemo.repository.ApiResult
 import com.balikllama.xpguiderdemo.repository.ChatbotRepository
 import com.balikllama.xpguiderdemo.repository.CreditRepository
 import com.balikllama.xpguiderdemo.repository.TestResultRepository
@@ -73,23 +74,27 @@ class ChatbotViewModel @Inject constructor(
     // Kullanıcı gönder butonuna bastığında çağrılır
     fun onSendMessage() {
         val messageText = _uiState.value.currentInput.trim()
-        if (messageText.isBlank()) return
+        if (messageText.isBlank() || _uiState.value.isAiTyping) return
 
         // 1. Kullanıcının mesajını listeye ekle ve input'u temizle
         addMessage(messageText, MessageAuthor.USER)
-        _uiState.update { it.copy(currentInput = "") }
+        _uiState.update { it.copy(currentInput = "", isAiTyping = true) } // AI yazıyor durumunu başlat
 
-        // 2. AI'nın cevap vermesi için sahte bir bekleme ve cevap süreci başlat
+        // 2. API'ye gerçek istek at
         viewModelScope.launch {
-            // "Yazıyor..." animasyonu için durumu güncelle
-            _uiState.update { it.copy(isAiTyping = true) }
-            delay(timeMillis = 1500) // 1.5 saniye bekle
-
-            // Sahte bir cevap oluştur ve listeye ekle
-            val aiResponse = "Bu harika bir soru! '$messageText' konusunu senin için araştırıyorum."
-            addMessage(aiResponse, MessageAuthor.AI)
-
-            // "Yazıyor..." animasyonunu kaldır
+            when (val result = chatbotRepository.sendMessage(messageText)) {
+                is ApiResult.Success -> {
+                    // 3a. Başarılı olursa, AI'nın cevabını listeye ekle
+                    addMessage(result.data, MessageAuthor.AI)
+                }
+                is ApiResult.Error -> {
+                    // 3b. Hata olursa, hata mesajını listeye ekle
+                    val errorMessage = result.message ?: "Bilinmeyen bir hata oluştu."
+                    addMessage(errorMessage, MessageAuthor.AI)
+                    // Hata durumunda da AI'nın yazma işlemi biter.
+                }
+            }
+            // 4. İşlem bitince "yazıyor" durumunu kapat
             _uiState.update { it.copy(isAiTyping = false) }
         }
     }

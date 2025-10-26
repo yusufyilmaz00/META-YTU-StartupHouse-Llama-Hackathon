@@ -19,4 +19,11 @@ interface ChatbotRepository {
      * Mesaj kullanıldıktan sonra hafızadan temizler.
      */
     fun clearInitialAnalysisMessage()
+
+    /**
+     * Kullanıcının metin mesajını API'ye gönderir ve AI'dan yanıt alır.
+     * @param message Gönderilecek metin.
+     * @return Başarılı ise [ApiResult.Success] içinde AI'nın cevabını [String] olarak döner.
+     */
+    suspend fun sendMessage(message: String): ApiResult<String>
 }

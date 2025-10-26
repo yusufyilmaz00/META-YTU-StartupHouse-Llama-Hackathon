@@ -1,6 +1,7 @@
 package com.balikllama.xpguiderdemo.repository
 
 import android.util.Log
+import com.balikllama.xpguiderdemo.model.chatbot.ChatRequest
 import com.balikllama.xpguiderdemo.service.ApiService
 import com.google.gson.JsonObject
 import kotlinx.coroutines.Dispatchers
@@ -65,5 +66,23 @@ class ChatbotRepositoryImpl @Inject constructor(
 
     override fun clearInitialAnalysisMessage() {
         initialMessage = null
+    }
+
+    override suspend fun sendMessage(message: String): ApiResult<String> {
+        return withContext(Dispatchers.IO) {
+            try {
+                // 1. İsteği oluştur
+                val request = ChatRequest(userInput = message)
+                // 2. ApiService üzerinden endpoint'i çağır
+                val response = apiService.postChatMessage(request)
+                // 3. Başarılı yanıtı sarmala ve döndür
+                Log.d("ChatbotRepository", "Mesaj başarıyla gönderildi, AI yanıtı: ${response.response}")
+                ApiResult.Success(response.response)
+            } catch (e: Exception) {
+                // 4. Hata durumunda hatayı logla ve sarmala
+                Log.e("ChatbotRepository", "sendMessage Hata: ${e.message}", e)
+                ApiResult.Error("Mesaj gönderilirken bir hata oluştu.")
+            }
+        }
     }
 }

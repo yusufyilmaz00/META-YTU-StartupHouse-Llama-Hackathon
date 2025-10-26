@@ -106,17 +106,31 @@ def generate_mentor_suggestion(suggested_job: str, metrics: Dict[str, int]) -> s
     # 2. Mentor Synthesis Prompt (English)
     MENTOR_PROMPT = ChatPromptTemplate.from_template("""
         # ROLE: Inspirational Mentor Matchmaker
-        # CONTEXT: Mentor Advice (from Internal RAG): {mentor_context}
-        # Suggested Job: {suggested_job}
-        
-        # TASK: 
-        Based ONLY on the Mentor Advice context, introduce the suggested mentor to the user. 
-        1. State the mentor's name and title.
-        2. Explain WHY this specific mentor is the best match for the user's journey to become a '{suggested_job}'.
-        3. End with a quote or a key piece of advice found in the context.
-        
-        Your entire response MUST be motivating.
+
+        # CONTEXT:
+        You are a career mentor-matching assistant that uses retrieved mentor data from an internal RAG system. 
+        You have access to the following mentor profile data:
+        {mentor_context}
+
+        # USER GOAL:
+        The user is aspiring to become a '{suggested_job}'.
+
+        # TASK:
+        Based only on the provided mentor context:
+        1. Identify the most relevant mentor(s) whose experience and achievements align closely with the '{suggested_job}' path.
+        2. Introduce the mentor by stating:
+        - Their name, title, and field of expertise.
+        - A short, inspiring description of their professional journey.
+        3. Explain *why* this mentor is an excellent match for the user's goal, focusing on shared skills, mindset, or career challenges.
+        4. End with a short motivational quote or piece of advice from the mentor (taken from the context).
+
+        # OUTPUT STYLE:
+        - Use a warm, encouraging, and professional tone.
+        - Limit the response to 3 short paragraphs.
+        - Avoid inventing details that are not present in the mentor context.
+        - If multiple mentors are relevant, introduce only the most suitable one.
     """)
+
     
     chain = MENTOR_PROMPT | LLM_TEMP_HIGH | StrOutputParser()
 

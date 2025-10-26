@@ -13,8 +13,8 @@ from .config import TEXT_SPLITTER, COLLECTION_JOBS, COLLECTION_MENTORS
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # Dataset dosyalarının global path'i
-JOBS_PATH = os.path.join(BASE_DIR, "..", "dataset", "jobs.json")
-MENTORS_PATH = os.path.join(BASE_DIR, "..", "dataset", "mentors.json")
+JOBS_PATH = os.path.join(BASE_DIR, "dataset", "jobs.json")
+MENTORS_PATH = os.path.join(BASE_DIR, "dataset", "mentors.json")
 
 print("JOBS_PATH:", JOBS_PATH)
 print("MENTORS_PATH:", MENTORS_PATH)

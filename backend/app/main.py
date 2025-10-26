@@ -9,7 +9,7 @@ from .supa import get_supabase
 from .deps import auth_required
 from groq import Groq
 import os
-from decision_agent import find_best_job, generate_mentor_suggestion
+from .decision_agent import find_best_job, generate_mentor_suggestion
 
 GROQ_API_KEY = os.getenv("GROQ_API_KEY", "")
 

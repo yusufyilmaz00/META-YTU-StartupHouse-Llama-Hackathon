@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
@@ -66,12 +67,12 @@ fun ChatbotView(
         Scaffold(
             modifier = modifier.fillMaxSize(),
             topBar = { AppTopBar(title = "Carrier Assistan AI", creditInfo = uiState.credit.toString()) },            // Sistem çubuklarının (örn: klavye) içeriği sıkıştırmasını yönet
-            contentWindowInsets = WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal)
         ) { innerPadding ->
             Column(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(innerPadding)
+                    .imePadding()
             ) {
                 // Mesajların listelendiği alan
                 LazyColumn(

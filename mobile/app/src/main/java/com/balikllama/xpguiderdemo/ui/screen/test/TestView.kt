@@ -65,7 +65,6 @@ fun TestView(
         Column(
             modifier = modifier
                 .fillMaxSize()
-                .padding(WindowInsets.safeDrawing.asPaddingValues())
                 .padding(innerPadding)
                 .padding(horizontal = Spacing.M),
             horizontalAlignment = Alignment.CenterHorizontally

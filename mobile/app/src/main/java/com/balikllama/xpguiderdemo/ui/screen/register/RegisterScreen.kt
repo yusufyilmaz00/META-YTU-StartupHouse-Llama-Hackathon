@@ -33,6 +33,7 @@ fun RegisterScreen(
 
     RegisterView(
         uiState = uiState,
+        onNameChanged = viewModel::onNameChanged,
         onEmailChanged = viewModel::onEmailChanged,
         onPasswordChanged = viewModel::onPasswordChanged,
         onConfirmPasswordChanged = viewModel::onConfirmPasswordChanged,

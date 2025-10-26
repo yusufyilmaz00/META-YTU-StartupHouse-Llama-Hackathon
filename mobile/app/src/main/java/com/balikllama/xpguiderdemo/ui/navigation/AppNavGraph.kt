@@ -34,7 +34,7 @@ fun AppNavGraph(navController: NavHostController,
 
     NavHost(
         navController = navController as NavHostController,
-        startDestination = Routes.SPLASH
+        startDestination = Routes.REGISTER
     ) {
 
         composable(Routes.SPLASH) {
@@ -49,11 +49,13 @@ fun AppNavGraph(navController: NavHostController,
         composable(Routes.REGISTER) {
             RegisterScreen(
                 onRegisterSuccess = {
+                    // Kayıt başarılı olunca Login ekranına git.
                     navController.navigate(Routes.LOGIN) {
                         popUpTo(Routes.REGISTER) { inclusive = true }
                     }
                 },
                 onNavigateToLogin = {
+                    // "Giriş Yap" butonuna basınca da Login ekranına git.
                     navController.navigate(Routes.LOGIN) {
                         popUpTo(Routes.REGISTER) { inclusive = true }
                     }

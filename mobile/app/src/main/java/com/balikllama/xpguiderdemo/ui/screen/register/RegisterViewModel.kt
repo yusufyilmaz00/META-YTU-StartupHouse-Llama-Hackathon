@@ -5,6 +5,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.balikllama.xpguiderdemo.model.auth.RegisterRequest
 import com.balikllama.xpguiderdemo.repository.AuthRepository
+import com.balikllama.xpguiderdemo.model.auth.Metadata
+import com.balikllama.xpguiderdemo.repository.ApiResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -21,6 +23,10 @@ class RegisterViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(RegisterUiState())
     val uiState = _uiState.asStateFlow()
 
+    fun onNameChanged(name: String) {
+        _uiState.update { it.copy(name = name) }
+    }
+
     fun onEmailChanged(email: String) {
         _uiState.update { it.copy(email = email) }
     }
@@ -36,13 +42,17 @@ class RegisterViewModel @Inject constructor(
     fun onRegisterClicked() {
         if (_uiState.value.isLoading) return
 
+        val currentState = _uiState.value
         // Basit validasyon
-        if (_uiState.value.password != _uiState.value.confirmPassword) {
+        if (currentState.name.isBlank() || currentState.email.isBlank() || currentState.password.isBlank()) {
+            _uiState.update { it.copy(errorMessage = "Tüm alanlar doldurulmalıdır.") }
+            return
+        }
+        if (currentState.password != currentState.confirmPassword) {
             _uiState.update { it.copy(errorMessage = "Şifreler uyuşmuyor") }
             return
         }
-
-        if (_uiState.value.password.length < 6) {
+        if (currentState.password.length < 6) {
             _uiState.update { it.copy(errorMessage = "Şifre en az 6 karakter olmalı") }
             return
         }
@@ -50,32 +60,30 @@ class RegisterViewModel @Inject constructor(
         _uiState.update { it.copy(isLoading = true, errorMessage = null) }
 
         viewModelScope.launch {
-            try {
-                val request = RegisterRequest(
-                    email = _uiState.value.email,
-                    password = _uiState.value.password
-                )
-                val response = authRepository.register(request)
+            val request = RegisterRequest(
+                email = currentState.email.trim(),
+                password = currentState.password,
+                metadata = Metadata(name = currentState.name.trim())
+            )
 
-                // BAŞARILI!
-                _uiState.update {
-                    it.copy(isLoading = false, registerSuccess = true)
+            // AuthRepository'nin ApiResult döndürdüğünü varsayarak
+            when (val result = authRepository.register(request)) {
+                is ApiResult.Success -> {
+                    // BAŞARILI!
+                    _uiState.update {
+                        it.copy(isLoading = false, registerSuccess = true)
+                    }
                 }
-
-            } catch (e: HttpException) {
-                // API'den gelen 400 (örn: "User already registered") hatası
-                val errorBody = e.response()?.errorBody()?.string()
-                _uiState.update {
-                    it.copy(isLoading = false, errorMessage = errorBody ?: "Kayıt hatası")
-                }
-            } catch (e: Exception) {
-                // İnternet yok, vs.
-                _uiState.update {
-                    it.copy(isLoading = false, errorMessage = e.message ?: "Bilinmeyen hata")
+                is ApiResult.Error -> {
+                    // BAŞARISIZ!
+                    _uiState.update {
+                        it.copy(isLoading = false, errorMessage = result.message)
+                    }
                 }
             }
         }
     }
+
 
     // UI'ın hatayı bir kez gösterdikten sonra temizlemesi için
     fun onErrorShown() {

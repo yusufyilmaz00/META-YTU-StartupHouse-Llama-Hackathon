@@ -43,9 +43,9 @@ object NetworkModule {
         return OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
             // YENİ EKLENEN ZAMAN AŞIMLARI
-            .connectTimeout(30, TimeUnit.SECONDS) // Sunucuya bağlanma zaman aşımı
-            .readTimeout(30, TimeUnit.SECONDS)    // Sunucudan veri okuma zaman aşımı
-            .writeTimeout(30, TimeUnit.SECONDS)   // Sunucuya veri yazma zaman aşımı
+            .connectTimeout(60, TimeUnit.SECONDS) // Sunucuya bağlanma zaman aşımı
+            .readTimeout(120, TimeUnit.SECONDS)    // Sunucudan veri okuma zaman aşımı
+            .writeTimeout(60, TimeUnit.SECONDS)   // Sunucuya veri yazma zaman aşımı
             .retryOnConnectionFailure(true)     // Bağlantı hatası durumunda yeniden denemeyi etkinleştir
             .build()
     }

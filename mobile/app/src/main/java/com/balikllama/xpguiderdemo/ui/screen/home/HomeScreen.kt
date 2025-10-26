@@ -23,13 +23,6 @@ fun HomeScreen(
     // HomeView'a state'i ve event lambda'larını iletiyoruz
     HomeView(
         modifier = modifier,
-        windowSizeClass = windowSizeClass,
-        uiState = uiState,
-        onAddCredit = { viewModel.addCredit(5) },
-        onDecreaseCredit = { viewModel.decreaseCredit(10)},
-        onNavigateToDbTest = { navController.navigate( Routes.DATABASE_TEST) },
-        onResetDatabase = { dbTestViewModel.resetDatabase()},
-        onNavigateToTest = { navController.navigate(Routes.TEST_GRAPH) },
-        onNavigateToCalculationTest = {navController.navigate(Routes.CALCULATION_TEST)}
+        onNavigateToTest = { navController.navigate(Routes.TEST_GRAPH) }
     )
 }

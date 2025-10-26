@@ -9,5 +9,5 @@ data class ProfileUIState(
     val isLoading: Boolean = true,
     val userDetails: List<UserInfo> = emptyList(),
     val pastActivities: List<ActivityItem> = emptyList(),
-    val userEmail: String = "Yükleniyor..."
+    val userEmail: String = "Loading..."
 )

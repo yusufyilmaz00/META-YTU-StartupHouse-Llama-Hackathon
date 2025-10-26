@@ -14,7 +14,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.balikllama.xpguiderdemo.ui.components.AppTopBar
 import com.balikllama.xpguiderdemo.ui.designsystem.AppTheme
@@ -50,7 +49,7 @@ fun ProfileView(
                         Spacer(modifier = Modifier.height(Spacing.L))
                         Icon(
                             imageVector = Icons.Default.Person,
-                            contentDescription = "Profil İkonu",
+                            contentDescription = "Profile Icon",
                             modifier = Modifier
                                 .size(100.dp)
                                 .clip(CircleShape)
@@ -68,7 +67,7 @@ fun ProfileView(
 
                     item {
                         Text(
-                            text = "Geçmiş Aktiviteler",
+                            text = "Past Activities",
                             style = MaterialTheme.typography.titleLarge,
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -136,7 +135,7 @@ private fun PastActivityItem(activity: ActivityItem) {
         ) {
             Icon(
                 imageVector = Icons.Default.History,
-                contentDescription = "Geçmiş Aktivite İkonu",
+                contentDescription = "Past Activity Icon",
                 tint = MaterialTheme.colorScheme.primary
             )
             Spacer(modifier = Modifier.width(Spacing.M))
@@ -147,23 +146,4 @@ private fun PastActivityItem(activity: ActivityItem) {
             )
         }
     }
-}
-
-
-@Preview(showBackground = true, name = "Profile Screen Preview")
-@Composable
-fun ProfileViewPreview() {
-    // Önizleme için artık sahte bir UIState oluşturuyoruz.
-    ProfileView(
-        uiState = ProfileUIState(
-            isLoading = false,
-            userDetails = listOf(
-                UserInfo("Username", "Test User"),
-                UserInfo("E-main", "tester99@gmail.com")
-            ),
-            pastActivities = listOf(
-                ActivityItem("1", "Kişilik Testini Tamamladın")
-            )
-        )
-    )
 }

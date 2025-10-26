@@ -1,14 +1,22 @@
 package com.balikllama.xpguiderdemo.ui.screen.home
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowForward
+import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -17,109 +25,68 @@ import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.balikllama.xpguiderdemo.Greeting
 import com.balikllama.xpguiderdemo.ui.components.AppTopBar
 import com.balikllama.xpguiderdemo.ui.designsystem.AppTheme
+import com.balikllama.xpguiderdemo.ui.designsystem.Spacing
 import com.balikllama.xpguiderdemo.ui.navigation.Routes
 import com.balikllama.xpguiderdemo.ui.theme.B1demoTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeView(
-    modifier: Modifier = Modifier,
-    windowSizeClass: WindowSizeClass,
-    uiState: HomeUIState, // ViewModel yerine UIState alıyor
-    onAddCredit: () -> Unit, // Kredi ekleme eylemi
-    onDecreaseCredit: () -> Unit, // Kredi azaltma eylemi
-    onNavigateToDbTest: () -> Unit,
-    onResetDatabase: () -> Unit,
-    onNavigateToTest: () -> Unit,
-    onNavigateToCalculationTest: () -> Unit
+    onNavigateToTest: () -> Unit, // Teste gitmek için tek bir event alacak
+    modifier: Modifier = Modifier
 ) {
-    AppTheme {
-        Scaffold(
-            modifier = Modifier.fillMaxSize(),
-            topBar = {
-                AppTopBar(
-                    title = "Home",
-                    creditInfo = uiState.credit.toString()
-                )
-            }
-        ) { innerPadding ->
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .padding(Spacing.M), // Sayfanın geneline bir boşluk verelim
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Top // İçeriği yukarıdan başlat
+    ) {
+        Card(
+            modifier = Modifier
+                .fillMaxWidth() // Genişliği tam ekran yap
+                // Yüksekliği ekranın yaklaşık %20-25'i gibi ayarla
+                .height(180.dp)
+                // Kartın tıklanabilir olmasını sağla
+                .clickable(onClick = onNavigateToTest),
+            elevation = CardDefaults.cardElevation(defaultElevation = Spacing.S),
+            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
+        ) {
             Column(
-                modifier = modifier
+                modifier = Modifier
                     .fillMaxSize()
-                    .padding(innerPadding), // innerPadding'i Column'a uyguluyoruz
+                    .padding(Spacing.L),
+                // Kartın içindeki içeriği dikeyde ve yatayda ortala
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Greeting(
-                    name = "HOME PAGE",
+                Text(
+                    text = "Kariyer Yolculuğunu Keşfet",
+                    style = MaterialTheme.typography.headlineSmall,
+                    textAlign = TextAlign.Center
                 )
-
-                Text("Kredi Test Butonları")
-
-                Spacer(modifier = Modifier.height(16.dp))
-
-                Button(onClick = onAddCredit) {
-                    Text("5 Kredi Ekle")
-                }
-
-                Spacer(modifier = Modifier.height(8.dp))
-
-                Button(onClick = onDecreaseCredit) {
-                    Text("10 Kredi Azalt")
-                }
-
-                Spacer(modifier = Modifier.height(16.dp))
-
-                Button(onClick = onNavigateToDbTest) { // YENİ BUTON
-                    Text("DB İçeriğini Göster")
-                }
-
-                Spacer(modifier = Modifier.height(8.dp)) // <-- YENİ
-
-                Button(onClick = onResetDatabase) { // <-- YENİ BUTON
-                    Text("DB'yi Sıfırla")
-                }
-
-                Button(onClick = onNavigateToTest) {
-                    Text("Teste Başla")
-                }
-
-                Spacer(modifier = Modifier.height(16.dp))
-
-                Button(
-                    onClick = { onNavigateToCalculationTest() },
-                    colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondary) // Farklı renk
-                ) {
-                    Text("Hesaplama Testini Çalıştır")
-
-                }
+                Spacer(modifier = Modifier.height(Spacing.S))
+                Text(
+                    text = "Kişilik testini çözerek potansiyelini ortaya çıkar.",
+                    style = MaterialTheme.typography.bodyMedium,
+                    textAlign = TextAlign.Center,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+                Spacer(modifier = Modifier.height(Spacing.M))
+                Icon(
+                    imageVector = Icons.Default.ArrowForward,
+                    contentDescription = "Teste Git"
+                )
             }
         }
-    }
-}
 
-@Preview(showBackground = true)
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3WindowSizeClassApi::class)
-@Composable
-fun HomeViewPreview() {
-    HomeView(
-        uiState = HomeUIState(credit = 150),
-        onAddCredit = {},
-        onDecreaseCredit = {},
-        windowSizeClass = WindowSizeClass.calculateFromSize(
-            androidx.compose.ui.unit.DpSize(
-                412.dp,
-                891.dp
-            )
-        ),
-        onNavigateToDbTest = {},
-        onResetDatabase = {},
-        onNavigateToTest = {},
-        onNavigateToCalculationTest = {}
-    )
+        // ESKİ BUTONLAR KALDIRILDI
+    }
 }

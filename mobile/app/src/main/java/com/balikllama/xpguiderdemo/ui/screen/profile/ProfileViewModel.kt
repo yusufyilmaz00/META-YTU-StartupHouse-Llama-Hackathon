@@ -49,12 +49,12 @@ class ProfileViewModel @Inject constructor(
 
             // Sahte verileri oluştururken gerçek e-postayı kullan
             val userDetails = listOf(
-                UserInfo("Username", "Jhon Dere"), // Bu bilgi de ileride API'den gelebilir
+                UserInfo("Username", "Yusuf Yılmaz"), // Bu bilgi de ileride API'den gelebilir
                 // "jhond@gmail.com" yerine SharedPreferences'ten gelen 'userEmail' değişkenini kullan.
                 UserInfo("E-mail", userEmail),
-                UserInfo("Education", "High School"),
-                UserInfo("Age", "16"),
-                UserInfo("Nationality", "American")
+                UserInfo("Education", "University"),
+                UserInfo("Age", "22"),
+                UserInfo("Nationality", "Turkish")
             )
             // Geçmiş aktiviteler sahte olarak kalabilir.
             val pastActivities = listOf(

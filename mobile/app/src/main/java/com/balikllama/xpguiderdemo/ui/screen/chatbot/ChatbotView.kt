@@ -72,7 +72,6 @@ fun ChatbotView(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(innerPadding)
-                    .imePadding()
             ) {
                 // Mesajların listelendiği alan
                 LazyColumn(

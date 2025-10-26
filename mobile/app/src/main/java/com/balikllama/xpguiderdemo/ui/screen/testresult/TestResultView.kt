@@ -105,7 +105,7 @@ private fun ScoreItem(rank: Int, result: ScoreResult) {
 
     // Skoru 0-1 arasına normalize ederek progress bar için uygun hale getirelim (geçici bir varsayım)
     // En yüksek skorun 50 olduğunu varsayalım.
-    val maxScore = 50f
+    val maxScore = 100f
     val normalizedScore = (result.score / maxScore).coerceIn(0f, 1f)
 
     // Değeri animasyonlu olarak değiştir
@@ -147,20 +147,4 @@ private fun ScoreItem(rank: Int, result: ScoreResult) {
             )
         }
     }
-}
-
-
-@Preview(showBackground = true)
-@Composable
-private fun TestResultsViewPreview() {
-    TestResultView(
-        results = listOf(
-            ScoreResult("A", "Analitik Zeka", 45.5f),
-            ScoreResult("M", "Girişimcilik Zekası", 38.2f),
-            ScoreResult("J", "Fiziksel Zeka", 25.0f),
-            ScoreResult("C", "Duygusal Zeka", 15.8f),
-            ScoreResult("L", "Stratejik Zeka", -5.1f)
-        ),
-        onNavigateHome = {}
-    )
 }

@@ -24,24 +24,25 @@ class TraitRepository @Inject constructor(
     suspend fun insertInitialTraits() {
         if (traitDao.getAllTraits().first().isEmpty()) { // Sadece DB boşsa ekle
             val initialList = listOf(
-                TraitEntity(traitId = "A", traitName = "Analitik Zeka"),
-                TraitEntity(traitId = "B", traitName = "Yaratıcı Zeka"),
-                TraitEntity(traitId = "C", traitName = "Duygusal Zeka"),
-                TraitEntity(traitId = "D", traitName = "Sosyal Zeka"),
-                TraitEntity(traitId = "E", traitName = "Teknik Zeka"),
-                TraitEntity(traitId = "F", traitName = "Estetik Zeka"),
-                TraitEntity(traitId = "G", traitName = "Pratik Zeka"),
-                TraitEntity(traitId = "H", traitName = "Doğal Zeka"),
-                TraitEntity(traitId = "I", traitName = "Bilimsel Zeka"),
-                TraitEntity(traitId = "J", traitName = "Fiziksel Zeka"),
-                TraitEntity(traitId = "K", traitName = "Ruhsal Zeka"),
-                TraitEntity(traitId = "L", traitName = "Stratejik Zeka"),
-                TraitEntity(traitId = "M", traitName = "Girişimcilik Zekası"),
-                TraitEntity(traitId = "N", traitName = "Dilsel Zeka"),
-                TraitEntity(traitId = "O", traitName = "Dijital Zeka"),
-                TraitEntity(traitId = "P", traitName = "İletişimsel Zeka")
-                )
+                TraitEntity(traitId = "A", traitName = "Analytical Intelligence"),
+                TraitEntity(traitId = "B", traitName = "Creative Intelligence"),
+                TraitEntity(traitId = "C", traitName = "Emotional Intelligence"),
+                TraitEntity(traitId = "D", traitName = "Social Intelligence"),
+                TraitEntity(traitId = "E", traitName = "Technical Intelligence"),
+                TraitEntity(traitId = "F", traitName = "Aesthetic Intelligence"),
+                TraitEntity(traitId = "G", traitName = "Practical Intelligence"),
+                TraitEntity(traitId = "H", traitName = "Naturalistic Intelligence"),
+                TraitEntity(traitId = "I", traitName = "Scientific Intelligence"),
+                TraitEntity(traitId = "J", traitName = "Physical Intelligence"),
+                TraitEntity(traitId = "K", traitName = "Spiritual Intelligence"),
+                TraitEntity(traitId = "L", traitName = "Strategic Intelligence"),
+                TraitEntity(traitId = "M", traitName = "Entrepreneurial Intelligence"),
+                TraitEntity(traitId = "N", traitName = "Linguistic Intelligence"),
+                TraitEntity(traitId = "O", traitName = "Digital Intelligence"),
+                TraitEntity(traitId = "P", traitName = "Communicative Intelligence")
+            )
             traitDao.insertAll(initialList)
         }
     }
+
 }

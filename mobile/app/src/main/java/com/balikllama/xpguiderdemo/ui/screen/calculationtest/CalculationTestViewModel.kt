@@ -14,38 +14,35 @@ import kotlinx.coroutines.launch
 import java.util.UUID
 import javax.inject.Inject
 
-// Önceden tanımlanmış test senaryomuz.
-// Soru ID'si -> Cevap
-val PREDEFINED_ANSWERS: Map<String, AnswerType> = mapOf(
-    "Q1" to AnswerType.YES,       // Analitik
-    "Q2" to AnswerType.YES,       // Yaratıcı
-    "Q3" to AnswerType.YES,       // Ruhsal
-    "Q4" to AnswerType.NO,        // Fiziksel (negatif etki)
-    "Q5" to AnswerType.NEUTRAL,   // Dilsel (hafif pozitif etki)
-    "Q6" to AnswerType.YES,       // Pratik
-    "Q7" to AnswerType.YES,       // Doğal
-    "Q8" to AnswerType.YES,       // Dilsel
-    "Q9" to AnswerType.YES,       // Yaratıcı
-    "Q10" to AnswerType.YES,      // Duygusal
-    "Q11" to AnswerType.NO,       // Fiziksel (negatif etki)
-    "Q12" to AnswerType.YES,      // Sosyal
-    "Q13" to AnswerType.YES,      // İletişimsel
-    "Q14" to AnswerType.YES,      // Bilimsel
-    "Q15" to AnswerType.YES,      // Duygusal
-    "Q16" to AnswerType.NEUTRAL,  // Stratejik (hafif pozitif etki)
-    "Q17" to AnswerType.YES,      // Girişimcilik
-    "Q18" to AnswerType.NO,       // Sosyal (negatif etki)
-    "Q19" to AnswerType.YES,      // Dijital
-    "Q20" to AnswerType.YES       // Doğal
-    // Bu listeyi istediğiniz gibi genişletip farklı senaryoları test edebilirsiniz.
-)
+// ---------------------- Yardımcı: String -> List<AnswerType> ----------------------
+private fun parseAnswers(input: String): List<AnswerType> {
+    return input.split(",")
+        .map { it.trim().uppercase() } // " k " -> "K"
+        .map { letter ->
+            when (letter) {
+                "E" -> AnswerType.YES
+                "K" -> AnswerType.NEUTRAL
+                "H" -> AnswerType.NO
+                else -> error("Unknown answer code: $letter")
+            }
+        }
+}
 
+// ---------------------- Varsayılan test string'i ----------------------
+private const val DEFAULT_ANSWER_STRING =
+    "E,H,E,H,E,E,E,E,E,E,E,H,E,E,E,E,E,H,E,K,H,K,E,H,E,E,H,H,H,E,E,K,H,E,H,K,K,E,E,E,E,E,E,H,H,K,E,E"
+
+// Önceden tanımlanmış test senaryomuz (string'ten otomatik üretilir)
+val PREDEFINED_ANSWERS: List<AnswerType> = parseAnswers(DEFAULT_ANSWER_STRING)
+
+// ---------------------- UI State ----------------------
 data class CalculationTestUIState(
     val isLoading: Boolean = true,
     val results: List<ScoreResult> = emptyList(),
     val isCalculationComplete: Boolean = false
 )
 
+// ---------------------- ViewModel ----------------------
 @HiltViewModel
 class CalculationTestViewModel @Inject constructor(
     private val testRepository: TestRepository,
@@ -55,15 +52,31 @@ class CalculationTestViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(CalculationTestUIState())
     val uiState = _uiState.asStateFlow()
 
-    fun runPredefinedTest() {
+    /**
+     * Varsayılan (DEFAULT_ANSWER_STRING) string ile koşar.
+     */
+    fun runPredefinedTest() = runPredefinedTest(null)
+
+    /**
+     * İstersen farklı bir cevap dizisini string olarak verip test çalıştırabilirsin.
+     * Örn: "K,E,H,..." biçiminde.
+     */
+    fun runPredefinedTest(input: String?) {
         viewModelScope.launch {
             _uiState.update { it.copy(isLoading = true, isCalculationComplete = false) }
 
-            // 1. Sahte cevaplar için benzersiz bir test seans ID'si oluştur.
+            val answers: List<AnswerType> = if (input.isNullOrBlank()) {
+                PREDEFINED_ANSWERS
+            } else {
+                parseAnswers(input)
+            }
+
+            // 1) Benzersiz test seansı
             val fakeTestSessionId = "predefined-test-${UUID.randomUUID()}"
 
-            // 2. Önceden tanımlanmış cevapları veritabanına kaydet.
-            PREDEFINED_ANSWERS.forEach { (questionId, answer) ->
+            // 2) Cevapları DB'ye yaz
+            answers.forEachIndexed { index, answer ->
+                val questionId = "Q${index + 1}"
                 testRepository.saveOrUpdateAnswer(
                     testSessionId = fakeTestSessionId,
                     questionId = questionId,
@@ -71,10 +84,10 @@ class CalculationTestViewModel @Inject constructor(
                 )
             }
 
-            // 3. ScoreCalculator'ı bu sahte seans ID'si ile çalıştır.
+            // 3) Skor hesapla
             val calculatedResults = scoreCalculator.calculateScores(fakeTestSessionId)
 
-            // 4. Sonuçları ve hesaplamanın bittiğini UI'a bildir.
+            // 4) UI güncelle
             _uiState.update {
                 it.copy(
                     isLoading = false,

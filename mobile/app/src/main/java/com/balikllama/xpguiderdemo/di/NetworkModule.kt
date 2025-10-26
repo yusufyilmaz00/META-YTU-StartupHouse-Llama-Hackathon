@@ -19,7 +19,7 @@ import javax.inject.Singleton
 object NetworkModule {
 
     // Render backend url
-    private const val BASE_URL = "https://meta-fastapi-backend.onrender.com/"
+    private const val BASE_URL = "https://meta-llm-backend.onrender.com/"
 
     @Provides
     @Singleton

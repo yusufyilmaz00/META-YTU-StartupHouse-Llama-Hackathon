@@ -91,5 +91,6 @@ dependencies {
 
     // Kotlin Coroutines ile Room desteği için
     implementation("androidx.room:room-ktx:$roomVersion")
-
+    // splash screen
+    implementation("androidx.core:core-splashscreen:1.0.1")
 }

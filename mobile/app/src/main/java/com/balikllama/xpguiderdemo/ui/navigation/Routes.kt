@@ -11,6 +11,9 @@ object Routes {
     const val TEST = "TRAIT TEST"
     const val TEST_RESULTS = "TRAIT TEST RESULTS"
     const val TEST_GRAPH = "Test_graph"
+    const val INTEREST_SELECTION = "InterestSelection"
+    const val SPLASH = "Splash"
+
 
     // Additional
     const val PURCHASE = "purchase"  // Kredi satın alma

@@ -16,9 +16,11 @@ import com.balikllama.xpguiderdemo.ui.screen.calculationtest.CalculationTestScre
 import com.balikllama.xpguiderdemo.ui.screen.dbtest.DBTestScreen
 import com.balikllama.xpguiderdemo.ui.screen.chatbot.ChatbotScreen
 import com.balikllama.xpguiderdemo.ui.screen.home.HomeScreen
+import com.balikllama.xpguiderdemo.ui.screen.interestselection.InterestSelectionScreen
 import com.balikllama.xpguiderdemo.ui.screen.login.LoginScreen
 import com.balikllama.xpguiderdemo.ui.screen.profile.ProfileScreen
 import com.balikllama.xpguiderdemo.ui.screen.register.RegisterScreen
+import com.balikllama.xpguiderdemo.ui.screen.splash.SplashScreen
 import com.balikllama.xpguiderdemo.ui.screen.test.TestScreen
 import com.balikllama.xpguiderdemo.ui.screen.test.TestViewModel
 import com.balikllama.xpguiderdemo.ui.screen.testresults.TestResultScreen
@@ -32,22 +34,17 @@ fun AppNavGraph(navController: NavHostController,
 
     NavHost(
         navController = navController as NavHostController,
-        startDestination = Routes.HOME
+        startDestination = Routes.SPLASH
     ) {
 
+        composable(Routes.SPLASH) {
+            SplashScreen(navController = navController)        }
+
         composable(Routes.LOGIN) {
-            LoginScreen(
-                onLoginSuccess = {
-                    // Login başarılı olunca Home'a git ve Login'i geri yığınından (backstack) kaldır
-                    navController.navigate(Routes.HOME) {
-                        popUpTo(Routes.LOGIN) { inclusive = true }
-                    }
-                },
-                onNavigateToRegister = {
-                    navController.navigate(Routes.REGISTER)
-                }
-            )
+            // LoginScreen artık kendi ViewModel'i üzerinden yönlendirmeyi yönetiyor.
+            LoginScreen(navController = navController)
         }
+
 
         composable(Routes.REGISTER) {
             RegisterScreen(
@@ -62,6 +59,10 @@ fun AppNavGraph(navController: NavHostController,
                     }
                 }
             )
+        }
+
+        composable(Routes.INTEREST_SELECTION) {
+            InterestSelectionScreen(navController = navController)
         }
         // ============================================
         // MAIN SCREENS

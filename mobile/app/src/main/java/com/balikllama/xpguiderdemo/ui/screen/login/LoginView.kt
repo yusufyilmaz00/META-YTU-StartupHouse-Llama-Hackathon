@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
@@ -16,6 +18,9 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import com.balikllama.xpguiderdemo.ui.designsystem.Spacing
@@ -23,13 +28,17 @@ import com.balikllama.xpguiderdemo.ui.designsystem.Spacing
 
 @Composable
 fun LoginView(
+    // Tek bir state objesi alıyoruz
     uiState: LoginUiState,
+    // Event'leri ViewModel'e iletecek lambda'lar
     onEmailChanged: (String) -> Unit,
     onPasswordChanged: (String) -> Unit,
     onLoginClicked: () -> Unit,
     onNavigateToRegister: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+    val focusManager = LocalFocusManager.current
+
     Box(
         modifier = modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
@@ -52,6 +61,10 @@ fun LoginView(
                 label = { Text("E-posta") },
                 modifier = Modifier.fillMaxWidth(),
                 singleLine = true,
+                keyboardOptions = KeyboardOptions(
+                    keyboardType = KeyboardType.Email,
+                    imeAction = ImeAction.Next // Klavyede "Sonraki" tuşu
+                ),
                 isError = uiState.errorMessage != null,
                 shape = MaterialTheme.shapes.medium
             )
@@ -63,6 +76,16 @@ fun LoginView(
                 modifier = Modifier.fillMaxWidth(),
                 singleLine = true,
                 visualTransformation = PasswordVisualTransformation(),
+                keyboardOptions = KeyboardOptions(
+                    keyboardType = KeyboardType.Password,
+                    imeAction = ImeAction.Done // Klavyede "Bitti" tuşu
+                ),
+                keyboardActions = KeyboardActions(
+                    onDone = {
+                        focusManager.clearFocus() // Klavyeyi kapat
+                        onLoginClicked() // Login işlemini tetikle
+                    }
+                ),
                 isError = uiState.errorMessage != null,
                 shape = MaterialTheme.shapes.medium
             )

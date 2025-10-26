@@ -15,6 +15,10 @@ data class InterestSelectionUIState(
     // Seçilen ilgi alanı sayısı
     val selectionCount: Int get() = selectedInterestIds.size
 
-    // "Devam Et" butonunun aktif olup olmadığını belirleyen mantık
-    val isContinueButtonEnabled: Boolean get() = selectionCount in 5..8
+    val isContinueButtonEnabled: Boolean get() = selectionCount in MIN_SELECTION_COUNT..MAX_SELECTION_COUNT
+
+    companion object {
+        const val MIN_SELECTION_COUNT = 5
+        const val MAX_SELECTION_COUNT = 8
+    }
 }

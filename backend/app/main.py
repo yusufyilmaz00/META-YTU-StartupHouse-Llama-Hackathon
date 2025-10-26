@@ -29,20 +29,19 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-_rag_loaded = False  # process-icinde guard
 @app.on_event("startup")
 def warmup_rag():
-    global _rag_loaded
-    if not _rag_loaded:
+    if not hasattr(app.state, "rag_loaded"):
+        app.state.rag_loaded = False
+
+    if not app.state.rag_loaded:
         try:
             res = all_rag()
-            # İstersen loglamak istersen:
             print("🔄 RAG warmup:", res)
-            _rag_loaded = True
+            app.state.rag_loaded = True
         except Exception as e:
-            # Burada hata alırsan endpoint'ler yine de çalışır;
-            # sadece RAG context’i boş olabilir.
             print(f"❌ RAG warmup hata: {e}")
+
 
 @app.get("/")
 def health():

@@ -1,5 +1,7 @@
 # app/main.py
 from fastapi import FastAPI, Body
+import json
+import re
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import Depends, HTTPException
 from pydantic import BaseModel, EmailStr, Field
@@ -163,18 +165,22 @@ def me(auth=Depends(auth_required)):
 
 def system_prompt():
     return (
-        "You are a professional career counselor and cognitive analyst. "
-        "Your role is to help users explore career paths, understand their job-related skills, and plan long-term professional growth. "
-        "If a user asks about topics unrelated to careers, politely respond with: "
-        "'I wasn't given any information on this topic. I can only answer career counseling questions.' "
-        "When the user provides intelligence percentages, analyze them carefully and ask clarifying questions "
-        "to test the accuracy and consistency of those values. You may adjust the percentages up or down "
-        "based on the user's answers, but always explain your reasoning clearly and logically. "
-        "Limit yourself to asking a maximum of five questions during this analysis process. "
-        "After evaluating the intelligence profile, summarize your findings by identifying the user's cognitive strengths and weaknesses, "
-        "and suggest the most suitable career paths and job roles that align with their intelligence profile. "
-        "Finally, provide clear, actionable recommendations for professional growth tailored to their unique combination of intelligences. "
-    )
+    "You are a professional career counselor and cognitive analyst. "
+    "Your role is to help users explore career paths, understand their job-related skills, and plan long-term professional growth. "
+    "If a user asks about topics unrelated to careers, politely respond with: "
+    "'I wasn't given any information on this topic. I can only answer career counseling questions.' "
+    "When the user provides intelligence percentages, analyze them carefully and ask clarifying questions "
+    "to test the accuracy and consistency of those values. You may adjust the percentages up or down "
+    "based on the user's answers, but always explain your reasoning clearly and logically. "
+    "Limit yourself to asking a maximum of five questions during this analysis process. "
+    "After evaluating the intelligence profile, summarize your findings by identifying the user's cognitive strengths and weaknesses, "
+    "and suggest the most suitable career paths and job roles that align with their intelligence profile. "
+    "Finally, provide clear, actionable recommendations for professional growth tailored to their unique combination of intelligences. "
+    "At the end of your analysis, output the final adjusted intelligence percentages in strict JSON format as follows: "
+    "{\"intelligence_profile\": {\"Analytical Intelligence\": X, \"Social Intelligence\": Y, ...}} "
+    "Ensure the JSON block is valid and includes all intelligence types mentioned by the user, using floating-point numbers for values."
+)
+
 
 
 
@@ -201,6 +207,25 @@ def ask_groq(prompt: str, max_tokens: int = 1000, temperature: float = 0.7):
         # History'e ekle
         history.append({"role": "user", "content": prompt})
         history.append({"role": "assistant", "content": answer})
+
+        json_pattern = re.search(r'\{[\s\S]*\}', answer)
+        if json_pattern:
+            json_str = json_pattern.group(0)
+            try:
+                data = json.loads(json_str)
+
+                # Klasör oluştur (varsa hata vermez)
+                os.makedirs("data", exist_ok=True)
+                filename = os.path.join("data", "current_metrics.json")
+
+                # JSON'u kaydet (her zaman üzerine yazar)
+                with open(filename, "w", encoding="utf-8") as f:
+                    json.dump(data, f, ensure_ascii=False, indent=2)
+
+                print(f"✅ Güncel metrikler kaydedildi: {filename}")
+
+            except json.JSONDecodeError:
+                print("⚠️ Yanıtta geçersiz JSON bulundu, kaydedilmedi.")
         return answer
     except Exception as e:
         return f"Model hatası: {e}"

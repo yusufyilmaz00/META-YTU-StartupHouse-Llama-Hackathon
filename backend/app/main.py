@@ -241,7 +241,7 @@ def job_recommendation_prompt(user_input: str, last_chat: str = "") -> str:
 
 
 @app.post("/jobrecommendation")
-def job_recommendation_endpoint(user_input: str = Body(..., embed=True)):
+def job_recommendation_endpoint(ratios: dict = Body(...)):
     """
     Kullanıcıdan gelen iş önerisi isteklerini işler.
     Önceki sohbeti prompta ekleyerek daha bağlamsal öneri üretir.

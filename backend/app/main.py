@@ -182,8 +182,6 @@ def system_prompt():
 )
 
 
-
-
 # --- Global history ---
 
 history = [{"role": "system", "content": system_prompt()}]

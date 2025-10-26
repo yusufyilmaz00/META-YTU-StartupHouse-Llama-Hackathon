@@ -29,6 +29,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+_rag_loaded = False  # process-icinde guard
 @app.on_event("startup")
 def warmup_rag():
     global _rag_loaded

@@ -10,7 +10,8 @@ data class InterestSelectionUIState(
     val selectedInterestIds: Set<String> = emptySet(),
 
     // Veri yüklenirken gösterilecek olan
-    val isLoading: Boolean = true
+    val isLoading: Boolean = true,
+    val isSelectionSaved: Boolean = false
 ) {
     // Seçilen ilgi alanı sayısı
     val selectionCount: Int get() = selectedInterestIds.size

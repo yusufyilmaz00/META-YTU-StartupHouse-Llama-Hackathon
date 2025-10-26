@@ -2,11 +2,14 @@ package com.balikllama.xpguiderdemo.ui.screen.interestselection
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.balikllama.xpguiderdemo.data.local.entity.InterestEntity
 import com.balikllama.xpguiderdemo.repository.InterestRepository
+import com.balikllama.xpguiderdemo.repository.UserPreferencesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -14,8 +17,8 @@ import kotlin.collections.toMutableSet
 
 @HiltViewModel
 class InterestSelectionViewModel @Inject constructor(
-    private val interestRepository: InterestRepository
-    // TODO: Seçimleri kaydetmek için DataStore Repository'si buraya eklenecek
+    private val interestRepository: InterestRepository,
+    private val userPreferencesRepository: UserPreferencesRepository
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(InterestSelectionUIState())
@@ -28,8 +31,15 @@ class InterestSelectionViewModel @Inject constructor(
     private fun loadAllInterests() {
         viewModelScope.launch {
             _uiState.update { it.copy(isLoading = true) }
+            // interestRepository.getAllInterests() bir Flow döndürdüğü için,
+            // ondan gelen ilk ve tek listeyi .first() ile alıyoruz.
             val interests = interestRepository.getAllInterests().first()
-            _uiState.update { it.copy(isLoading = false, allInterests = interests) }
+            _uiState.update {
+                it.copy(
+                    isLoading = false,
+                    allInterests = interests
+                )
+            }
         }
     }
 
@@ -41,11 +51,9 @@ class InterestSelectionViewModel @Inject constructor(
         _uiState.update { currentState ->
             val newSelectedIds = currentState.selectedInterestIds.toMutableSet()
             if (newSelectedIds.contains(interestId)) {
-                // Eğer zaten seçiliyse, seçimden kaldır
                 newSelectedIds.remove(interestId)
             } else {
-                // Eğer seçili değilse ve seçim sayısı 8'den az ise ekle
-                if (newSelectedIds.size < 8) {
+                if (newSelectedIds.size < InterestSelectionUIState.MAX_SELECTION_COUNT) {
                     newSelectedIds.add(interestId)
                 }
             }
@@ -59,13 +67,15 @@ class InterestSelectionViewModel @Inject constructor(
      * "ilgi alanı seçme tamamlandı" flag'ini true yapacak.
      */
     fun onContinueClicked() {
+        // Buton aktif değilse bir şey yapma
         if (!_uiState.value.isContinueButtonEnabled) return
 
         viewModelScope.launch {
-            val selectedIds = _uiState.value.selectedInterestIds
-            // TODO: 'selectedIds' listesini ve 'isSelectionCompleted=true' bilgisini
-            // DataStore kullanarak kaydet.
-            println("Seçilen İlgi Alanları Kaydedildi: $selectedIds")
+            // Seçilen ID'leri SharedPreferences'e kaydet
+            userPreferencesRepository.saveInterestSelection(_uiState.value.selectedInterestIds)
+
+            // Kaydetme işlemi bittiğinde UI'a haber ver ki yönlendirme yapsın.
+            _uiState.update { it.copy(isSelectionSaved = true) }
         }
     }
 }

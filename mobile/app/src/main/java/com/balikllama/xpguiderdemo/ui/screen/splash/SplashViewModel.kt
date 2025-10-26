@@ -23,6 +23,7 @@ class SplashViewModel @Inject constructor(
      * İlk kurulumu (ilgi alanı seçimi) tamamlayıp tamamlamadığını kontrol eder.
      */
     fun isSetupComplete(): Boolean {
+        // SharedPreferences'ten kurulumun tamamlanıp tamamlanmadığını okur.
         return userPreferencesRepository.isInterestSelectionCompleted()
     }
 }

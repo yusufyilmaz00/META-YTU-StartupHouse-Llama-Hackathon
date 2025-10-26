@@ -8,5 +8,6 @@ data class ProfileUIState(
     val credit: Int = 0,
     val isLoading: Boolean = true,
     val userDetails: List<UserInfo> = emptyList(),
-    val pastActivities: List<ActivityItem> = emptyList()
+    val pastActivities: List<ActivityItem> = emptyList(),
+    val userEmail: String = "Yükleniyor..."
 )

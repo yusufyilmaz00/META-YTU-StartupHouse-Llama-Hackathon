@@ -17,25 +17,23 @@ fun InterestSelectionScreen(
 ) {
     val uiState by viewModel.uiState.collectAsState()
 
-    // TODO: "Devam Et" butonuna basıldığında ve ViewModel'deki kaydetme işlemi
-    // tamamlandığında Home'a yönlendirecek bir LaunchedEffect eklenecek.
-    // Örnek:
-     //LaunchedEffect(uiState.isSelectionSaved) {
-     //    if (uiState.isSelectionSaved) {
-      //       navController.navigate(Routes.HOME) { popUpTo(Routes.INTEREST_SELECTION) { inclusive = true } }
-      //   }
-    // }
+    // --- 1. YENİ BÖLÜM: YÖNLENDİRME MANTIĞI ---
+    LaunchedEffect(uiState.isSelectionSaved) {
+        // isSelectionSaved durumu 'true' olduğunda bu blok çalışır.
+        if (uiState.isSelectionSaved) {
+            // Home ekranına git ve bu ekranı geri yığınından (backstack) kaldır.
+            navController.navigate(Routes.HOME) {
+                popUpTo(Routes.INTEREST_SELECTION) { inclusive = true }
+            }
+        }
+    }
+    // --- YENİ BÖLÜM SONU ---
 
     InterestSelectionView(
         modifier = modifier,
         uiState = uiState,
         onInterestClicked = viewModel::onInterestClicked,
-        onContinueClicked = {
-            viewModel.onContinueClicked()
-            // Geçici olarak direkt yönlendirme yapalım
-            navController.navigate(Routes.HOME) {
-                popUpTo(navController.graph.startDestinationId) { inclusive = true }
-            }
-        }
+        // Butona tıklandığında ViewModel'deki yeni fonksiyonu çağır.
+        onContinueClicked = viewModel::onContinueClicked
     )
 }

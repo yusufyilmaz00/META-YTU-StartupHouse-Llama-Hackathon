@@ -66,7 +66,7 @@ fun InterestSelectionView(
             onContinueClicked = onContinueClicked
         )
 
-        Spacer(modifier = Modifier.height(80.dp))
+        Spacer(modifier = Modifier.height(160.dp))
     }
 }
 

@@ -60,6 +60,9 @@ class UserPreferencesRepository @Inject constructor(
             .apply()
     }
 
+    fun getUserEmail(): String? {
+        return prefs.getString(KEY_EMAIL, null)
+    }
     // --- İLK KURULUM YÖNETİMİ ---
 
     fun isInterestSelectionCompleted(): Boolean {

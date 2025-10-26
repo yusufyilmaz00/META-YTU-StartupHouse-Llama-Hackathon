@@ -3,6 +3,7 @@ package com.balikllama.xpguiderdemo.ui.screen.profile
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.balikllama.xpguiderdemo.repository.CreditRepository
+import com.balikllama.xpguiderdemo.repository.UserPreferencesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,11 +17,13 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ProfileViewModel @Inject constructor(
-    private val creditRepository: CreditRepository
+    private val creditRepository: CreditRepository,
+    // --- 2. YENİ REPOSITORY'Yİ ENJEKTE ET ---
+    private val userPreferencesRepository: UserPreferencesRepository
 ) : ViewModel() {
     private val _uiState = MutableStateFlow(ProfileUIState())
 
-    // Kredi ve profil durumunu birleştirerek tek bir UIState oluştur
+    // Bu kısım (kredi birleştirme) doğru ve aynı kalabilir.
     val uiState: StateFlow<ProfileUIState> = combine(
         _uiState,
         creditRepository.userCredits
@@ -31,6 +34,7 @@ class ProfileViewModel @Inject constructor(
         started = SharingStarted.WhileSubscribed(5_000),
         initialValue = ProfileUIState()
     )
+
     init {
         loadProfileData()
     }
@@ -38,16 +42,21 @@ class ProfileViewModel @Inject constructor(
     private fun loadProfileData() {
         viewModelScope.launch {
             _uiState.update { it.copy(isLoading = true) }
-            // Sahte bir ağ gecikmesini simüle et
-            delay(1000)
-            // Sahte verileri oluştur
+            delay(1000) // Sahte gecikme kalabilir.
+
+            // --- 3. GERÇEK KULLANICI E-POSTASINI AL ---
+            val userEmail = userPreferencesRepository.getUserEmail() ?: "Bulunamadı"
+
+            // Sahte verileri oluştururken gerçek e-postayı kullan
             val userDetails = listOf(
-                UserInfo("Username", "Jhon Dere"),
-                UserInfo("E-mail", "jhond@gmail.com"),
+                UserInfo("Username", "Jhon Dere"), // Bu bilgi de ileride API'den gelebilir
+                // "jhond@gmail.com" yerine SharedPreferences'ten gelen 'userEmail' değişkenini kullan.
+                UserInfo("E-mail", userEmail),
                 UserInfo("Education", "High School"),
                 UserInfo("Age", "16"),
                 UserInfo("Nationality", "American")
             )
+            // Geçmiş aktiviteler sahte olarak kalabilir.
             val pastActivities = listOf(
                 ActivityItem("1", "You completed the Personality Test"),
                 ActivityItem("2", "You talked with the AI about 'Software Engineering'"),
@@ -60,7 +69,10 @@ class ProfileViewModel @Inject constructor(
                 it.copy(
                     isLoading = false,
                     userDetails = userDetails,
-                    pastActivities = pastActivities
+                    pastActivities = pastActivities,
+                    // Bu satır artık doğrudan kullanılmıyor ama state'de kalmasında sakınca yok.
+                    // E-posta `userDetails` listesi içinde yönetiliyor.
+                    userEmail = userEmail
                 )
             }
         }

@@ -95,7 +95,8 @@ fun ChatbotView(
                 ChatInput(
                     value = uiState.currentInput,
                     onValueChange = onInputChanged,
-                    onSendClick = onSendMessage
+                    onSendClick = onSendMessage,
+                    isEnabled = !uiState.isAiTyping
                 )
             }
         }
@@ -142,13 +143,14 @@ private fun MessageBubble(message: Message) {
 private fun ChatInput(
     value: String,
     onValueChange: (String) -> Unit,
-    onSendClick: () -> Unit
+    onSendClick: () -> Unit,
+    isEnabled: Boolean
 ) {
-    Surface(shadowElevation = Spacing.S) { // Input alanına hafif bir gölge ekler
+    Surface(shadowElevation = Spacing.S) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(Spacing.M), // Spacing token'ı
+                .padding(Spacing.M),
             verticalAlignment = Alignment.CenterVertically
         ) {
             OutlinedTextField(
@@ -156,17 +158,20 @@ private fun ChatInput(
                 onValueChange = onValueChange,
                 modifier = Modifier.weight(1f),
                 placeholder = { Text("Bir mesaj yaz...") },
-                shape = RoundedCornerShape(Radius.L), // Radius token'ı
+                shape = RoundedCornerShape(Radius.L),
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Send),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = MaterialTheme.colorScheme.primary,
                     unfocusedBorderColor = MaterialTheme.colorScheme.outline
-                )
+                ),
+                // --- 1. DEĞİŞİKLİK: TextField'ı pasif yap ---
+                enabled = isEnabled// `isAiTyping` true ise `enabled` false olacak.
             )
-            Spacer(modifier = Modifier.width(Spacing.S)) // Spacing token'ı
+            Spacer(modifier = Modifier.width(Spacing.S))
             IconButton(
                 onClick = onSendClick,
-                enabled = value.isNotBlank(),
+                // --- 2. DEĞİŞİKLİK: Butonu pasif yap ---
+                enabled = value.isNotBlank() && isEnabled, // `isAiTyping` true ise veya input boşsa buton pasif.
                 colors = IconButtonDefaults.iconButtonColors(
                     contentColor = MaterialTheme.colorScheme.onPrimary,
                     containerColor = MaterialTheme.colorScheme.primary,
@@ -178,6 +183,7 @@ private fun ChatInput(
         }
     }
 }
+
 
 
 @Preview(showBackground = true, name = "Chatbot Preview")

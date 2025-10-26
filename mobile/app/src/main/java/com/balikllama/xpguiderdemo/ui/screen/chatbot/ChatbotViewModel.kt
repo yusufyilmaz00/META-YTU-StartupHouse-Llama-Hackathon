@@ -26,7 +26,6 @@ import kotlin.collections.associate
 class ChatbotViewModel @Inject constructor(
     private val creditRepository: CreditRepository,
     private val chatbotRepository: ChatbotRepository,
-    private val testResultRepository: TestResultRepository
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(ChatUIState())
@@ -45,8 +44,25 @@ class ChatbotViewModel @Inject constructor(
 
     init {
         Log.d("ChatbotViewModel", "ViewModel BAŞLATILDI!")
-        addMessage("Merhaba! Ben senin kariyer asistanınım. Sana nasıl yardımcı olabilirim?", MessageAuthor.AI)
-        sendAnalysisResults()
+        // --- DEĞİŞEN KISIM: İLK MESAJI DİNAMİK OLARAK YÜKLE ---
+
+        // 1. Repository'den API'den gelen analiz mesajını iste.
+        val analysisMessage = chatbotRepository.getInitialAnalysisMessage()
+
+        // 2. Mesaj var mı diye kontrol et.
+        if (analysisMessage != null) {
+            // 2a. Eğer mesaj varsa, onu ilk mesaj olarak listeye ekle.
+            addMessage(analysisMessage, MessageAuthor.AI)
+            Log.d("ChatbotViewModel", "API'den gelen ilk analiz mesajı eklendi.")
+
+            // 2b. Bu mesajı bir daha göstermemek için Repository'den temizle.
+            chatbotRepository.clearInitialAnalysisMessage()
+        } else {
+            // 3. Eğer mesaj yoksa (kullanıcı testi çözmeden doğrudan chat'e geldiyse),
+            // standart karşılama mesajını göster.
+            addMessage("Merhaba! Ben senin kariyer asistanınım. Sana nasıl yardımcı olabilirim?", MessageAuthor.AI)
+            Log.d("ChatbotViewModel", "Standart karşılama mesajı eklendi çünkü analiz mesajı bulunamadı.")
+        }
     }
 
     // Kullanıcının yazdığı metin değiştiğinde çağrılır
@@ -90,28 +106,4 @@ class ChatbotViewModel @Inject constructor(
         }
     }
 
-    // intelligence
-    private fun sendAnalysisResults() {
-        viewModelScope.launch {
-            Log.d("ChatbotViewModel", "sendAnalysisResultsToBackend fonksiyonu çalıştı.")
-            // 1. Veritabanından test sonuçlarını al
-            val testResults = testResultRepository.getTestResults()
-            Log.d("ChatbotViewModel", "Veritabanından ${testResults.size} adet test sonucu bulundu.")
-            // Eğer sonuç yoksa işlemi durdur
-            if (testResults.isEmpty()) {
-                Log.e("ChatbotViewModel", "Test sonucu bulunamadığı için API isteği İPTAL EDİLDİ.")
-                // TODO: Kullanıcıya henüz test yapmadığına dair bir mesaj gösterilebilir.
-                return@launch
-            }
-
-            // 2. Sonuçları Map<String, Double> formatına dönüştür
-            val ratiosMap = testResults.associate { result ->
-                result.name to result.percentage.toDouble()
-            }
-            Log.d("ChatbotViewModel", "API'ye gönderilecek veri: $ratiosMap")
-            // 3. Repository aracılığıyla API'ye gönder
-            chatbotRepository.sendRatiosToIntelligenceApi(ratiosMap)
-            // Sonuç zaten repository içinde loglanıyor.
-        }
-    }
 }

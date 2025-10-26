@@ -10,4 +10,13 @@ interface ChatbotRepository {
      *         Başarısız ise [ApiResult.Error] döner.
      */
     suspend fun sendRatiosToIntelligenceApi(ratios: Map<String, Double>): ApiResult<JsonObject>
+    /**
+     * API'den gelen ilk analiz mesajını döndürür.
+     */
+    fun getInitialAnalysisMessage(): String?
+
+    /**
+     * Mesaj kullanıldıktan sonra hafızadan temizler.
+     */
+    fun clearInitialAnalysisMessage()
 }

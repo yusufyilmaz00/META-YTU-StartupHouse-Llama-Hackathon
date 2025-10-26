@@ -41,12 +41,12 @@ import com.balikllama.xpguiderdemo.ui.designsystem.Spacing
 fun TestResultView(
     modifier: Modifier = Modifier,
     results: List<ScoreResult>,
-    onNavigateHome: () -> Unit
-) {
+    onAnalyzeClicked: () -> Unit )
+{
     AppTheme {
         Scaffold(
             modifier = modifier,
-            topBar = { AppTopBar(title = "Test Sonuçların", creditInfo = "") }
+            topBar = { AppTopBar(title = "Test Results", creditInfo = "") }
         ) { innerPadding ->
             Column(
                 modifier = Modifier
@@ -81,14 +81,15 @@ fun TestResultView(
                     }
                 }
 
-                // Ana Sayfaya Dön Butonu
                 Button(
-                    onClick = onNavigateHome,
+                    // onNavigateHome yerine yeni parametreyi kullanıyoruz.
+                    onClick = onAnalyzeClicked,
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(vertical = Spacing.M)
                 ) {
-                    Text("ANA SAYFAYA DÖN")
+                    // Buton metnini güncelliyoruz.
+                    Text("Make analyze and go to Chat Asistant")
                 }
             }
         }

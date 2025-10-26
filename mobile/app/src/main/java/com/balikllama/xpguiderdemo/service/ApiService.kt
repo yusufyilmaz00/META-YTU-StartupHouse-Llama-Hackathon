@@ -39,6 +39,7 @@ interface ApiService {
      */
     @POST("intelligence")
     suspend fun sendIntelligenceData(
+        // FastAPI'nin beklediği Map<String, Any> formatına güncelleyelim.
         @Body requestBody: Map<String, @JvmSuppressWildcards Any>
     ): Response<JsonObject>
 }

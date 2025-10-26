@@ -2,6 +2,7 @@ package com.balikllama.xpguiderdemo.ui.screen.testresults
 
 import android.util.Log
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -23,17 +24,20 @@ fun TestResultScreen(
     // --- LOGLAMA NOKTASI 4: Screen'e gelen UIState'i kontrol et ---
     Log.d("TestResultsScreen", "UIState alındı. Sonuç sayısı: ${uiState.results.size}. Sonuçlar: ${uiState.results}")
 
+    if (uiState.isTestCompleted) {
+        LaunchedEffect(Unit) {
+            navController.navigate(Routes.CHATBOT) {
+                // Geri yığınından testle ilgili tüm ekranları temizle
+                popUpTo(Routes.TEST_GRAPH) { inclusive = true }
+            }
+        }
+    }
 
     TestResultView(
         modifier = modifier,
         results = uiState.results,
-        onNavigateHome = {
-            // Ana sayfaya dönerken, test ve sonuçlar ekranını yığından temizle.
-            navController.navigate(Routes.HOME) {
-                popUpTo(Routes.HOME) {
-                    inclusive = true
-                }
-            }
+        onAnalyzeClicked = {
+            viewModel.submitTestResults()
         }
     )
 }

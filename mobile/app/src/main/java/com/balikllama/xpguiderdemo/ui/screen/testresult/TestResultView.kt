@@ -81,16 +81,6 @@ fun TestResultView(
                     }
                 }
 
-                Button(
-                    // onNavigateHome yerine yeni parametreyi kullanıyoruz.
-                    onClick = onAnalyzeClicked,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(vertical = Spacing.M)
-                ) {
-                    // Buton metnini güncelliyoruz.
-                    Text("Make analyze and go to Chat Asistant")
-                }
             }
         }
     }

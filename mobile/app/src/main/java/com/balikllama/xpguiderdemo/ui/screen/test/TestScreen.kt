@@ -17,13 +17,17 @@ fun TestScreen(
     // ViewModel'den gelen UI durumunu dinle
     val uiState by viewModel.uiState.collectAsState()
 
-    // Testin tamamlanıp tamamlanmadığını kontrol et
-    LaunchedEffect(uiState.isTestCompleted) {
-        if (uiState.isTestCompleted) {
-            // Test bittiğinde, sonuç ekranına yönlendir.
-            // Şimdilik Home ekranına geri dönüyoruz.
-            // İleride burayı "navController.navigate(Routes.RESULTS)" gibi bir hedefe değiştirebiliriz.
-            navController.navigate(Routes.TEST_RESULTS)       }
+    // --- YÖNLENDİRME MANTIĞI ---
+    // isTestCompleted artık SADECE yönlendirme için kullanılacak.
+    // submitTestResults() çağrıldıktan sonra true olacak.
+    if (uiState.isTestCompleted) {
+        // LaunchedEffect kullanarak bu Composable'ın recomposition döngüsüne girmesini engelle.
+        LaunchedEffect(Unit) {
+            navController.navigate(Routes.CHATBOT) {
+                // İsteğe bağlı: Test ekranlarını geri yığınından temizle
+                popUpTo(Routes.TEST_GRAPH) { inclusive = true }
+            }
+        }
     }
 
     // UI katmanına (View) state'i ve event lambda'larını (fonksiyonları) iletiyoruz.
@@ -31,12 +35,8 @@ fun TestScreen(
         modifier = modifier,
         uiState = uiState,
         // Cevap seçildiğinde ViewModel'deki fonksiyonu çağır.
-        onAnswerSelected = { answer ->
-            viewModel.onAnswerSelected(answer)
-        },
-        // Geri butonuna basıldığında ViewModel'deki fonksiyonu çağır.
-        onBackPressed = {
-            viewModel.goToPreviousQuestion()
-        }
+        onAnswerSelected = viewModel::onAnswerSelected,
+        onBackPressed = viewModel::goToPreviousQuestion,
+        onSubmitClicked = viewModel::submitTestResults // Butona basıldığında ViewModel'i çağır
     )
 }

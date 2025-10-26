@@ -49,7 +49,8 @@ fun TestView(
     modifier: Modifier = Modifier,
     uiState: TestUIState,
     onAnswerSelected: (AnswerType) -> Unit,
-    onBackPressed: () -> Unit
+    onBackPressed: () -> Unit,
+    onSubmitClicked: () -> Unit = {}
 ) {
     Scaffold(
         topBar = {
@@ -101,11 +102,18 @@ fun TestView(
                 // Kart'a da bir ağırlık vererek daha orantılı bir dağılım yapabiliriz.
                 Spacer(modifier = Modifier.weight(0.8f))
 
-                AnswerButtons(
-                    modifier = Modifier,
-                    currentAnswer = uiState.currentAnswer,
-                    onAnswerSelected = onAnswerSelected
-                )
+                // Test bitti mi, yoksa devam mı ediyor diye kontrol et
+                if (uiState.isTestFinishedButNotSubmitted) {
+                    // Test bittiyse, yeni "Gönder" görünümünü göster
+                    TestFinishedView(onSubmit = onSubmitClicked)
+                } else {
+                    // Test devam ediyorsa, cevap butonlarını göster
+                    AnswerButtons(
+                        modifier = Modifier,
+                        currentAnswer = uiState.currentAnswer,
+                        onAnswerSelected = onAnswerSelected
+                    )
+                }
 
                 Spacer(modifier = Modifier.weight(0.2f))
             }
@@ -213,49 +221,32 @@ private fun AnswerButton(
     }
 }
 
-
-@Preview(showBackground = true, name = "Light Mode Preview")
 @Composable
-fun TestViewLightPreview() {
-    AppTheme(darkTheme = false) {
-        TestView(
-            uiState = TestUIState(
-                isLoading = false,
-                questions = listOf(
-                    QuestionEntity(
-                        qId = "Q1_PREVIEW",
-                        qText = "Güne enerjik ve pozitif bir başlangıç yapmak senin için önemli midir ve bunu sık sık başarır mısın?",
-                        primaryId = "A", s1Id = "G", s1w = 0.2f, s2Id = "", s2w = 0f, s3Id = "", s3w = 0f, active = true
-                    )
-                ),
-                currentQuestionIndex = 0,
-                currentAnswer = AnswerType.YES
-            ),
-            onAnswerSelected = {},
-            onBackPressed = {}
+private fun TestFinishedView(
+    onSubmit: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Column(
+        modifier = modifier.fillMaxWidth(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(Spacing.M)
+    ) {
+        Text(
+            text = "Testi tamamladın!",
+            style = MaterialTheme.typography.headlineMedium,
+            textAlign = TextAlign.Center
         )
-    }
-}
-
-@Preview(showBackground = true, name = "Dark Mode Preview")
-@Composable
-fun TestViewDarkPreview() {
-    AppTheme(darkTheme = true) {
-        TestView(
-            uiState = TestUIState(
-                isLoading = false,
-                questions = listOf(
-                    QuestionEntity(
-                        qId = "Q1_PREVIEW",
-                        qText = "Güne enerjik ve pozitif bir başlangıç yapmak senin için önemli midir ve bunu sık sık başarır mısın?",
-                        primaryId = "A", s1Id = "G", s1w = 0.2f, s2Id = "", s2w = 0f, s3Id = "", s3w = 0f, active = true
-                    )
-                ),
-                currentQuestionIndex = 0,
-                currentAnswer = AnswerType.NEUTRAL
-            ),
-            onAnswerSelected = {},
-            onBackPressed = {}
+        Text(
+            text = "Kişilik analizini ve kariyer önerilerini görmek için sonuçları gönder.",
+            style = MaterialTheme.typography.bodyLarge,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.padding(horizontal = Spacing.L)
         )
+        Button(
+            onClick = onSubmit,
+            modifier = Modifier.padding(top = Spacing.M)
+        ) {
+            Text("Sonuçları Gönder ve Analizi Başlat")
+        }
     }
 }

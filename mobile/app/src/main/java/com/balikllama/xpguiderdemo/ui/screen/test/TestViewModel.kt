@@ -64,34 +64,48 @@ class TestViewModel @Inject constructor(
                 _uiState.update { it.copy(currentQuestionIndex = nextIndex) }
                 loadAnswerForCurrentQuestion()
             } else {
-                // --- LOGLAMA NOKTASI 1: Testin bittiğini ve hesaplamanın başladığını doğrula ---
-                Log.d("TestViewModel", "Test bitti. Skor hesaplama başlıyor. Session ID: $testSessionId")
-
-                // Test bitti! Skorları hesapla.
-                val results = scoreCalculator.calculateScores(testSessionId)
-
-                // A) Sonuçları veritabanına kaydedilecek formata dönüştür (TestResult Entity)
-                val testResultsToSave = results.map { score ->
-                    TestResult(name = score.traitName, percentage = score.displayPercent)
-                }
-
-                // B) Veritabanına kaydet
-                testResultRepository.saveTestResults(testResultsToSave)
-                Log.d("TestViewModel", "Test sonuçları veritabanına kaydedildi.")
-
-                // C) API'ye gönderilecek formata dönüştür (Map<String, Double>)
-                val ratiosMap = testResultsToSave.associate { it.name to it.percentage.toDouble() }
-                Log.d("TestViewModel", "API'ye gönderilecek veri: $ratiosMap")
-
-                // D) API'ye gönder
-                chatbotRepository.sendRatiosToIntelligenceApi(ratiosMap)
-
-                // Testin bittiğini ve sonuçların hazır olduğunu UI'a bildir.
                 _uiState.update {
-                    // --- LOGLAMA NOKTASI 3: UIState'in güncellendiğini doğrula ---
-                    Log.d("TestViewModel", "UIState güncelleniyor. isTestCompleted=true, results.size=${results.size}")
-                    it.copy(isTestCompleted = true, results = results)
+                    it.copy(isTestFinishedButNotSubmitted = true)
                 }
+            }
+        }
+    }
+
+    /**
+     * YENİ FONKSİYON: Testi bitirir, sonuçları kaydeder, API'ye gönderir.
+     * Bu fonksiyon UI tarafından (yeni butona basılınca) çağrılacak.
+     */
+    fun submitTestResults() {
+        viewModelScope.launch {
+            // --- LOGLAMA ---
+            Log.d("TestViewModel", "submitTestResults çağrıldı. Skorlar hesaplanıyor...")
+            val results = scoreCalculator.calculateScores(testSessionId)
+            Log.d("TestViewModel", "Skorlar hesaplandı: $results")
+
+            if (results.isEmpty()) {
+                Log.e("TestViewModel", "Hesaplanan sonuçlar boş, işlem iptal edildi.")
+                return@launch
+            }
+
+            // A) Sonuçları veritabanına kaydet
+            val testResultsToSave = results.map { score ->
+                TestResult(name = score.traitName, percentage = score.displayPercent)
+            }
+            testResultRepository.saveTestResults(testResultsToSave)
+            Log.d("TestViewModel", "Test sonuçları veritabanına kaydedildi.")
+
+            // B) API'ye gönder
+            val ratiosMap = testResultsToSave.associate { it.name to it.percentage.toDouble() }
+            chatbotRepository.sendRatiosToIntelligenceApi(ratiosMap)
+            Log.d("TestViewModel", "API isteği gönderildi: $ratiosMap")
+
+            // C) UI'ı son durumla güncelle (sonuç ekranı için)
+            _uiState.update {
+                it.copy(
+                    isTestCompleted = true, // Testin tamamen bittiğini belirt
+                    results = results,
+                    isTestFinishedButNotSubmitted = false // Artık gönderildiği için bu durumu false yap
+                )
             }
         }
     }

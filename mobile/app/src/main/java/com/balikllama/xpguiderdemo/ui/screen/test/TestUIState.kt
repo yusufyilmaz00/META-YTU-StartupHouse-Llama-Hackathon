@@ -24,6 +24,7 @@ data class TestUIState(
 
     // Test tamamlandığında true olur, sonuç ekranına yönlendirme için kullanılabilir.
     val isTestCompleted: Boolean = false,
+    val isTestFinishedButNotSubmitted: Boolean = false,
     val results: List<ScoreResult> = emptyList()
 ) {
     /**

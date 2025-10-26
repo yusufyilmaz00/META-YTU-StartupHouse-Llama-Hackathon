@@ -252,7 +252,7 @@ def job_recommendation_endpoint(ratios: dict = Body(...)):
 
 
 @app.post("/findmentor")
-def find_mentor_endpoint(ratios: str = Body(..., embed=True)):
+def find_mentor_endpoint(ratios: dict = Body(..., embed=True)):
     """
     Kullanıcıdan gelen mentor önerisi isteklerini işler.
     """

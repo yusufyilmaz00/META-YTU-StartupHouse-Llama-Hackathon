@@ -9,7 +9,6 @@ from .config import TEXT_SPLITTER, COLLECTION_JOBS, COLLECTION_MENTORS
 # ---------------------------------------------------------------------
 # JSON Yükleme
 # ---------------------------------------------------------------------
-
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # Dataset dosyalarının global path'i
@@ -158,3 +157,5 @@ def retrieve_context(collection: Chroma, query: str, n_results: int = 3, max_cha
             content = content[:max_chars] + "..."
         ctx.append(f"KAYNAK: {name}\nİÇERİK: {content}")
     return "\n---\n".join(ctx)
+
+

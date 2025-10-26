@@ -18,11 +18,17 @@ import kotlinx.coroutines.launch
 import java.util.UUID
 import javax.inject.Inject
 import android.util.Log
+import com.balikllama.xpguiderdemo.data.local.entity.TestResult
+import com.balikllama.xpguiderdemo.repository.ChatbotRepository
+import com.balikllama.xpguiderdemo.repository.TestResultRepository
+
 @HiltViewModel
 class TestViewModel @Inject constructor(
     private val testRepository: TestRepository,
     private val creditRepository: CreditRepository,
-    private val scoreCalculator: ScoreCalculator
+    private val scoreCalculator: ScoreCalculator,
+    private val testResultRepository: TestResultRepository,
+    private val chatbotRepository: ChatbotRepository
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(TestUIState())
@@ -64,8 +70,21 @@ class TestViewModel @Inject constructor(
                 // Test bitti! Skorları hesapla.
                 val results = scoreCalculator.calculateScores(testSessionId)
 
-                // --- LOGLAMA NOKTASI 2: Hesaplanan sonuçları kontrol et ---
-                Log.d("TestViewModel", "Skorlar hesaplandı. Sonuç sayısı: ${results.size}. Sonuçlar: $results")
+                // A) Sonuçları veritabanına kaydedilecek formata dönüştür (TestResult Entity)
+                val testResultsToSave = results.map { score ->
+                    TestResult(name = score.traitName, percentage = score.displayPercent)
+                }
+
+                // B) Veritabanına kaydet
+                testResultRepository.saveTestResults(testResultsToSave)
+                Log.d("TestViewModel", "Test sonuçları veritabanına kaydedildi.")
+
+                // C) API'ye gönderilecek formata dönüştür (Map<String, Double>)
+                val ratiosMap = testResultsToSave.associate { it.name to it.percentage.toDouble() }
+                Log.d("TestViewModel", "API'ye gönderilecek veri: $ratiosMap")
+
+                // D) API'ye gönder
+                chatbotRepository.sendRatiosToIntelligenceApi(ratiosMap)
 
                 // Testin bittiğini ve sonuçların hazır olduğunu UI'a bildir.
                 _uiState.update {

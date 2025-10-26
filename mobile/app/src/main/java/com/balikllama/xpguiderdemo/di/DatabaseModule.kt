@@ -8,6 +8,7 @@ import com.balikllama.xpguiderdemo.data.local.dao.InterestDao
 import com.balikllama.xpguiderdemo.data.local.dao.TraitDao
 import com.balikllama.xpguiderdemo.data.local.dao.QuestionDao
 import com.balikllama.xpguiderdemo.data.local.dao.SolvedQuestionDao
+import com.balikllama.xpguiderdemo.data.local.dao.TestResultDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -62,6 +63,12 @@ object DatabaseModule {
     @Singleton
     fun provideSolvedQuestionDao(appDatabase: AppDatabase): SolvedQuestionDao {
         return appDatabase.solvedQuestionDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideTestResultDao(appDatabase: AppDatabase): TestResultDao {
+        return appDatabase.testResultDao()
     }
 
 }

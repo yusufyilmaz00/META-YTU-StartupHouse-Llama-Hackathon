@@ -1,11 +1,14 @@
 package com.balikllama.xpguiderdemo.ui.screen.chatbot
 
+import android.util.Log
 import androidx.compose.animation.core.copy
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.balikllama.xpguiderdemo.model.chat.Message
 import com.balikllama.xpguiderdemo.model.chat.MessageAuthor
+import com.balikllama.xpguiderdemo.repository.ChatbotRepository
 import com.balikllama.xpguiderdemo.repository.CreditRepository
+import com.balikllama.xpguiderdemo.repository.TestResultRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,10 +20,13 @@ import java.util.UUID
 import javax.inject.Inject
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
+import kotlin.collections.associate
 
 @HiltViewModel
 class ChatbotViewModel @Inject constructor(
     private val creditRepository: CreditRepository,
+    private val chatbotRepository: ChatbotRepository,
+    private val testResultRepository: TestResultRepository
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(ChatUIState())
@@ -38,7 +44,9 @@ class ChatbotViewModel @Inject constructor(
     )
 
     init {
+        Log.d("ChatbotViewModel", "ViewModel BAŞLATILDI!")
         addMessage("Merhaba! Ben senin kariyer asistanınım. Sana nasıl yardımcı olabilirim?", MessageAuthor.AI)
+        sendAnalysisResults()
     }
 
     // Kullanıcının yazdığı metin değiştiğinde çağrılır
@@ -79,6 +87,31 @@ class ChatbotViewModel @Inject constructor(
         )
         _uiState.update {
             it.copy(messages = it.messages + newMessage)
+        }
+    }
+
+    // intelligence
+    private fun sendAnalysisResults() {
+        viewModelScope.launch {
+            Log.d("ChatbotViewModel", "sendAnalysisResultsToBackend fonksiyonu çalıştı.")
+            // 1. Veritabanından test sonuçlarını al
+            val testResults = testResultRepository.getTestResults()
+            Log.d("ChatbotViewModel", "Veritabanından ${testResults.size} adet test sonucu bulundu.")
+            // Eğer sonuç yoksa işlemi durdur
+            if (testResults.isEmpty()) {
+                Log.e("ChatbotViewModel", "Test sonucu bulunamadığı için API isteği İPTAL EDİLDİ.")
+                // TODO: Kullanıcıya henüz test yapmadığına dair bir mesaj gösterilebilir.
+                return@launch
+            }
+
+            // 2. Sonuçları Map<String, Double> formatına dönüştür
+            val ratiosMap = testResults.associate { result ->
+                result.name to result.percentage.toDouble()
+            }
+            Log.d("ChatbotViewModel", "API'ye gönderilecek veri: $ratiosMap")
+            // 3. Repository aracılığıyla API'ye gönder
+            chatbotRepository.sendRatiosToIntelligenceApi(ratiosMap)
+            // Sonuç zaten repository içinde loglanıyor.
         }
     }
 }

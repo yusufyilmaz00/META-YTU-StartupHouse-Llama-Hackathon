@@ -93,4 +93,5 @@ dependencies {
     implementation("androidx.room:room-ktx:$roomVersion")
     // splash screen
     implementation("androidx.core:core-splashscreen:1.0.1")
+    implementation("androidx.paging:paging-runtime-ktx:3.3.0")
 }

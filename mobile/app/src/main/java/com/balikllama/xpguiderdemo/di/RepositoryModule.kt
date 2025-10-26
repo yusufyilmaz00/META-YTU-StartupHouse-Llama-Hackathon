@@ -3,6 +3,8 @@ package com.balikllama.xpguiderdemo.di
 
 import com.balikllama.xpguiderdemo.repository.AuthRepository
 import com.balikllama.xpguiderdemo.repository.AuthRepositoryImpl
+import com.balikllama.xpguiderdemo.repository.ChatbotRepository
+import com.balikllama.xpguiderdemo.repository.ChatbotRepositoryImpl
 import com.balikllama.xpguiderdemo.repository.TestRepository
 import com.balikllama.xpguiderdemo.repository.TestRepositoryImpl
 import dagger.Binds
@@ -26,4 +28,9 @@ abstract class RepositoryModule {
     abstract fun bindTestRepository(
         testRepositoryImpl: TestRepositoryImpl
     ): TestRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindChatbotRepository(impl: ChatbotRepositoryImpl): ChatbotRepository
+
 }

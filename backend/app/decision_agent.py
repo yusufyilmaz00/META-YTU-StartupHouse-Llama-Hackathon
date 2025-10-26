@@ -5,7 +5,7 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser, JsonOutputParser
 from config import LLM_TEMP_HIGH, LLM_TEMP_LOW 
 from rag_manager import retrieve_context, load_json_data
-from config import COLLECTION_JOBS, COLLECTION_MENTORS
+from .config import COLLECTION_JOBS, COLLECTION_MENTORS
 
 METRICS_FILE_PATH = os.path.join("dataset/metrics.json")
 

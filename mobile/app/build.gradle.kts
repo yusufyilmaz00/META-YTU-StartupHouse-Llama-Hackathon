@@ -8,17 +8,20 @@ plugins {
 }
 
 android {
-    namespace = "com.balikllama.b1demo"
+    namespace = "com.balikllama.xpguiderdemo"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.balikllama.b1demo"
+        applicationId = "com.balikllama.xpguiderdemo"
         minSdk = 24
         targetSdk = 36
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 4
+        versionName = "1.1.3"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary = true
+        }
     }
 
     buildTypes {
@@ -39,6 +42,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 
@@ -72,4 +76,22 @@ dependencies {
     implementation(libs.androidx.material.icons.extended)
     // material3 window size
     implementation("androidx.compose.material3:material3-window-size-class")
+    // api-json
+    implementation("com.squareup.retrofit2:retrofit:2.11.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.11.0")
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
+    // kotlix coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0")
+    // local db - room
+    // Room Kütüphanesi
+    val roomVersion = "2.6.1"
+    implementation("androidx.room:room-runtime:$roomVersion")
+    ksp("androidx.room:room-compiler:$roomVersion")
+
+    // Kotlin Coroutines ile Room desteği için
+    implementation("androidx.room:room-ktx:$roomVersion")
+    // splash screen
+    implementation("androidx.core:core-splashscreen:1.0.1")
+    implementation("androidx.paging:paging-runtime-ktx:3.3.0")
 }

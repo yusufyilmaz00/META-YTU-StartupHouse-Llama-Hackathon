@@ -1,0 +1,80 @@
+package com.balikllama.xpguiderdemo.di
+
+import android.content.Context
+import androidx.room.Room
+import com.balikllama.xpguiderdemo.data.local.AppDatabase
+import com.balikllama.xpguiderdemo.data.local.dao.CalculationFactorDao
+import com.balikllama.xpguiderdemo.data.local.dao.InterestDao
+import com.balikllama.xpguiderdemo.data.local.dao.TraitDao
+import com.balikllama.xpguiderdemo.data.local.dao.QuestionDao
+import com.balikllama.xpguiderdemo.data.local.dao.SolvedQuestionDao
+import com.balikllama.xpguiderdemo.data.local.dao.TestResultDao
+import com.balikllama.xpguiderdemo.data.local.dao.UserStatusDao
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
+
+
+@Module
+@InstallIn(SingletonComponent::class)
+object DatabaseModule {
+
+    @Provides
+    @Singleton
+    fun provideAppDatabase(
+        @ApplicationContext context: Context
+    ): AppDatabase {
+        return Room.databaseBuilder(
+            context,
+            AppDatabase::class.java,
+            "b1_demo_database" // lokal db dosyasının adı
+        )
+        .fallbackToDestructiveMigration()
+        .build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideInterestDao(appDatabase: AppDatabase): InterestDao {
+        return appDatabase.interestDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideTraitDao(appDatabase: AppDatabase): TraitDao {
+        return appDatabase.traitDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideQuestionDao(appDatabase: AppDatabase): QuestionDao {
+        return appDatabase.questionDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideCalculationFactorDao(appDatabase: AppDatabase): CalculationFactorDao {
+        return appDatabase.calculationFactorDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideSolvedQuestionDao(appDatabase: AppDatabase): SolvedQuestionDao {
+        return appDatabase.solvedQuestionDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideTestResultDao(appDatabase: AppDatabase): TestResultDao {
+        return appDatabase.testResultDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideUserStatusDao(appDatabase: AppDatabase): UserStatusDao {
+        return appDatabase.userStatusDao() // Assuming your AppDatabase class has a function userStatusDao()
+    }
+}

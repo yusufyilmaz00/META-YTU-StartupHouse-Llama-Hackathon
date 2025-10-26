@@ -1,4 +1,4 @@
-package com.balikllama.b1demo
+package com.balikllama.xpguiderdemo
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
